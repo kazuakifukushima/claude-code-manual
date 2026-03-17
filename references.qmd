@@ -1,0 +1,67 @@
+# 参考資料 {.unnumbered}
+
+## 公式ドキュメント
+
+- Anthropic Claude Code 公式ドキュメント
+- Model Context Protocol (MCP) 仕様書
+
+## 本マニュアルの情報源
+
+本マニュアルは以下の NotebookLM ドキュメントの内容を元に作成しました：
+
+- **Mastering Claude Code: The Ultimate AI Agent Setup Guide**
+  - インストール・基本操作・サブエージェント・MCPサーバーの実践的な解説
+
+- **Mastering the Claude.md File for Full-Agent Productivity**
+  - CLAUDE.md の設計パターン・チーム展開・組織的なベストプラクティス
+
+## クイックリファレンス
+
+### 起動コマンド
+
+| コマンド | 説明 |
+|---------|------|
+| `claude` | 対話型セッション開始 |
+| `claude "タスク"` | 初期プロンプト付きで起動 |
+| `claude -p "タスク"` | 一回実行して終了（スクリプト向け） |
+| `claude --continue` | 前のセッションを再開 |
+| `claude auth login` | 認証 |
+| `claude mcp add <name> <cmd>` | MCPサーバーを追加 |
+| `claude mcp list` | MCPサーバー一覧 |
+
+### ファイル配置チートシート
+
+```
+~/.claude/
+├── CLAUDE.md                   # グローバル設定
+├── settings.json               # Claude Code 設定
+└── commands/                   # グローバルコマンド
+
+project/
+├── CLAUDE.md                   # プロジェクト設定
+└── .claude/
+    ├── commands/               # プロジェクト専用コマンド
+    │   ├── commit.md
+    │   ├── review.md
+    │   └── debug.md
+    ├── agents/                 # サブエージェント
+    │   ├── code-reviewer.md
+    │   ├── security-audit.md
+    │   └── test-engineer.md
+    ├── skills/                 # スキル
+    │   └── my-skill/
+    │       ├── skill.md
+    │       └── template.md
+    └── settings.json           # フック設定
+```
+
+### よく使うスラッシュコマンド
+
+| コマンド | 説明 |
+|---------|------|
+| `/help` | ヘルプ表示 |
+| `/clear` | 会話履歴リセット |
+| `/compact` | コンテキスト圧縮 |
+| `/status` | 現在の状態確認 |
+| `/init` | CLAUDE.md の自動生成 |
+| `/exit` | セッション終了 |

@@ -1,0 +1,155 @@
+# MCPサーバー 活用事例 {#sec-mcp-usecases}
+
+<span class="badge-advanced">🟣 上級者向け</span>
+
+## 開発ワークフローへの統合
+
+### GitHub + Jira 連携
+
+```
+> GitHub の open issue 一覧を見せて
+
+> Issue #42 の内容を確認して、対応するコードを修正して
+
+> 修正が完了したらPRを作成して、Jira チケット PROJ-123 をリンクして
+```
+
+### Slack + GitHub 連携
+
+```
+> PR #15 がマージされたことを #dev-team チャンネルに通知して
+
+> レビュー待ちのPRを確認して、担当者にSlackで催促して
+```
+
+## カスタム MCP サーバーの作成
+
+自社のシステムや独自ツールと連携するカスタムMCPサーバーを作れます。
+
+### シンプルなPythonサーバーの例
+
+```python
+# my_mcp_server.py
+from mcp import Server, Tool, Resource
+import json
+
+server = Server("my-custom-server")
+
+@server.tool("get_patient_data")
+async def get_patient_data(patient_id: str) -> str:
+    """
+    患者IDから患者情報を取得する（読み取り専用）
+    """
+    # 実際のDBクエリ（読み取り専用）
+    data = db.query(f"SELECT * FROM patients WHERE id = '{patient_id}'")
+    return json.dumps(data, ensure_ascii=False)
+
+@server.tool("search_medications")
+async def search_medications(query: str) -> str:
+    """
+    薬剤名で薬剤情報を検索する
+    """
+    results = medication_db.search(query)
+    return json.dumps(results, ensure_ascii=False)
+
+if __name__ == "__main__":
+    server.run()
+```
+
+登録方法：
+
+```bash
+claude mcp add hospital-db python3 ~/scripts/my_mcp_server.py
+```
+
+## 医療・研究分野での活用例
+
+### ガイドラインデータベース連携
+
+```markdown
+## MCP サーバー構成（医療AI向け）
+
+- `pubmed-mcp`: PubMed 文献検索
+- `uptodate-mcp`: UpToDate の構造化データ参照
+- `hospital-db-mcp`: 院内データベース（読み取り専用）
+- `obsidian-mcp`: Obsidian ノートの参照
+```
+
+使用例：
+
+```
+> バンコマイシンの AUC/MIC 目標値について PubMed で最新のエビデンスを検索して
+
+> この患者の既往歴を院内DBで確認して、MRSA 感染リスクを評価して
+
+> 感染症コンサルトノートを作成して Obsidian に保存して
+```
+
+### Obsidian MCP サーバー
+
+Obsidian のノートを Claude から直接参照・作成できます。
+
+```bash
+# Obsidian vault をMCPで接続
+claude mcp add obsidian npx obsidian-mcp ~/Documents/Obsidian_sync
+```
+
+```
+> Obsidian の "MRSA" に関するノートを全部読んで、サマリーを作って
+
+> 今日の感染症カンファレンスのノートを Obsidian に保存して
+
+> アウトブレイクデータを更新して、関連するノートを自動リンクして
+```
+
+## MCPのベストプラクティス
+
+### 1. 読み取り専用サーバーを優先する
+
+```python
+# 良い例：読み取り専用サーバー
+@server.tool("read_record")
+async def read_record(id: str) -> str:
+    # SELECT のみ許可
+    return db.select(id)
+
+# 書き込みが必要な場合は明示的な確認を実装
+@server.tool("update_record")
+async def update_record(id: str, data: dict) -> str:
+    # 必ず確認を求める
+    raise PermissionError("書き込みには管理者の承認が必要です")
+```
+
+### 2. エラーハンドリングを適切に
+
+```python
+@server.tool("search_db")
+async def search_db(query: str) -> str:
+    try:
+        results = db.search(query)
+        return json.dumps(results)
+    except ConnectionError:
+        return "データベースに接続できません。ネットワークを確認してください。"
+    except Exception as e:
+        return f"エラーが発生しました: {str(e)}"
+```
+
+### 3. ログを残す
+
+```python
+import logging
+
+logging.basicConfig(filename='mcp_access.log', level=logging.INFO)
+
+@server.tool("access_data")
+async def access_data(query: str) -> str:
+    logging.info(f"Query: {query}")
+    result = db.query(query)
+    logging.info(f"Result rows: {len(result)}")
+    return json.dumps(result)
+```
+
+:::{.callout-tip}
+## MCP の将来性
+MCP はAnthropicが主導するオープンスタンダードで、主要なAIツールへの採用が広がっています。一度MCPサーバーを作れば、Claude Code 以外のAIツールでも再利用できます。
+:::

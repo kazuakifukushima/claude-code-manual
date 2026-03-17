@@ -1,0 +1,85 @@
+# インストールと初期設定 {#sec-install}
+
+<span class="badge-beginner">🟢 初心者向け</span>
+
+## 前提条件
+
+| 要件 | 詳細 |
+|------|------|
+| OS | macOS / Linux / Windows (WSL推奨) |
+| Node.js | v18 以上 |
+| Anthropicアカウント | [console.anthropic.com](https://console.anthropic.com) で作成 |
+
+## インストール方法
+
+### 方法1: npm でインストール（推奨）
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+### 方法2: ネイティブインストーラー
+
+Anthropic 公式サイトからプラットフォーム別インストーラーをダウンロードして実行します。
+
+## 認証（ログイン）
+
+インストール後、Anthropicアカウントで認証します。
+
+```bash
+claude auth login
+```
+
+ブラウザが開き、Anthropicアカウントへのログインと権限承認を求められます。
+
+:::{.callout-note}
+## APIキーについて
+Claude Code は Anthropic のAPIを内部で使用します。アカウントにサブスクリプション（Claude Pro など）またはAPIクレジットが必要です。
+:::
+
+## VS Code 拡張機能のインストール（任意）
+
+VS Code を使っている場合、拡張機能を追加すると Claude Code がより便利に使えます。
+
+1. VS Code を開く
+2. 拡張機能マーケットプレイスで「Claude Code」を検索
+3. インストール
+
+## 動作確認
+
+インストールが完了したら、動作を確認しましょう。
+
+```bash
+# バージョン確認
+claude --version
+
+# 対話型セッションの開始
+claude
+```
+
+`claude` と入力してエンターを押すと、対話型セッションが始まります。
+
+```
+╔════════════════════════════════════════╗
+║        Claude Code v1.x.x             ║
+║  Type your request or /help for help  ║
+╚════════════════════════════════════════╝
+
+>
+```
+
+## グローバル設定ファイルの場所
+
+Claude Code の設定ファイルは以下の場所にあります。
+
+```
+~/.claude/
+├── CLAUDE.md          # グローバル設定（全プロジェクト共通）
+├── settings.json      # Claude Code の設定
+└── commands/          # グローバルカスタムコマンド
+```
+
+:::{.callout-tip}
+## 次のステップ
+インストールが完了したら、[基本操作（@sec-basic）](03-basic-operations.qmd) に進みましょう。
+:::

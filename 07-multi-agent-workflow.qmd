@@ -1,0 +1,160 @@
+# マルチエージェントワークフロー {#sec-multi-agent}
+
+<span class="badge-advanced">🟣 上級者向け</span>
+
+## マルチエージェントとは
+
+複数のサブエージェントを連携させて、複雑なタスクを自動化するアーキテクチャです。
+
+「会社」のように役割を分担し、オーケストレーター（指揮役）が各専門エージェントに仕事を振ります。
+
+## 仮想組織モデル
+
+```{mermaid}
+graph TD
+    CEO["👤 あなた（CEO）"] --> Secretary["🤖 秘書エージェント<br/>タスク管理・整理"]
+    Secretary --> Research["🔬 リサーチエージェント<br/>情報収集・分析"]
+    Secretary --> Dev["💻 開発エージェント<br/>コード実装"]
+    Secretary --> QA["🧪 QAエージェント<br/>テスト・品質管理"]
+    Research --> Secretary
+    Dev --> Secretary
+    QA --> Secretary
+    Secretary --> CEO
+```
+
+この構造により：
+
+- CEO（あなた）は高レベルの指示を出すだけ
+- 秘書がタスクを分解し、適切なエージェントに振り分ける
+- 各専門エージェントが並列で作業
+- 結果をまとめて報告
+
+## 実装例：機能開発ワークフロー
+
+### CLAUDE.md での定義
+
+```markdown
+## エージェント構成
+
+### オーケストレーター（あなた自身）
+複雑なタスクを受け取り、以下のエージェントに委譲してください。
+
+### 利用可能なエージェント
+- `frontend-agent`: React/UIの実装
+- `backend-agent`: API・ビジネスロジックの実装
+- `db-agent`: データベース設計・マイグレーション
+- `test-agent`: テストコードの作成
+- `review-agent`: コードレビュー・品質確認
+
+### 標準ワークフロー（新機能追加）
+1. db-agent でスキーマ設計
+2. backend-agent でAPI実装（db-agentの結果を参照）
+3. frontend-agent でUI実装（backend-agentのAPIを参照）
+4. test-agent でテスト作成
+5. review-agent で全体レビュー
+```
+
+### 各エージェントファイルの作成
+
+```
+.claude/agents/
+├── frontend-agent.md
+├── backend-agent.md
+├── db-agent.md
+├── test-agent.md
+└── review-agent.md
+```
+
+**frontend-agent.md の例:**
+
+```markdown
+---
+name: frontend-agent
+description: React/TypeScript を使ったフロントエンドUIの実装専門エージェント。
+  UIコンポーネント作成、APIとの連携、スタイリングが必要な場合に呼び出す。
+---
+
+あなたは React/TypeScript のフロントエンド専門家です。
+
+技術スタック:
+- React 18 (hooks ベース、class component不使用)
+- TypeScript（strict mode）
+- Tailwind CSS
+- React Query（データフェッチ）
+- Zod（バリデーション）
+
+実装規約:
+- コンポーネントは `src/components/` に配置
+- カスタムフックは `src/hooks/` に配置
+- APIの型定義は `src/types/` に配置
+- storybook のストーリーを必ず追加する
+```
+
+## 並列実行の実装
+
+同時に複数のエージェントを実行するパターンです。
+
+### ターミナルを複数開く方法（最もシンプル）
+
+```bash
+# ターミナル1: モジュールAのリファクタリング
+cd ~/my-project && claude "src/auth/ をリファクタリングして"
+
+# ターミナル2: モジュールBのリファクタリング（同時実行）
+cd ~/my-project && claude "src/api/ をリファクタリングして"
+
+# ターミナル3: テスト作成（同時実行）
+cd ~/my-project && claude "tests/ にある既存テストを拡充して"
+```
+
+### git worktree を使う方法（競合を防ぐ）
+
+複数のブランチで同時作業する場合は `git worktree` を使います。
+
+```bash
+# 3つのworktreeを作成
+git worktree add ../my-project-auth feature/refactor-auth
+git worktree add ../my-project-api feature/refactor-api
+git worktree add ../my-project-test feature/add-tests
+
+# 各ターミナルで並列実行
+cd ../my-project-auth && claude "認証モジュールをリファクタリングして"
+cd ../my-project-api && claude "APIモジュールをリファクタリングして"
+cd ../my-project-test && claude "テストカバレッジを80%以上にして"
+```
+
+:::{.callout-important}
+## 並列実行の注意点
+- 同じファイルを複数のエージェントが同時編集すると競合が起きます
+- `git worktree` で別ブランチに分けることで競合を防げます
+- メインブランチには最後にマージします
+:::
+
+## 実世界での活用例
+
+### 医療系ドキュメント自動生成ワークフロー
+
+```markdown
+## Medical Intelligence Lab エージェント構成
+
+利用可能なエージェント:
+- `evidence-collector`: 文献・ガイドラインから根拠を収集
+- `clinical-writer`: 臨床的な記述を作成
+- `reviewer-agent`: 医学的正確性のレビュー
+- `japan-adapter`: 日本の医療環境・ガイドラインへの適応
+
+ワークフロー（疾患サマリー作成）:
+1. evidence-collector で最新エビデンスを収集
+2. clinical-writer でドラフト作成
+3. reviewer-agent で医学的正確性をチェック
+4. japan-adapter で日本向けに適応
+```
+
+## トラブルシューティング
+
+| 問題 | 原因 | 解決策 |
+|------|------|--------|
+| エージェントが呼ばれない | description が不明確 | description をより具体的に書き直す |
+| 無限ループ | エージェント間の依存関係 | ワークフローを明示的に定義する |
+| コンテキスト不足 | 情報が多すぎる | サブエージェントに要約させてからメインに返す |
+| 作業が重複 | タスク分担が不明確 | 各エージェントの責任範囲を明確化 |

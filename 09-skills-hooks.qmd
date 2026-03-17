@@ -1,0 +1,202 @@
+# スキルとフック {#sec-skills-hooks}
+
+<span class="badge-advanced">🟣 上級者向け</span>
+
+## スキルとは
+
+スキルはカスタムコマンドの上位互換です。
+
+- プロンプトだけでなく**外部スクリプト（Python等）やテンプレートファイル**を同梱できる
+- ユーザーが `/スキル名` で呼び出せるだけでなく、**Claude が文脈から自律的に発動**できる
+- より複雑なワークフローを定義できる
+
+## スキルの構造
+
+```
+.claude/skills/
+└── my-skill/
+    ├── skill.md        ← スキルの定義（フロントマター + プロンプト）
+    ├── template.md     ← 出力テンプレート（任意）
+    └── process.py      ← 処理スクリプト（任意）
+```
+
+## スキルファイルの書き方
+
+`.claude/skills/outbreak-summary/skill.md`:
+
+```markdown
+---
+name: outbreak-summary
+description: アウトブレイク報告を構造化されたサマリーに変換するスキル。
+  WHO・CDC・ECDC形式の報告から病原体・場所・症例数・対応状況を抽出する。
+  感染症情報の構造化が必要な場合に自律的に発動する。
+---
+
+# アウトブレイクサマリー生成
+
+提供されたアウトブレイク情報から、以下の構造化サマリーを作成してください。
+
+## 抽出項目
+- **病原体**: 病原体名・型・亜型
+- **発生地**: 国・地域・施設
+- **期間**: 最初の症例日〜最新の報告日
+- **症例数**: 確定例・疑い例・総数
+- **死亡者数**: 確定死亡・致死率
+- **感染経路**: 確認済み・推定
+- **対応状況**: 実施中の対策
+- **日本への関連性**: 輸入リスク評価
+
+## 出力形式
+template.md のフォーマットを使用してください。
+```
+
+## フックとは
+
+フックは**イベントが発生したときに自動でスクリプトを実行する**機能です。
+
+### フックの種類
+
+| フックイベント | 発動タイミング |
+|--------------|--------------|
+| `PreToolUse` | Claude がツールを実行する前 |
+| `PostToolUse` | Claude がツールを実行した後 |
+| `Notification` | Claude から通知がある時 |
+| `Stop` | セッション終了時 |
+
+### フックの設定場所
+
+`~/.claude/settings.json` または `.claude/settings.json` に設定します。
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run format -- $FILE"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## 実用的なフックの例
+
+### 1. 自動コードフォーマット（PostToolUse）
+
+ファイルを編集したら自動でフォーマッターを実行します。
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "prettier --write $FILE 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 2. 自動 lint チェック（PostToolUse）
+
+Python ファイルを編集したら自動で lint チェックします。
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ $FILE == *.py ]]; then flake8 $FILE; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 3. 作業ログの自動記録（PostToolUse）
+
+Claude の操作を自動でログに記録します。
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$(date): $TOOL_NAME $FILE\" >> ~/.claude/activity.log"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 4. セッション終了時の通知（Stop）
+
+長い処理が終わったら通知します（macOS）。
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code が作業を完了しました\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## フックのベストプラクティス
+
+:::{.callout-important}
+## フック使用時の注意
+- フックは失敗してもClaude Codeの動作を止めません（エラーは無視される）
+- `|| true` を付けてフックのエラーを明示的に無視することを推奨
+- 重い処理（時間のかかる lint等）はバックグラウンド実行 `&` を使う
+:::
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run lint -- $FILE &>/dev/null & true"
+          }
+        ]
+      }
+    ]
+  }
+}
+```

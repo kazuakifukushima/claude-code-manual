@@ -1,0 +1,63 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Claude Code 実践ガイド"
+  subtitle: "初心者から中級者のためのAIエージェント活用マニュアル"
+  author: "Medical Intelligence Lab"
+  date: "2026-03-17"
+  date-format: "YYYY年MM月DD日"
+  language: ja
+
+  repo-url: https://github.com/kazuakifukushima/claude-code-manual
+  repo-actions: [issue]
+
+  sidebar:
+    style: "docked"
+    search: true
+
+  chapters:
+    - index.qmd
+    - part: "Part 1: はじめよう"
+      chapters:
+        - 01-what-is-claude-code.qmd
+        - 02-install-setup.qmd
+        - 03-basic-operations.qmd
+    - part: "Part 2: プロジェクト設定"
+      chapters:
+        - 04-claude-md.qmd
+        - 05-claude-md-advanced.qmd
+    - part: "Part 3: エージェント機能"
+      chapters:
+        - 06-subagents.qmd
+        - 07-multi-agent-workflow.qmd
+    - part: "Part 4: カスタマイズ"
+      chapters:
+        - 08-custom-commands.qmd
+        - 09-skills-hooks.qmd
+    - part: "Part 5: MCPサーバー"
+      chapters:
+        - 10-mcp-intro.qmd
+        - 11-mcp-usecases.qmd
+    - part: "Part 6: 上級テクニック"
+      chapters:
+        - 12-team-usage.qmd
+        - 13-advanced-tips.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    code-copy: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    css: styles.css
+
+execute:
+  freeze: auto

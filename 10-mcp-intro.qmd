@@ -1,0 +1,96 @@
+# MCPサーバー入門 {#sec-mcp-intro}
+
+<span class="badge-intermediate">🔵 中級者向け</span>
+
+## MCP とは
+
+**MCP（Model Context Protocol）**は、AIが外部のシステム・データベース・ツールと安全に通信するためのオープンな標準規格です。
+
+```{mermaid}
+graph LR
+    A[Claude Code] -- MCP プロトコル --> B[MCP サーバー]
+    B --> C[GitHub]
+    B --> D[Google Drive]
+    B --> E[Slack]
+    B --> F[データベース]
+    B --> G[社内ツール]
+```
+
+MCP を使うと、Claude Code がターミナルから出ることなく外部サービスと連携できます。
+
+## MCP を使う前と後
+
+| 操作 | MCP なし | MCP あり |
+|------|---------|---------|
+| GitHub の Issue を確認 | ブラウザを開く | `> Issue #42 の内容を教えて` |
+| PR の差分レビュー | ブラウザで確認 | `> PR #15 をレビューして` |
+| Google Drive のファイル参照 | ブラウザを開く | `> 設計ドキュメントを読んで` |
+| Slack への通知 | Slackアプリを開く | `> 作業完了をSlackに投稿して` |
+
+## MCPサーバーの追加方法
+
+```bash
+# 基本形
+claude mcp add [サーバー名] [コマンド]
+
+# GitHub MCP の追加例
+claude mcp add github npx @modelcontextprotocol/server-github
+
+# Filesystem MCP の追加例（指定ディレクトリをClaude に読ませる）
+claude mcp add filesystem npx @modelcontextprotocol/server-filesystem ~/Documents
+```
+
+設定は `~/.claude/settings.json` に保存されます。
+
+## MCPサーバーの確認
+
+```bash
+# 登録済みのMCPサーバー一覧を確認
+claude mcp list
+
+# 特定のサーバーの詳細を確認
+claude mcp get github
+```
+
+## よく使われる公式MCPサーバー
+
+### GitHub MCP
+
+```bash
+# 環境変数にGitHubトークンを設定
+export GITHUB_PERSONAL_ACCESS_TOKEN="your_token"
+
+# MCPサーバーを追加
+claude mcp add github npx @modelcontextprotocol/server-github
+```
+
+できること：
+- Issue の作成・参照・更新
+- PR の作成・レビュー
+- リポジトリの検索
+- コミット履歴の確認
+
+### Google Drive MCP
+
+```bash
+claude mcp add gdrive npx @modelcontextprotocol/server-gdrive
+```
+
+できること：
+- ドキュメントの検索・読み込み
+- スプレッドシートのデータ取得
+- ファイルの一覧表示
+
+### Filesystem MCP
+
+特定のディレクトリを Claude が参照できるようにします。
+
+```bash
+# ホームディレクトリの Documents フォルダを許可
+claude mcp add filesystem npx @modelcontextprotocol/server-filesystem ~/Documents ~/Projects
+```
+
+:::{.callout-important}
+## セキュリティについて
+MCP サーバーには Claude からのアクセスが許可されます。信頼できるサーバーのみ追加し、機密データへのアクセスは最小限にしてください。書き込み不要なデータベースは「読み取り専用」サーバーを作ることを推奨します。
+:::
