@@ -935,5 +935,159 @@
     "crumbs": [
       "参考資料"
     ]
+  },
+  {
+    "objectID": "14-harness-engineering.html",
+    "href": "14-harness-engineering.html",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "",
+    "text": "14.1 ハーネスとは何か\n🟣 上級者向け\n「ハーネス（Harness）」とは、AIモデル本体以外のすべてを指す概念です。\n具体的には：",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#ハーネスとは何か",
+    "href": "14-harness-engineering.html#ハーネスとは何か",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "",
+    "text": "実行環境（ファイルシステム・シェルへのアクセス方法）\nメモリアーキテクチャ（短期・長期記憶の管理）\nツール権限（何を許可し、何を禁止するか）\n検証機構（出力の安全チェック・自動テスト）\nセッション管理（作業状態の引き継ぎ方法）\n\n\n14.1.1 なぜハーネスが重要なのか\n\n\n\n\n\n\nImportantSWE-benchから判明した衝撃的な事実\n\n\n\n研究（SWE-bench）によると：\n\n同じモデルでもハーネスを変えると 22ポイント のスコア変動が生じる\nモデルを変えた場合の性能差は 約1ポイント に過ぎない\n\n→ ハーネス設計は、モデル選択よりも重要\n\n\nつまり、高価なモデルに切り替えるより、ハーネス（環境・設定・ツール構成）を適切に設計するほうが、AIの実際のパフォーマンスに大きく影響します。",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#gctmsフレームワークエージェントの5つの構成要素",
+    "href": "14-harness-engineering.html#gctmsフレームワークエージェントの5つの構成要素",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.2 GCTMSフレームワーク：エージェントの5つの構成要素",
+    "text": "14.2 GCTMSフレームワーク：エージェントの5つの構成要素\nAIエージェントのアーキテクチャを車に例えた設計フレームワークです。\n\n\n\n\n\n\n\n\nコンポーネント\n車の比喩\n役割\n\n\n\n\nG — Guard（ガード）\nブレーキ・ガードレール\n危険操作を止める。実行前（入力）と実行後（出力）の二重構造で暴走を防ぐ\n\n\nC — Context（コンテキスト）\nカーナビ\n全情報を渡さず、「情報の在り処」と「現在地」だけを限定して提供する\n\n\nT — Tool（ツール）\nハンドル・ペダル\nファイル操作・検索などの実行手段。入力・出力・エラー時のルールを明確に定義\n\n\nM — Memory（メモリー）\n—\n短期記憶（現セッションの会話履歴）＋ 長期記憶（過去の知識・ルール）\n\n\nS — Supervision（スーパービジョン）\nダッシュボード\n成功率・失敗種類・トークン量・コストを監視し、改善サイクルを回す\n\n\n\n\n\n\n\n\n\nTipハーネス設計の効果\n\n\n\nハーネスを適切に設計することで、AIエージェントの成功率が約10倍向上した事例があります。",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#なぜハーネスなしでエージェントは失敗するか",
+    "href": "14-harness-engineering.html#なぜハーネスなしでエージェントは失敗するか",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.3 なぜハーネスなしでエージェントは失敗するか",
+    "text": "14.3 なぜハーネスなしでエージェントは失敗するか\nAnthropicのエンジニアリングブログが記録した2つの典型的な失敗パターン：\n\n\n\n\n\n\n\nパターン\n内容\n\n\n\n\n過剰スコープ\n同時に多機能を試みてコンテキスト上限を超え、すべてが未完了になる\n\n\n完了の誤認\n再開時にエージェントが部分的な進捗を「完成済み」と誤解する\n\n\n\n根本原因: LLMはセッションをまたいだメモリを持ちません。各コンテキストウィンドウはゼロからスタートするため、引き継ぎの仕組みがなければ状態が失われます。",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#ハーネスの主要コンポーネント",
+    "href": "14-harness-engineering.html#ハーネスの主要コンポーネント",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.4 ハーネスの主要コンポーネント",
+    "text": "14.4 ハーネスの主要コンポーネント\n\n14.4.1 セッション間を橋渡しする必須ファイル\n長期的な開発作業でエージェントを機能させるための基本ファイル構成：\n\n\n\n\n\n\n\nファイル\n役割\n\n\n\n\nclaude-progress.txt\n引き継ぎノート：完了した作業・次のタスク・既知の問題を記録\n\n\nfeature_list.json\nテストケースと合否状態の一覧（200件以上も管理可能）\n\n\ninit.sh\n環境セットアップスクリプト。セッションごとに再現可能な環境を保証\n\n\nGit履歴\n安全な状態の時系列記録。コミットメッセージがエージェントの「記憶」になる\n\n\n\n\n\n14.4.2 2エージェント構成パターン\n大規模タスクでの推奨構成：\nInitializer Agent（最初の1回）\n  └── インフラ・進捗ファイル・feature list・初回コミットを作成\n\nCoding Agent（2回目以降の各セッション）\n  └── 進捗ファイルを読む → 1機能を選択 → 実装 → コミット → 記録更新\n\n\n14.4.3 セッション開始の標準ルーティン\n新しいセッションを始めるとき、エージェントに最初に実行させる手順：\n1. git log で前回の作業を確認\n2. 進捗ファイルを読み込んで現在地を把握\n3. 基本機能が動作することを確認\n4. 新しい作業を開始",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#ハーネスとclaude.md",
+    "href": "14-harness-engineering.html#ハーネスとclaude.md",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.5 ハーネスとCLAUDE.md",
+    "text": "14.5 ハーネスとCLAUDE.md\nCLAUDE.mdはエージェントにとっての「プロジェクトの免許証」です。ハーネス設計における中核的な要素です。\n\n14.5.1 CLAUDE.mdに記載すべき4項目\n\n\n\n\n\n\n\n\n項目\n内容\n例\n\n\n\n\nリポジトリの目的\n1行で明確に\nこのリポジトリはECサイトのバックエンドAPIです\n\n\n禁止事項\n絶対に変えない領域\n本番DBの設定変更禁止、テストなしのマージ禁止\n\n\n情報の在り処\n詳細を書かずに場所だけ示す\n設計書はDOCS、APIはopenapi.yaml\n\n\n作業手順\nAIが迷子にならないステップ\n理解→小さく変更→テスト→差分説明\n\n\n\n\n\n14.5.2 CLAUDE.mdのベストプラクティス\n\n\n\n\n\n\nWarning長すぎるCLAUDE.mdは逆効果\n\n\n\n\n目標は最大50行\n150行を超えると「指示の初期バイアス」が発生し、後半の指示が機能しなくなる\n説明文ではなくポインタを書く：npm test を実行、ADRは /docs/adr/ にある\nシステム状態の詳細説明はしない → コードが信頼できる情報源\n\n\n\nNG例（説明文）:\nこのシステムはNode.jsで構築されており、PostgreSQLデータベースを使用しています。\n認証にはJWTを採用しており、リフレッシュトークンは7日間有効です...\nOK例（ポインタ）:\n## 情報の在り処\n- 技術スタック: docs/ARCHITECTURE.md\n- API仕様: openapi.yaml\n- DB設計: docs/schema.md\n\n## 禁止事項\n- 本番DB（.env.production）の変更禁止\n- テストが通るまでマージ禁止",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#フックアーキテクチャハーネスの自動化機構",
+    "href": "14-harness-engineering.html#フックアーキテクチャハーネスの自動化機構",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.6 フックアーキテクチャ：ハーネスの自動化機構",
+    "text": "14.6 フックアーキテクチャ：ハーネスの自動化機構\nフックはハーネスの中核をなす自動化機構です（第9章参照）。ハーネス設計の観点から整理します。\n\n14.6.1 フックの4種類と役割\n\n\n\nフックタイプ\nタイミング\nハーネスでの使い方\n\n\n\n\nPreToolUse\nツール実行前\n安全ゲート・危険操作のブロック\n\n\nPostToolUse\nツール実行後\n自動フォーマット・リント・テスト実行\n\n\nStop\nセッション終了前\nテスト合格を完了条件として強制\n\n\nPreCompact\nコンテキスト圧縮前\n状態の保存\n\n\n\n\n\n14.6.2 フィードバックループの速度階層\nハーネス設計では、フィードバックの速さを階層的に設計します：\nPostToolUseフック（ミリ秒）\n  ↓ ツールを実行するたびに即座に動作\npre-commitフック（秒）\n  ↓ コミット前にチェック\nCI/CD（分）\n  ↓ プッシュ後にテスト全体を実行\n人間レビュー（時間）\n  ↓ プルリクエストで確認\n→ フックを使うと「ミリ秒」レベルでのフィードバックが実現でき、AIがすぐに修正できる\n\n\n14.6.3 ガードレールフックの実装例\n危険な操作をブロックするPreToolUseフックの例：\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"bash ~/.claude/scripts/safety-gate.sh \\\"$COMMAND\\\"\"\n          }\n        ]\n      }\n    ]\n  }\n}\nsafety-gate.sh の内容例：\n#!/bin/bash\nCOMMAND=\"$1\"\n\n# sudo コマンドをブロック\nif echo \"$COMMAND\" | grep -q \"sudo \"; then\n  echo \"ERROR: sudo は禁止されています\" &gt;&2\n  exit 1\nfi\n\n# force push をブロック\nif echo \"$COMMAND\" | grep -q \"push --force\\|push -f\"; then\n  echo \"ERROR: force push は禁止されています\" &gt;&2\n  exit 1\nfi\n\n# .env ファイルへの書き込みを防止\nif echo \"$COMMAND\" | grep -q \"\\.env\"; then\n  echo \"ERROR: .env ファイルの直接変更は禁止されています\" &gt;&2\n  exit 1\nfi\n\nexit 0\n\n\n\n\n\n\nTipフックの終了コードの意味\n\n\n\n\n終了コード 0: 正常。Claudeは処理を続行する\n終了コード 1（または非ゼロ）: エラー。Claudeは処理をブロックし、エラーメッセージを受け取る\n\nこれにより、フックを使って「危険な操作をコードで止める」ことができます。",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#aiに特有のアンチパターンとハーネスによる対策",
+    "href": "14-harness-engineering.html#aiに特有のアンチパターンとハーネスによる対策",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.7 AIに特有のアンチパターンとハーネスによる対策",
+    "text": "14.7 AIに特有のアンチパターンとハーネスによる対策\nAIがコードを書く際に発生しやすい問題と、ハーネスで防ぐ方法：\n\n\n\n\n\n\n\n\nアンチパターン\n内容\nハーネスでの対策\n\n\n\n\n型システム濫用\nany 型の誤使用\nリンタールールで強制検知\n\n\nコード重複\n既存コードを再利用せず新規生成\nフック + コードレビューの自動化\n\n\nゴーストファイル\n既存ファイルを修正せず類似ファイルを新規作成\nファイル追跡・PostToolUseフック\n\n\n過剰コメント\n90〜100%がAI生成コメント\nコメント密度チェック\n\n\nセキュリティギャップ\n36〜40%に悪用可能な脆弱性\nPreToolUseゲートで事前ブロック",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#plan-work-review-サイクル",
+    "href": "14-harness-engineering.html#plan-work-review-サイクル",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.8 Plan → Work → Review サイクル",
+    "text": "14.8 Plan → Work → Review サイクル\nハーネス駆動開発の典型的なワークフロー：\n/harness-plan   → アイデアを実装計画と受け入れ基準に変換\n      ↓\n/harness-work   → 実装 + セルフレビューレポート\n      ↓\n/harness-review → 4視点分析（Security / Performance / Quality / Accessibility）\n      ↓\n/harness-release → CHANGELOG・タグ・リリースノートにパッケージ化\n各ステップで人間の承認を挟むことで、AIが暴走するリスクを制御できます。",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#最小実行可能ハーネスmvhロードマップ",
+    "href": "14-harness-engineering.html#最小実行可能ハーネスmvhロードマップ",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.9 最小実行可能ハーネス（MVH）ロードマップ",
+    "text": "14.9 最小実行可能ハーネス（MVH）ロードマップ\nすぐに始められる段階的な導入計画：\n\n\n\n\n\n\n\nフェーズ\n内容\n\n\n\n\nWeek 1\n50行CLAUDE.md（ポインタのみ）+ pre-commitフック + PostToolUse自動フォーマット + 初回ADR\n\n\nWeeks 2〜4\n観察したエラーごとにテスト/ルール追加・plan→承認→実行ワークフロー・E2Eテストフレームワーク\n\n\nMonth 2〜3\nドメイン固有リンター・ADRとリンタールールの連携・古い散文ドキュメントの削除\n\n\nMonth 3+\nマルチモデルチェーン・ガベージコレクションエージェント・有効性メトリクスの定量化\n\n\n\n\n\n\n\n\n\nTipWeek 1から始める最小セット\n\n\n\n\nCLAUDE.md を作成（50行以内、ポインタのみ）\npre-commitフックでlintを自動実行\nPostToolUseフックで自動フォーマット\n進捗ファイル（PROGRESS.md）を作成してセッション間の引き継ぎを開始",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#ハーネス設計の3大原則",
+    "href": "14-harness-engineering.html#ハーネス設計の3大原則",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.10 ハーネス設計の3大原則",
+    "text": "14.10 ハーネス設計の3大原則\n\n14.10.1 1. 薄く作る\nAIモデルやツールの前提は半年で変わります。\n❌ 巨大なフレームワークを構築する\n✅ 最小限で始めて、柔軟に作り直せるようにする\n\n\n14.10.2 2. 失敗を前提にする（多層設計）\n1つのガードが突破されても、次の仕組みで止められるようにします。\nPreToolUse（実行前ガード）\n  ↓ 突破された場合\nPostToolUse（実行後チェック）\n  ↓ 突破された場合\nCI/CDテスト（統合チェック）\n  ↓ 突破された場合\n人間レビュー（最終確認）\n\n\n14.10.3 3. 人間をループに入れる\nリスクに応じて3段階で区別します：\n\n\n\n\n\n\n\n\n区分\n内容\n例\n\n\n\n\n自動実行\nリスクが低く、失敗しても復旧しやすい\nコードフォーマット、軽微なバグ修正\n\n\n承認が必要\n影響範囲が広い操作\n新機能の追加、DBスキーマの変更\n\n\n完全禁止\n危険で取り返しのつかない操作\n本番データの削除、force push",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#セキュリティの注意点",
+    "href": "14-harness-engineering.html#セキュリティの注意点",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.11 セキュリティの注意点",
+    "text": "14.11 セキュリティの注意点\n\n14.11.1 スキルとエージェントのリスク\n外部から取得したスキルファイル（SKILL.md）を導入する場合は注意が必要です：\n\n\n\n\n\n\nWarning外部スキルのセキュリティリスク\n\n\n\n\nサプライチェーン攻撃: 悪意あるスキルがシステムを乗っ取る\n間接プロンプトインジェクション: 外部データを通じた指示の書き換え\nシャドウAIデプロイ: 認可されていないエージェントの展開\n\n対策: スキルファイルの内容を必ず人間が確認してから導入する",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#まとめハーネスエンジニアリングのポイント",
+    "href": "14-harness-engineering.html#まとめハーネスエンジニアリングのポイント",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.12 まとめ：ハーネスエンジニアリングのポイント",
+    "text": "14.12 まとめ：ハーネスエンジニアリングのポイント\n\n\n\n\n\n\n\n項目\n要点\n\n\n\n\nハーネスとは\nモデル以外のすべて（環境・権限・検証・記憶）\n\n\n重要性\nモデル変更より22倍以上の影響力\n\n\nGCTMSフレームワーク\nGuard / Context / Tool / Memory / Supervision\n\n\nCLAUDE.md\n50行以内、ポインタだけ書く\n\n\nフックの使い方\n速度階層に合わせて自動化レイヤーを設計\n\n\n3大原則\n薄く作る・失敗を前提にする・人間をループに入れる",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "14-harness-engineering.html#参考リンク",
+    "href": "14-harness-engineering.html#参考リンク",
+    "title": "14  ハーネスエンジニアリング",
+    "section": "14.13 参考リンク",
+    "text": "14.13 参考リンク\n\nAnthropic Engineering: Effective Harnesses for Long-Running Agents\nGitHub: Claude Code Harness の実装例\nClaude Code フック設定リファレンス",
+    "crumbs": [
+      "Part 7: ハーネスエンジニアリング",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
   }
 ]

@@ -44,6 +44,9 @@ book:
       chapters:
         - 12-team-usage.qmd
         - 13-advanced-tips.qmd
+    - part: "Part 7: ハーネスエンジニアリング"
+      chapters:
+        - 14-harness-engineering.qmd
     - references.qmd
 
 bibliography: references.bib
