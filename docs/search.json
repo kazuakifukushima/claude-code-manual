@@ -897,46 +897,6 @@
     ]
   },
   {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "参考資料",
-    "section": "",
-    "text": "公式ドキュメント",
-    "crumbs": [
-      "参考資料"
-    ]
-  },
-  {
-    "objectID": "references.html#公式ドキュメント",
-    "href": "references.html#公式ドキュメント",
-    "title": "参考資料",
-    "section": "",
-    "text": "Anthropic Claude Code 公式ドキュメント\nModel Context Protocol (MCP) 仕様書",
-    "crumbs": [
-      "参考資料"
-    ]
-  },
-  {
-    "objectID": "references.html#本マニュアルの情報源",
-    "href": "references.html#本マニュアルの情報源",
-    "title": "参考資料",
-    "section": "本マニュアルの情報源",
-    "text": "本マニュアルの情報源\n本マニュアルは以下の NotebookLM ドキュメントの内容を元に作成しました：\n\nMastering Claude Code: The Ultimate AI Agent Setup Guide\n\nインストール・基本操作・サブエージェント・MCPサーバーの実践的な解説\n\nMastering the Claude.md File for Full-Agent Productivity\n\nCLAUDE.md の設計パターン・チーム展開・組織的なベストプラクティス",
-    "crumbs": [
-      "参考資料"
-    ]
-  },
-  {
-    "objectID": "references.html#クイックリファレンス",
-    "href": "references.html#クイックリファレンス",
-    "title": "参考資料",
-    "section": "クイックリファレンス",
-    "text": "クイックリファレンス\n\n起動コマンド\n\n\n\nコマンド\n説明\n\n\n\n\nclaude\n対話型セッション開始\n\n\nclaude \"タスク\"\n初期プロンプト付きで起動\n\n\nclaude -p \"タスク\"\n一回実行して終了（スクリプト向け）\n\n\nclaude --continue\n前のセッションを再開\n\n\nclaude auth login\n認証\n\n\nclaude mcp add &lt;name&gt; &lt;cmd&gt;\nMCPサーバーを追加\n\n\nclaude mcp list\nMCPサーバー一覧\n\n\n\n\n\nファイル配置チートシート\n~/.claude/\n├── CLAUDE.md                   # グローバル設定\n├── settings.json               # Claude Code 設定\n└── commands/                   # グローバルコマンド\n\nproject/\n├── CLAUDE.md                   # プロジェクト設定\n└── .claude/\n    ├── commands/               # プロジェクト専用コマンド\n    │   ├── commit.md\n    │   ├── review.md\n    │   └── debug.md\n    ├── agents/                 # サブエージェント\n    │   ├── code-reviewer.md\n    │   ├── security-audit.md\n    │   └── test-engineer.md\n    ├── skills/                 # スキル\n    │   └── my-skill/\n    │       ├── skill.md\n    │       └── template.md\n    └── settings.json           # フック設定\n\n\nよく使うスラッシュコマンド\n\n\n\nコマンド\n説明\n\n\n\n\n/help\nヘルプ表示\n\n\n/clear\n会話履歴リセット\n\n\n/compact\nコンテキスト圧縮\n\n\n/status\n現在の状態確認\n\n\n/init\nCLAUDE.md の自動生成\n\n\n/exit\nセッション終了",
-    "crumbs": [
-      "参考資料"
-    ]
-  },
-  {
     "objectID": "14-harness-engineering.html",
     "href": "14-harness-engineering.html",
     "title": "14  ハーネスエンジニアリング",
@@ -1088,6 +1048,46 @@
     "crumbs": [
       "Part 7: ハーネスエンジニアリング",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "参考資料",
+    "section": "",
+    "text": "公式ドキュメント",
+    "crumbs": [
+      "参考資料"
+    ]
+  },
+  {
+    "objectID": "references.html#公式ドキュメント",
+    "href": "references.html#公式ドキュメント",
+    "title": "参考資料",
+    "section": "",
+    "text": "Anthropic Claude Code 公式ドキュメント\nModel Context Protocol (MCP) 仕様書",
+    "crumbs": [
+      "参考資料"
+    ]
+  },
+  {
+    "objectID": "references.html#本マニュアルの情報源",
+    "href": "references.html#本マニュアルの情報源",
+    "title": "参考資料",
+    "section": "本マニュアルの情報源",
+    "text": "本マニュアルの情報源\n本マニュアルは以下の NotebookLM ドキュメントの内容を元に作成しました：\n\nMastering Claude Code: The Ultimate AI Agent Setup Guide\n\nインストール・基本操作・サブエージェント・MCPサーバーの実践的な解説\n\nMastering the Claude.md File for Full-Agent Productivity\n\nCLAUDE.md の設計パターン・チーム展開・組織的なベストプラクティス",
+    "crumbs": [
+      "参考資料"
+    ]
+  },
+  {
+    "objectID": "references.html#クイックリファレンス",
+    "href": "references.html#クイックリファレンス",
+    "title": "参考資料",
+    "section": "クイックリファレンス",
+    "text": "クイックリファレンス\n\n起動コマンド\n\n\n\nコマンド\n説明\n\n\n\n\nclaude\n対話型セッション開始\n\n\nclaude \"タスク\"\n初期プロンプト付きで起動\n\n\nclaude -p \"タスク\"\n一回実行して終了（スクリプト向け）\n\n\nclaude --continue\n前のセッションを再開\n\n\nclaude auth login\n認証\n\n\nclaude mcp add &lt;name&gt; &lt;cmd&gt;\nMCPサーバーを追加\n\n\nclaude mcp list\nMCPサーバー一覧\n\n\n\n\n\nファイル配置チートシート\n~/.claude/\n├── CLAUDE.md                   # グローバル設定\n├── settings.json               # Claude Code 設定\n└── commands/                   # グローバルコマンド\n\nproject/\n├── CLAUDE.md                   # プロジェクト設定\n└── .claude/\n    ├── commands/               # プロジェクト専用コマンド\n    │   ├── commit.md\n    │   ├── review.md\n    │   └── debug.md\n    ├── agents/                 # サブエージェント\n    │   ├── code-reviewer.md\n    │   ├── security-audit.md\n    │   └── test-engineer.md\n    ├── skills/                 # スキル\n    │   └── my-skill/\n    │       ├── skill.md\n    │       └── template.md\n    └── settings.json           # フック設定\n\n\nよく使うスラッシュコマンド\n\n\n\nコマンド\n説明\n\n\n\n\n/help\nヘルプ表示\n\n\n/clear\n会話履歴リセット\n\n\n/compact\nコンテキスト圧縮\n\n\n/status\n現在の状態確認\n\n\n/init\nCLAUDE.md の自動生成\n\n\n/exit\nセッション終了",
+    "crumbs": [
+      "参考資料"
     ]
   }
 ]
