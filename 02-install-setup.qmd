@@ -10,6 +10,67 @@
 | Node.js | v18 以上 |
 | Anthropicアカウント | [console.anthropic.com](https://console.anthropic.com) で作成 |
 
+## Node.js のセットアップ
+
+Claude Code は Node.js の上で動作するため、**最初に Node.js をインストールする必要があります**。
+すでに `node --version` でバージョンが表示される場合はスキップできます。
+
+### macOS の場合
+
+**方法A: 公式インストーラーを使う（初心者向け・推奨）**
+
+1. [https://nodejs.org/ja](https://nodejs.org/ja) を開く
+2. **「LTS（推奨版）」** と書かれたボタンをクリックしてダウンロード
+3. ダウンロードした `.pkg` ファイルをダブルクリックして指示通りにインストール
+4. ターミナルを**新しく開き直して**から確認コマンドを実行
+
+```bash
+node --version   # v20.x.x のように表示されれば OK
+npm --version    # 数字が表示されれば OK
+```
+
+**方法B: Homebrew を使う（すでに Homebrew が入っている場合）**
+
+```bash
+brew install node
+```
+
+---
+
+### Windows の場合
+
+**方法A: 公式インストーラーを使う（初心者向け・推奨）**
+
+1. [https://nodejs.org/ja](https://nodejs.org/ja) を開く
+2. **「LTS（推奨版）」** をダウンロード
+3. `.msi` ファイルを実行して指示通りにインストール
+   - インストール途中の「Tools for Native Modules」チェックボックスは**そのままで OK**
+4. **PowerShell を新しく開き直して**から確認
+
+```powershell
+node --version
+npm --version
+```
+
+:::{.callout-warning}
+## インストール後はターミナル／PowerShell を必ず再起動
+
+Node.js をインストールしても、**開いたままのターミナルには反映されません**。
+必ず一度閉じてから開き直してください。
+:::
+
+:::{.callout-tip}
+## うまくいかないときは
+
+エラーが出たら、ターミナルに表示されているメッセージを**そのままコピーして** Claude のチャット画面に貼り付けて質問してください。多くの場合すぐに解決策が得られます。
+
+よくあるトラブル：
+
+- `node: command not found` → ターミナルを開き直す、またはインストールが完了していない
+- `npm: command not found` → Node.js の再インストールを試す
+- Windows で `cannot be loaded because running scripts is disabled` → PowerShell を**管理者として実行**し、`Set-ExecutionPolicy RemoteSigned` を実行
+:::
+
 ## インストール方法
 
 ### 方法1: npm でインストール（推奨）

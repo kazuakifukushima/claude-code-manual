@@ -127,11 +127,22 @@
     ]
   },
   {
+    "objectID": "02-install-setup.html#node.js-のセットアップ",
+    "href": "02-install-setup.html#node.js-のセットアップ",
+    "title": "2  インストールと初期設定",
+    "section": "2.2 Node.js のセットアップ",
+    "text": "2.2 Node.js のセットアップ\nClaude Code は Node.js の上で動作するため、最初に Node.js をインストールする必要があります。 すでに node --version でバージョンが表示される場合はスキップできます。\n\n2.2.1 macOS の場合\n方法A: 公式インストーラーを使う（初心者向け・推奨）\n\nhttps://nodejs.org/ja を開く\n「LTS（推奨版）」 と書かれたボタンをクリックしてダウンロード\nダウンロードした .pkg ファイルをダブルクリックして指示通りにインストール\nターミナルを新しく開き直してから確認コマンドを実行\n\nnode --version   # v20.x.x のように表示されれば OK\nnpm --version    # 数字が表示されれば OK\n方法B: Homebrew を使う（すでに Homebrew が入っている場合）\nbrew install node\n\n\n\n2.2.2 Windows の場合\n方法A: 公式インストーラーを使う（初心者向け・推奨）\n\nhttps://nodejs.org/ja を開く\n「LTS（推奨版）」 をダウンロード\n.msi ファイルを実行して指示通りにインストール\n\nインストール途中の「Tools for Native Modules」チェックボックスはそのままで OK\n\nPowerShell を新しく開き直してから確認\n\nnode --version\nnpm --version\n\n\n\n\n\n\nWarningインストール後はターミナル／PowerShell を必ず再起動\n\n\n\nNode.js をインストールしても、開いたままのターミナルには反映されません。 必ず一度閉じてから開き直してください。\n\n\n\n\n\n\n\n\nTipうまくいかないときは\n\n\n\nエラーが出たら、ターミナルに表示されているメッセージをそのままコピーして Claude のチャット画面に貼り付けて質問してください。多くの場合すぐに解決策が得られます。\nよくあるトラブル：\n\nnode: command not found → ターミナルを開き直す、またはインストールが完了していない\nnpm: command not found → Node.js の再インストールを試す\nWindows で cannot be loaded because running scripts is disabled → PowerShell を管理者として実行し、Set-ExecutionPolicy RemoteSigned を実行",
+    "crumbs": [
+      "Part 1: はじめよう",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>インストールと初期設定</span>"
+    ]
+  },
+  {
     "objectID": "02-install-setup.html#インストール方法",
     "href": "02-install-setup.html#インストール方法",
     "title": "2  インストールと初期設定",
-    "section": "2.2 インストール方法",
-    "text": "2.2 インストール方法\n\n2.2.1 方法1: npm でインストール（推奨）\nnpm install -g @anthropic-ai/claude-code\n\n\n2.2.2 方法2: ネイティブインストーラー\nAnthropic 公式サイトからプラットフォーム別インストーラーをダウンロードして実行します。",
+    "section": "2.3 インストール方法",
+    "text": "2.3 インストール方法\n\n2.3.1 方法1: npm でインストール（推奨）\nnpm install -g @anthropic-ai/claude-code\n\n\n2.3.2 方法2: ネイティブインストーラー\nAnthropic 公式サイトからプラットフォーム別インストーラーをダウンロードして実行します。",
     "crumbs": [
       "Part 1: はじめよう",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>インストールと初期設定</span>"
@@ -141,8 +152,8 @@
     "objectID": "02-install-setup.html#認証ログイン",
     "href": "02-install-setup.html#認証ログイン",
     "title": "2  インストールと初期設定",
-    "section": "2.3 認証（ログイン）",
-    "text": "2.3 認証（ログイン）\nインストール後、Anthropicアカウントで認証します。\nclaude auth login\nブラウザが開き、Anthropicアカウントへのログインと権限承認を求められます。\n\n\n\n\n\n\nNoteAPIキーについて\n\n\n\nClaude Code は Anthropic のAPIを内部で使用します。アカウントにサブスクリプション（Claude Pro など）またはAPIクレジットが必要です。",
+    "section": "2.4 認証（ログイン）",
+    "text": "2.4 認証（ログイン）\nインストール後、Anthropicアカウントで認証します。\nclaude auth login\nブラウザが開き、Anthropicアカウントへのログインと権限承認を求められます。\n\n\n\n\n\n\nNoteAPIキーについて\n\n\n\nClaude Code は Anthropic のAPIを内部で使用します。アカウントにサブスクリプション（Claude Pro など）またはAPIクレジットが必要です。",
     "crumbs": [
       "Part 1: はじめよう",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>インストールと初期設定</span>"
@@ -152,8 +163,8 @@
     "objectID": "02-install-setup.html#vs-code-拡張機能のインストール任意",
     "href": "02-install-setup.html#vs-code-拡張機能のインストール任意",
     "title": "2  インストールと初期設定",
-    "section": "2.4 VS Code 拡張機能のインストール（任意）",
-    "text": "2.4 VS Code 拡張機能のインストール（任意）\nVS Code を使っている場合、拡張機能を追加すると Claude Code がより便利に使えます。\n\nVS Code を開く\n拡張機能マーケットプレイスで「Claude Code」を検索\nインストール",
+    "section": "2.5 VS Code 拡張機能のインストール（任意）",
+    "text": "2.5 VS Code 拡張機能のインストール（任意）\nVS Code を使っている場合、拡張機能を追加すると Claude Code がより便利に使えます。\n\nVS Code を開く\n拡張機能マーケットプレイスで「Claude Code」を検索\nインストール",
     "crumbs": [
       "Part 1: はじめよう",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>インストールと初期設定</span>"
@@ -163,8 +174,8 @@
     "objectID": "02-install-setup.html#動作確認",
     "href": "02-install-setup.html#動作確認",
     "title": "2  インストールと初期設定",
-    "section": "2.5 動作確認",
-    "text": "2.5 動作確認\nインストールが完了したら、動作を確認しましょう。\n# バージョン確認\nclaude --version\n\n# 対話型セッションの開始\nclaude\nclaude と入力してエンターを押すと、対話型セッションが始まります。\n╔════════════════════════════════════════╗\n║        Claude Code v1.x.x             ║\n║  Type your request or /help for help  ║\n╚════════════════════════════════════════╝\n\n&gt;",
+    "section": "2.6 動作確認",
+    "text": "2.6 動作確認\nインストールが完了したら、動作を確認しましょう。\n# バージョン確認\nclaude --version\n\n# 対話型セッションの開始\nclaude\nclaude と入力してエンターを押すと、対話型セッションが始まります。\n╔════════════════════════════════════════╗\n║        Claude Code v1.x.x             ║\n║  Type your request or /help for help  ║\n╚════════════════════════════════════════╝\n\n&gt;",
     "crumbs": [
       "Part 1: はじめよう",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>インストールと初期設定</span>"
@@ -174,8 +185,8 @@
     "objectID": "02-install-setup.html#グローバル設定ファイルの場所",
     "href": "02-install-setup.html#グローバル設定ファイルの場所",
     "title": "2  インストールと初期設定",
-    "section": "2.6 グローバル設定ファイルの場所",
-    "text": "2.6 グローバル設定ファイルの場所\nClaude Code の設定ファイルは以下の場所にあります。\n~/.claude/\n├── CLAUDE.md          # グローバル設定（全プロジェクト共通）\n├── settings.json      # Claude Code の設定\n└── commands/          # グローバルカスタムコマンド\n\n\n\n\n\n\nTip次のステップ\n\n\n\nインストールが完了したら、基本操作（Chapter 3） に進みましょう。",
+    "section": "2.7 グローバル設定ファイルの場所",
+    "text": "2.7 グローバル設定ファイルの場所\nClaude Code の設定ファイルは以下の場所にあります。\n~/.claude/\n├── CLAUDE.md          # グローバル設定（全プロジェクト共通）\n├── settings.json      # Claude Code の設定\n└── commands/          # グローバルカスタムコマンド\n\n\n\n\n\n\nTip次のステップ\n\n\n\nインストールが完了したら、基本操作（Chapter 3） に進みましょう。",
     "crumbs": [
       "Part 1: はじめよう",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>インストールと初期設定</span>"

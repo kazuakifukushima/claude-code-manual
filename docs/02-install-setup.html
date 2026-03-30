@@ -498,15 +498,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#前提条件" id="toc-前提条件" class="nav-link active" data-scroll-target="#前提条件"><span class="header-section-number">2.1</span> 前提条件</a></li>
-  <li><a href="#インストール方法" id="toc-インストール方法" class="nav-link" data-scroll-target="#インストール方法"><span class="header-section-number">2.2</span> インストール方法</a>
+  <li><a href="#node.js-のセットアップ" id="toc-node.js-のセットアップ" class="nav-link" data-scroll-target="#node.js-のセットアップ"><span class="header-section-number">2.2</span> Node.js のセットアップ</a>
   <ul class="collapse">
-  <li><a href="#方法1-npm-でインストール推奨" id="toc-方法1-npm-でインストール推奨" class="nav-link" data-scroll-target="#方法1-npm-でインストール推奨"><span class="header-section-number">2.2.1</span> 方法1: npm でインストール（推奨）</a></li>
-  <li><a href="#方法2-ネイティブインストーラー" id="toc-方法2-ネイティブインストーラー" class="nav-link" data-scroll-target="#方法2-ネイティブインストーラー"><span class="header-section-number">2.2.2</span> 方法2: ネイティブインストーラー</a></li>
+  <li><a href="#macos-の場合" id="toc-macos-の場合" class="nav-link" data-scroll-target="#macos-の場合"><span class="header-section-number">2.2.1</span> macOS の場合</a></li>
+  <li><a href="#windows-の場合" id="toc-windows-の場合" class="nav-link" data-scroll-target="#windows-の場合"><span class="header-section-number">2.2.2</span> Windows の場合</a></li>
   </ul></li>
-  <li><a href="#認証ログイン" id="toc-認証ログイン" class="nav-link" data-scroll-target="#認証ログイン"><span class="header-section-number">2.3</span> 認証（ログイン）</a></li>
-  <li><a href="#vs-code-拡張機能のインストール任意" id="toc-vs-code-拡張機能のインストール任意" class="nav-link" data-scroll-target="#vs-code-拡張機能のインストール任意"><span class="header-section-number">2.4</span> VS Code 拡張機能のインストール（任意）</a></li>
-  <li><a href="#動作確認" id="toc-動作確認" class="nav-link" data-scroll-target="#動作確認"><span class="header-section-number">2.5</span> 動作確認</a></li>
-  <li><a href="#グローバル設定ファイルの場所" id="toc-グローバル設定ファイルの場所" class="nav-link" data-scroll-target="#グローバル設定ファイルの場所"><span class="header-section-number">2.6</span> グローバル設定ファイルの場所</a></li>
+  <li><a href="#インストール方法" id="toc-インストール方法" class="nav-link" data-scroll-target="#インストール方法"><span class="header-section-number">2.3</span> インストール方法</a>
+  <ul class="collapse">
+  <li><a href="#方法1-npm-でインストール推奨" id="toc-方法1-npm-でインストール推奨" class="nav-link" data-scroll-target="#方法1-npm-でインストール推奨"><span class="header-section-number">2.3.1</span> 方法1: npm でインストール（推奨）</a></li>
+  <li><a href="#方法2-ネイティブインストーラー" id="toc-方法2-ネイティブインストーラー" class="nav-link" data-scroll-target="#方法2-ネイティブインストーラー"><span class="header-section-number">2.3.2</span> 方法2: ネイティブインストーラー</a></li>
+  </ul></li>
+  <li><a href="#認証ログイン" id="toc-認証ログイン" class="nav-link" data-scroll-target="#認証ログイン"><span class="header-section-number">2.4</span> 認証（ログイン）</a></li>
+  <li><a href="#vs-code-拡張機能のインストール任意" id="toc-vs-code-拡張機能のインストール任意" class="nav-link" data-scroll-target="#vs-code-拡張機能のインストール任意"><span class="header-section-number">2.5</span> VS Code 拡張機能のインストール（任意）</a></li>
+  <li><a href="#動作確認" id="toc-動作確認" class="nav-link" data-scroll-target="#動作確認"><span class="header-section-number">2.6</span> 動作確認</a></li>
+  <li><a href="#グローバル設定ファイルの場所" id="toc-グローバル設定ファイルの場所" class="nav-link" data-scroll-target="#グローバル設定ファイルの場所"><span class="header-section-number">2.7</span> グローバル設定ファイルの場所</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kazuakifukushima/claude-code-manual/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -559,21 +564,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="インストール方法" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="インストール方法"><span class="header-section-number">2.2</span> インストール方法</h2>
-<section id="方法1-npm-でインストール推奨" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="方法1-npm-でインストール推奨"><span class="header-section-number">2.2.1</span> 方法1: npm でインストール（推奨）</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="node.js-のセットアップ" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="node.js-のセットアップ"><span class="header-section-number">2.2</span> Node.js のセットアップ</h2>
+<p>Claude Code は Node.js の上で動作するため、<strong>最初に Node.js をインストールする必要があります</strong>。 すでに <code>node --version</code> でバージョンが表示される場合はスキップできます。</p>
+<section id="macos-の場合" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="macos-の場合"><span class="header-section-number">2.2.1</span> macOS の場合</h3>
+<p><strong>方法A: 公式インストーラーを使う（初心者向け・推奨）</strong></p>
+<ol type="1">
+<li><a href="https://nodejs.org/ja">https://nodejs.org/ja</a> を開く</li>
+<li><strong>「LTS（推奨版）」</strong> と書かれたボタンをクリックしてダウンロード</li>
+<li>ダウンロードした <code>.pkg</code> ファイルをダブルクリックして指示通りにインストール</li>
+<li>ターミナルを<strong>新しく開き直して</strong>から確認コマンドを実行</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> <span class="at">--version</span>   <span class="co"># v20.x.x のように表示されれば OK</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> <span class="at">--version</span>    <span class="co"># 数字が表示されれば OK</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>方法B: Homebrew を使う（すでに Homebrew が入っている場合）</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install node</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
 </section>
-<section id="方法2-ネイティブインストーラー" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="方法2-ネイティブインストーラー"><span class="header-section-number">2.2.2</span> 方法2: ネイティブインストーラー</h3>
+<section id="windows-の場合" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="windows-の場合"><span class="header-section-number">2.2.2</span> Windows の場合</h3>
+<p><strong>方法A: 公式インストーラーを使う（初心者向け・推奨）</strong></p>
+<ol type="1">
+<li><a href="https://nodejs.org/ja">https://nodejs.org/ja</a> を開く</li>
+<li><strong>「LTS（推奨版）」</strong> をダウンロード</li>
+<li><code>.msi</code> ファイルを実行して指示通りにインストール
+<ul>
+<li>インストール途中の「Tools for Native Modules」チェックボックスは<strong>そのままで OK</strong></li>
+</ul></li>
+<li><strong>PowerShell を新しく開き直して</strong>から確認</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>node <span class="op">--</span>version</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>npm <span class="op">--</span>version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>インストール後はターミナル／PowerShell を必ず再起動
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Node.js をインストールしても、<strong>開いたままのターミナルには反映されません</strong>。 必ず一度閉じてから開き直してください。</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>うまくいかないときは
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>エラーが出たら、ターミナルに表示されているメッセージを<strong>そのままコピーして</strong> Claude のチャット画面に貼り付けて質問してください。多くの場合すぐに解決策が得られます。</p>
+<p>よくあるトラブル：</p>
+<ul>
+<li><code>node: command not found</code> → ターミナルを開き直す、またはインストールが完了していない</li>
+<li><code>npm: command not found</code> → Node.js の再インストールを試す</li>
+<li>Windows で <code>cannot be loaded because running scripts is disabled</code> → PowerShell を<strong>管理者として実行</strong>し、<code>Set-ExecutionPolicy RemoteSigned</code> を実行</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="インストール方法" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="インストール方法"><span class="header-section-number">2.3</span> インストール方法</h2>
+<section id="方法1-npm-でインストール推奨" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="方法1-npm-でインストール推奨"><span class="header-section-number">2.3.1</span> 方法1: npm でインストール（推奨）</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="方法2-ネイティブインストーラー" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="方法2-ネイティブインストーラー"><span class="header-section-number">2.3.2</span> 方法2: ネイティブインストーラー</h3>
 <p>Anthropic 公式サイトからプラットフォーム別インストーラーをダウンロードして実行します。</p>
 </section>
 </section>
-<section id="認証ログイン" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="認証ログイン"><span class="header-section-number">2.3</span> 認証（ログイン）</h2>
+<section id="認証ログイン" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="認証ログイン"><span class="header-section-number">2.4</span> 認証（ログイン）</h2>
 <p>インストール後、Anthropicアカウントで認証します。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>ブラウザが開き、Anthropicアカウントへのログインと権限承認を求められます。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -589,8 +660,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="vs-code-拡張機能のインストール任意" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="vs-code-拡張機能のインストール任意"><span class="header-section-number">2.4</span> VS Code 拡張機能のインストール（任意）</h2>
+<section id="vs-code-拡張機能のインストール任意" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="vs-code-拡張機能のインストール任意"><span class="header-section-number">2.5</span> VS Code 拡張機能のインストール（任意）</h2>
 <p>VS Code を使っている場合、拡張機能を追加すると Claude Code がより便利に使えます。</p>
 <ol type="1">
 <li>VS Code を開く</li>
@@ -598,14 +669,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>インストール</li>
 </ol>
 </section>
-<section id="動作確認" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="動作確認"><span class="header-section-number">2.5</span> 動作確認</h2>
+<section id="動作確認" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="動作確認"><span class="header-section-number">2.6</span> 動作確認</h2>
 <p>インストールが完了したら、動作を確認しましょう。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># バージョン確認</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 対話型セッションの開始</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># バージョン確認</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 対話型セッションの開始</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>claude</code> と入力してエンターを押すと、対話型セッションが始まります。</p>
 <pre><code>╔════════════════════════════════════════╗
 ║        Claude Code v1.x.x             ║
@@ -614,8 +685,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 &gt;</code></pre>
 </section>
-<section id="グローバル設定ファイルの場所" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="グローバル設定ファイルの場所"><span class="header-section-number">2.6</span> グローバル設定ファイルの場所</h2>
+<section id="グローバル設定ファイルの場所" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="グローバル設定ファイルの場所"><span class="header-section-number">2.7</span> グローバル設定ファイルの場所</h2>
 <p>Claude Code の設定ファイルは以下の場所にあります。</p>
 <pre><code>~/.claude/
 ├── CLAUDE.md          # グローバル設定（全プロジェクト共通）
