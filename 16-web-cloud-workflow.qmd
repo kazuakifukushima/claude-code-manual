@@ -1,0 +1,260 @@
+# Web版・クラウド実行：ローカル環境なしで動かす {#sec-web-cloud-workflow}
+
+<span class="badge-intermediate">🔵 中級者向け</span>
+
+[第2章](02-install-setup.qmd)では、ローカルCLIの導入を扱いました。本章では、**ローカルに何も入れず**、ブラウザやスマホからClaude Codeを動かす方法を扱います。
+
+具体的には：
+
+- 長時間タスクを投げて、後で結果を確認する
+- 手元にないリポジトリで作業する
+- 複数タスクを並列に走らせる
+- ターミナルとクラウドセッションを行き来する
+
+---
+
+## ローカル環境なしで使う選択肢
+
+Claude Codeは、同一エンジンを複数の“面（surface）”から使えます。`CLAUDE.md`・設定・MCPは共通です。
+
+| 使い方 | 概要 |
+|---|---|
+| Web版（Claude Code on the web） | ブラウザ[claude.ai/code](https://claude.ai/code)で実行。ローカル設定不要 |
+| Claude iOSアプリ | スマホからタスク投入・進捗確認 |
+| デスクトップアプリ | 視覚的なdiffレビュー、クラウドセッション起動、定期タスク |
+
+:::{.callout-note}
+## Web版の提供状況
+Web版は research preview（2026年7月時点）で、Pro / Max / Team、および premium seat か Chat + Claude Code seat を持つ Enterprise ユーザーが対象です。
+:::
+
+---
+
+## Web版の仕組みと始め方
+
+Web版は、Anthropic管理のクラウド基盤で実行されます。ブラウザを閉じてもセッションは継続し、Claudeモバイルアプリから監視できます。
+
+各セッションは、**リポジトリをクローンした真新しいVM**で動きます。使えるのは、**リポジトリにコミット済みのものだけ**です。ローカルにだけある設定は入りません。
+
+### クラウドで使えるもの／使えないもの
+
+| 区分 | 内容 |
+|---|---|
+| 使える | リポジトリの`CLAUDE.md` |
+| 使える | `.claude/settings.json` のhooks |
+| 使える | `.mcp.json` のMCP |
+| 使える | `.claude/skills/`、`.claude/agents/`、`.claude/commands/` |
+| 使える | 宣言済みプラグイン |
+| 使える | 組織の server-managed settings |
+| 使えない | ユーザー個人の`~/.claude/CLAUDE.md` |
+| 使えない | `~/.claude/skills/`、`~/.claude/agents/`、`~/.claude/commands/` |
+| 使えない | `claude mcp add`で入れたローカルMCP |
+| 使えない | 静的APIトークン等の秘密情報（専用の秘密ストアは未提供） |
+| 使えない | AWS SSO等の対話ログイン |
+
+:::{.callout-important}
+## クラウドで使う設定はリポジトリにコミットする
+Web版のVMはGitHubからリポジトリをcloneします。
+
+自分の設定をクラウドで使いたい場合は、リポジトリにコミットしておくことが基本です。
+:::
+
+### GitHub連携の2方式
+
+GitHub連携には、GitHub Appと`/web-setup`の2方式があります。
+
+| 方式 | 概要 | 向いている用途 |
+|---|---|---|
+| GitHub App | web onboarding中にClaude GitHub Appを認可 | Auto-fixを使うチーム |
+| `/web-setup` | ターミナルでローカルの`gh` CLIトークンをClaudeアカウントに同期 | すでに`gh`を使う個人 |
+
+どちらの方式でも、接続GitHubアカウントが見えるリポジトリすべてにアクセスし得ます。App導入はアクセス制御そのものではありません。制限はGitHub側で行います。
+
+---
+
+## ターミナルとクラウドの往復
+
+ターミナルとクラウドは、`--remote`と`--teleport`で行き来します。
+
+| 方向 | コマンド | 内容 |
+|---|---|---|
+| ターミナル→クラウド | `claude --remote` | 新規クラウドセッションを作成 |
+| クラウド→ターミナル | `claude --teleport` | クラウドセッションとブランチをローカルへ引き寄せる |
+
+### ターミナルからクラウドへ：`--remote`
+
+```bash
+claude --remote "Fix the authentication bug in src/auth/login.ts"
+```
+
+`--remote`は新規クラウドセッションを作成します。VMはGitHubからcloneするため、ローカルのコミットは先に`push`しておきます。
+
+| 特性 | 内容 |
+|---|---|
+| 対象 | 1回に1リポジトリ |
+| 作業形態 | ローカルで作業を続けながら、クラウドで実行できる |
+| 進捗確認 | CLIの`/tasks`、またはclaude.ai / モバイルアプリでセッションを開いて対話 |
+| 並列 | `--remote`を複数回叩くと、各々独立セッションで同時実行 |
+
+:::{.callout-tip}
+## プランは手元、実行はクラウド
+先にローカルで計画を練ります。
+
+```bash
+claude --permission-mode plan
+```
+
+計画をリポジトリに保存・commit・pushしてから、クラウドへ実行を依頼します。
+
+```bash
+claude --remote "Execute the migration plan in docs/migration-plan.md"
+```
+
+戦略は手元で管理し、実行はクラウドで自律させるパターンです。
+:::
+
+GitHub未接続リポジトリでは、ローカルをbundleしてアップロードするフォールバックがあります。100MB上限等の制約があり、bundle起動セッションはGitHub認証がないと`push`できません。
+
+### クラウドからターミナルへ：`--teleport`
+
+```bash
+claude --teleport
+```
+
+```bash
+claude --teleport <session-id>
+```
+
+セッション内では`/teleport`または`/tp`を使えます。`/tasks`から`t`でも可能です。
+
+`--teleport`は、ブランチをfetch/checkoutし、会話履歴をターミナルに読み込みます。
+
+| 比較 | 内容 |
+|---|---|
+| `--teleport` | クラウドセッションとそのブランチを引き寄せる |
+| `--resume` | このマシンのローカル履歴を再開する |
+
+:::{.callout-warning}
+## ハンドオフは片方向
+CLIからのハンドオフは**クラウド→ターミナル**の片方向です。既存ターミナルセッションをwebへ送ることはできません。
+
+また、teleportにはclaude.aiサブスク認証が必要です。APIキー / Bedrock / Vertex / Foundry認証では使えません。`/login`でclaude.ai認証へ切り替えます。
+:::
+
+`--remote`はクラウドセッション作成、`--remote-control`はローカルCLIをwebから監視する別機能のRemote Controlです。名前が似ていますが、別の機能として扱います。
+
+---
+
+## ローカルCLIとの違い
+
+[第2章](02-install-setup.qmd)のローカルCLIと、Web版・クラウド実行の違いを整理します。
+
+| 観点 | ローカルCLI（第2章） | Web版・クラウド実行 |
+|---|---|---|
+| セットアップ | インストール必要 | 不要（ブラウザのみ） |
+| ファイルアクセス | ローカルファイル直接 | GitHubクローンのみ（ローカル不可） |
+| 長時間タスク | 端末を開いておく必要 | 閉じても継続 |
+| 並列 | worktree等で自前構成 | `--remote`を複数投入 |
+| 権限プロンプト | 対話で承認 | 自律実行（下記コスト/安全注意） |
+| リソース上限 | マシン依存 | 4 vCPU / 16GB RAM / 30GB ディスク（目安、変動あり） |
+
+---
+
+## 便利機能
+
+### Auto-fix PR
+
+Auto-fix PRは、PRを監視し、CI失敗やレビューコメントに自動対応する機能です。Claude GitHub Appが必要です。
+
+ターミナルからは次のコマンドを使います。
+
+```bash
+/autofix-pr
+```
+
+:::{.callout-warning}
+## PRコメントで自動化が走るリポジトリ
+PRコメントをきっかけにAtlantis等が走るリポジトリでは、Auto-fix PRの運用に注意が必要です。
+:::
+
+### セッションの共有・アーカイブ・削除
+
+セッションの共有・アーカイブ・削除は、claude.ai/codeのサイドバーから行えます。
+
+共有時は、認証情報や非公開リポジトリのコードが含まれ得るため、中身を確認します。Max / Proは既定でリポジトリアクセス検証が無効です。
+
+### クラウドセッションでのコンテキスト管理
+
+| コマンド | クラウドセッションでの扱い |
+|---|---|
+| `/compact` | 使用可 |
+| `/context` | 使用可 |
+| `/clear` | 使用不可。新規セッションを作る |
+
+---
+
+## セキュリティ・分離・コスト
+
+Web版・クラウド実行では、実行環境が自分のマシンではなくAnthropic管理の基盤になります。ローカルCLIとは異なる前提で、安全性とコストを見ます。
+
+### 分離
+
+各セッションは隔離VMで動きます。git認証情報や署名鍵はサンドボックス内に置かれず、scoped credentialとプロキシで処理されます。
+
+ネットワークは既定で制限されます。設定名として、None / Trusted / Full / Customがあります。
+
+ネットワークを無効にしてもAnthropic APIとは通信するため、データがVM外に出得る点に留意します。
+
+### 秘密情報
+
+専用の秘密ストアは未提供です。環境変数やsetup scriptは、当該環境を編集できる人に見えます。
+
+秘密を入れる場合は、その可視性を前提に扱います。
+
+:::{.callout-important}
+## クラウド実行のコストと制限
+クラウドVMに別途の計算課金はありません。
+
+ただし、レート制限はアカウント全体で共有されます。並列実行はレート制限を比例的に消費します。
+
+また、組織のIP allowlistが有効だと、クラウドセッションは認証エラーになります。Anthropic管理基盤から発信されるためです。
+:::
+
+:::{.callout-warning}
+## 医療・機密データを扱う場合
+臨床データ、PHI/PII、機関機密を扱う場合は、クラウドセッションやサードパーティ連携に載せないでください。
+
+[第12章](12-team-usage.qmd)や本書のセキュリティ方針に沿って、扱うデータを分けます。
+:::
+
+---
+
+## 既存章との接続
+
+| 参照先 | 内容 |
+|---|---|
+| [第2章](02-install-setup.qmd) | ローカルCLIの導入 |
+| [第13章](13-advanced-tips.qmd) | 並列実行の考え方 |
+| [第15章](15-loop-engineering.qmd) | クラウドでの自動スケジュール（Routines） |
+
+---
+
+## まとめ：Web版・クラウド実行のポイント
+
+| 項目 | 要点 |
+|---|---|
+| **3つの面** | Web版、Claude iOSアプリ、デスクトップアプリから同じエンジンを使う |
+| **VMの前提** | GitHubクローンで動く。ローカル設定は入らない |
+| **`--remote`と`--teleport`** | `--remote`はターミナル→クラウド、`--teleport`はクラウド→ターミナル |
+| **ハンドオフと認証** | ハンドオフは片方向。teleportはclaude.ai認証が必要 |
+| **リソース上限** | 4 vCPU / 16GB RAM / 30GB ディスク（目安、変動あり） |
+| **秘密情報とIP allowlist** | 秘密ストアは未提供。IP allowlist有効時はクラウドセッションが認証エラーになる |
+
+---
+
+## 参考リンク
+
+- [Claude Code Docs: Use Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web)
+- [Claude Code Docs: Overview（全surface一覧）](https://code.claude.com/docs/en/overview)
+- [Claude Code Docs: Routines](https://code.claude.com/docs/en/routines)
+- [第2章 インストールと初期設定](02-install-setup.qmd) / [第15章 ループエンジニアリング](15-loop-engineering.qmd)

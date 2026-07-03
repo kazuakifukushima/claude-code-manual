@@ -6,7 +6,7 @@ book:
   title: "Claude Code 実践ガイド"
   subtitle: "初心者から中級者のためのAIエージェント活用マニュアル"
   author: "Medical Intelligence Lab"
-  date: "2026-03-17"
+  date: "2026-07-03"
   date-format: "YYYY年MM月DD日"
   language: ja
 
@@ -47,6 +47,10 @@ book:
     - part: "Part 7: ハーネスエンジニアリング"
       chapters:
         - 14-harness-engineering.qmd
+    - part: "Part 8: 自律運用"
+      chapters:
+        - 15-loop-engineering.qmd
+        - 16-web-cloud-workflow.qmd
     - references.qmd
 
 bibliography: references.bib

@@ -2,8 +2,10 @@
 
 ## 公式ドキュメント
 
-- Anthropic Claude Code 公式ドキュメント
+- Anthropic Claude Code 公式ドキュメント（[code.claude.com/docs](https://code.claude.com/docs)）
 - Model Context Protocol (MCP) 仕様書
+- [Use Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web)（第16章の情報源）
+- [Run prompts on a schedule](https://code.claude.com/docs/en/scheduled-tasks) / [Routines](https://code.claude.com/docs/en/routines)（第15章の情報源）
 
 ## 本マニュアルの情報源
 

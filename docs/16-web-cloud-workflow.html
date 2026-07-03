@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 基本操作 – Claude Code 実践ガイド</title>
+<title>16&nbsp; Web版・クラウド実行：ローカル環境なしで動かす – Claude Code 実践ガイド</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./04-claude-md.html" rel="next">
-<link href="./02-install-setup.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./15-loop-engineering.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-what-is-claude-code.html">Part 1: はじめよう</a></li><li class="breadcrumb-item"><a href="./03-basic-operations.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本操作</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15-loop-engineering.html">Part 8: 自律運用</a></li><li class="breadcrumb-item"><a href="./16-web-cloud-workflow.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web版・クラウド実行：ローカル環境なしで動かす</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-basic-operations.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03-basic-operations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本操作</span></span></a>
   </div>
 </li>
@@ -498,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-web-cloud-workflow.html" class="sidebar-item-text sidebar-link">
+  <a href="./16-web-cloud-workflow.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web版・クラウド実行：ローカル環境なしで動かす</span></span></a>
   </div>
 </li>
@@ -520,14 +520,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#起動方法" id="toc-起動方法" class="nav-link active" data-scroll-target="#起動方法"><span class="header-section-number">3.1</span> 起動方法</a></li>
-  <li><a href="#基本的なやり取り" id="toc-基本的なやり取り" class="nav-link" data-scroll-target="#基本的なやり取り"><span class="header-section-number">3.2</span> 基本的なやり取り</a></li>
-  <li><a href="#権限モードpermission-mode" id="toc-権限モードpermission-mode" class="nav-link" data-scroll-target="#権限モードpermission-mode"><span class="header-section-number">3.3</span> 権限モード（Permission Mode）</a></li>
-  <li><a href="#よく使うスラッシュコマンド" id="toc-よく使うスラッシュコマンド" class="nav-link" data-scroll-target="#よく使うスラッシュコマンド"><span class="header-section-number">3.4</span> よく使うスラッシュコマンド</a></li>
-  <li><a href="#キーボードショートカット" id="toc-キーボードショートカット" class="nav-link" data-scroll-target="#キーボードショートカット"><span class="header-section-number">3.5</span> キーボードショートカット</a></li>
-  <li><a href="#プロジェクトでの典型的な使い方" id="toc-プロジェクトでの典型的な使い方" class="nav-link" data-scroll-target="#プロジェクトでの典型的な使い方"><span class="header-section-number">3.6</span> プロジェクトでの典型的な使い方</a></li>
-  <li><a href="#ファイルの参照と画像入力" id="toc-ファイルの参照と画像入力" class="nav-link" data-scroll-target="#ファイルの参照と画像入力"><span class="header-section-number">3.7</span> ファイルの参照と画像入力</a></li>
-  <li><a href="#出力とログ" id="toc-出力とログ" class="nav-link" data-scroll-target="#出力とログ"><span class="header-section-number">3.8</span> 出力とログ</a></li>
+  <li><a href="#ローカル環境なしで使う選択肢" id="toc-ローカル環境なしで使う選択肢" class="nav-link active" data-scroll-target="#ローカル環境なしで使う選択肢"><span class="header-section-number">16.1</span> ローカル環境なしで使う選択肢</a></li>
+  <li><a href="#web版の仕組みと始め方" id="toc-web版の仕組みと始め方" class="nav-link" data-scroll-target="#web版の仕組みと始め方"><span class="header-section-number">16.2</span> Web版の仕組みと始め方</a>
+  <ul class="collapse">
+  <li><a href="#クラウドで使えるもの使えないもの" id="toc-クラウドで使えるもの使えないもの" class="nav-link" data-scroll-target="#クラウドで使えるもの使えないもの"><span class="header-section-number">16.2.1</span> クラウドで使えるもの／使えないもの</a></li>
+  <li><a href="#github連携の2方式" id="toc-github連携の2方式" class="nav-link" data-scroll-target="#github連携の2方式"><span class="header-section-number">16.2.2</span> GitHub連携の2方式</a></li>
+  </ul></li>
+  <li><a href="#ターミナルとクラウドの往復" id="toc-ターミナルとクラウドの往復" class="nav-link" data-scroll-target="#ターミナルとクラウドの往復"><span class="header-section-number">16.3</span> ターミナルとクラウドの往復</a>
+  <ul class="collapse">
+  <li><a href="#ターミナルからクラウドへ--remote" id="toc-ターミナルからクラウドへ--remote" class="nav-link" data-scroll-target="#ターミナルからクラウドへ--remote"><span class="header-section-number">16.3.1</span> ターミナルからクラウドへ：<code>--remote</code></a></li>
+  <li><a href="#クラウドからターミナルへ--teleport" id="toc-クラウドからターミナルへ--teleport" class="nav-link" data-scroll-target="#クラウドからターミナルへ--teleport"><span class="header-section-number">16.3.2</span> クラウドからターミナルへ：<code>--teleport</code></a></li>
+  </ul></li>
+  <li><a href="#ローカルcliとの違い" id="toc-ローカルcliとの違い" class="nav-link" data-scroll-target="#ローカルcliとの違い"><span class="header-section-number">16.4</span> ローカルCLIとの違い</a></li>
+  <li><a href="#便利機能" id="toc-便利機能" class="nav-link" data-scroll-target="#便利機能"><span class="header-section-number">16.5</span> 便利機能</a>
+  <ul class="collapse">
+  <li><a href="#auto-fix-pr" id="toc-auto-fix-pr" class="nav-link" data-scroll-target="#auto-fix-pr"><span class="header-section-number">16.5.1</span> Auto-fix PR</a></li>
+  <li><a href="#セッションの共有アーカイブ削除" id="toc-セッションの共有アーカイブ削除" class="nav-link" data-scroll-target="#セッションの共有アーカイブ削除"><span class="header-section-number">16.5.2</span> セッションの共有・アーカイブ・削除</a></li>
+  <li><a href="#クラウドセッションでのコンテキスト管理" id="toc-クラウドセッションでのコンテキスト管理" class="nav-link" data-scroll-target="#クラウドセッションでのコンテキスト管理"><span class="header-section-number">16.5.3</span> クラウドセッションでのコンテキスト管理</a></li>
+  </ul></li>
+  <li><a href="#セキュリティ分離コスト" id="toc-セキュリティ分離コスト" class="nav-link" data-scroll-target="#セキュリティ分離コスト"><span class="header-section-number">16.6</span> セキュリティ・分離・コスト</a>
+  <ul class="collapse">
+  <li><a href="#分離" id="toc-分離" class="nav-link" data-scroll-target="#分離"><span class="header-section-number">16.6.1</span> 分離</a></li>
+  <li><a href="#秘密情報" id="toc-秘密情報" class="nav-link" data-scroll-target="#秘密情報"><span class="header-section-number">16.6.2</span> 秘密情報</a></li>
+  </ul></li>
+  <li><a href="#既存章との接続" id="toc-既存章との接続" class="nav-link" data-scroll-target="#既存章との接続"><span class="header-section-number">16.7</span> 既存章との接続</a></li>
+  <li><a href="#まとめweb版クラウド実行のポイント" id="toc-まとめweb版クラウド実行のポイント" class="nav-link" data-scroll-target="#まとめweb版クラウド実行のポイント"><span class="header-section-number">16.8</span> まとめ：Web版・クラウド実行のポイント</a></li>
+  <li><a href="#参考リンク" id="toc-参考リンク" class="nav-link" data-scroll-target="#参考リンク"><span class="header-section-number">16.9</span> 参考リンク</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kazuakifukushima/claude-code-manual/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -535,9 +553,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-what-is-claude-code.html">Part 1: はじめよう</a></li><li class="breadcrumb-item"><a href="./03-basic-operations.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本操作</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15-loop-engineering.html">Part 8: 自律運用</a></li><li class="breadcrumb-item"><a href="./16-web-cloud-workflow.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web版・クラウド実行：ローカル環境なしで動かす</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-basic" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本操作</span></span></h1>
+<h1 class="title"><span id="sec-web-cloud-workflow" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web版・クラウド実行：ローカル環境なしで動かす</span></span></h1>
 </div>
 
 
@@ -554,61 +572,117 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><span class="badge-beginner">🟢 初心者向け</span></p>
-<section id="起動方法" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="起動方法"><span class="header-section-number">3.1</span> 起動方法</h2>
-<p>Claude Code の起動方法は用途によって3パターンあります。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 対話型セッション（最もよく使う）</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 初期プロンプトを指定して起動</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="st">"このプロジェクトのREADMEを日本語で作成して"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 一度だけ実行して終了（スクリプト・CI/CD向け）</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">-p</span> <span class="st">"src/main.py のバグを修正して"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="基本的なやり取り" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="基本的なやり取り"><span class="header-section-number">3.2</span> 基本的なやり取り</h2>
-<p>Claude Code を起動したら、自然言語で指示を出すだけです。</p>
-<pre><code>&gt; このプロジェクトの全体構造を教えて
-
-&gt; src/utils.py に新しい関数 parse_date() を追加して
-
-&gt; git の変更差分をレビューして、問題があれば指摘して
-
-&gt; テストを実行して失敗したら修正して</code></pre>
-</section>
-<section id="権限モードpermission-mode" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="権限モードpermission-mode"><span class="header-section-number">3.3</span> 権限モード（Permission Mode）</h2>
-<p>Claude Code はデフォルトでファイル編集やコマンド実行の前に確認を求めます。セッション中に <code>Shift + Tab</code> で権限モードを切り替えられます。</p>
+<p><span class="badge-intermediate">🔵 中級者向け</span></p>
+<p><a href="./02-install-setup.html">第2章</a>では、ローカルCLIの導入を扱いました。本章では、<strong>ローカルに何も入れず</strong>、ブラウザやスマホからClaude Codeを動かす方法を扱います。</p>
+<p>具体的には：</p>
+<ul>
+<li>長時間タスクを投げて、後で結果を確認する</li>
+<li>手元にないリポジトリで作業する</li>
+<li>複数タスクを並列に走らせる</li>
+<li>ターミナルとクラウドセッションを行き来する</li>
+</ul>
+<hr>
+<section id="ローカル環境なしで使う選択肢" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="ローカル環境なしで使う選択肢"><span class="header-section-number">16.1</span> ローカル環境なしで使う選択肢</h2>
+<p>Claude Codeは、同一エンジンを複数の“面（surface）”から使えます。<code>CLAUDE.md</code>・設定・MCPは共通です。</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 32%">
-<col style="width: 24%">
-<col style="width: 44%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>モード</th>
-<th>説明</th>
-<th>使いどころ</th>
+<th>使い方</th>
+<th>概要</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Default</strong>（デフォルト）</td>
-<td>すべての操作前に確認</td>
-<td>重要なプロジェクト・初回使用時</td>
+<td>Web版（Claude Code on the web）</td>
+<td>ブラウザ<a href="https://claude.ai/code">claude.ai/code</a>で実行。ローカル設定不要</td>
 </tr>
 <tr class="even">
-<td><strong>Auto-accept edits</strong></td>
-<td>ファイル編集のみ自動承認</td>
-<td>通常の開発作業</td>
+<td>Claude iOSアプリ</td>
+<td>スマホからタスク投入・進捗確認</td>
 </tr>
 <tr class="odd">
-<td><strong>Plan mode</strong></td>
-<td>計画のみ作成、実行しない</td>
-<td>何をするか確認してから実行したい時</td>
+<td>デスクトップアプリ</td>
+<td>視覚的なdiffレビュー、クラウドセッション起動、定期タスク</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Web版の提供状況
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Web版は research preview（2026年7月時点）で、Pro / Max / Team、および premium seat か Chat + Claude Code seat を持つ Enterprise ユーザーが対象です。</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="web版の仕組みと始め方" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="web版の仕組みと始め方"><span class="header-section-number">16.2</span> Web版の仕組みと始め方</h2>
+<p>Web版は、Anthropic管理のクラウド基盤で実行されます。ブラウザを閉じてもセッションは継続し、Claudeモバイルアプリから監視できます。</p>
+<p>各セッションは、<strong>リポジトリをクローンした真新しいVM</strong>で動きます。使えるのは、<strong>リポジトリにコミット済みのものだけ</strong>です。ローカルにだけある設定は入りません。</p>
+<section id="クラウドで使えるもの使えないもの" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="クラウドで使えるもの使えないもの"><span class="header-section-number">16.2.1</span> クラウドで使えるもの／使えないもの</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>使える</td>
+<td>リポジトリの<code>CLAUDE.md</code></td>
+</tr>
+<tr class="even">
+<td>使える</td>
+<td><code>.claude/settings.json</code> のhooks</td>
+</tr>
+<tr class="odd">
+<td>使える</td>
+<td><code>.mcp.json</code> のMCP</td>
+</tr>
+<tr class="even">
+<td>使える</td>
+<td><code>.claude/skills/</code>、<code>.claude/agents/</code>、<code>.claude/commands/</code></td>
+</tr>
+<tr class="odd">
+<td>使える</td>
+<td>宣言済みプラグイン</td>
+</tr>
+<tr class="even">
+<td>使える</td>
+<td>組織の server-managed settings</td>
+</tr>
+<tr class="odd">
+<td>使えない</td>
+<td>ユーザー個人の<code>~/.claude/CLAUDE.md</code></td>
+</tr>
+<tr class="even">
+<td>使えない</td>
+<td><code>~/.claude/skills/</code>、<code>~/.claude/agents/</code>、<code>~/.claude/commands/</code></td>
+</tr>
+<tr class="odd">
+<td>使えない</td>
+<td><code>claude mcp add</code>で入れたローカルMCP</td>
+</tr>
+<tr class="even">
+<td>使えない</td>
+<td>静的APIトークン等の秘密情報（専用の秘密ストアは未提供）</td>
+</tr>
+<tr class="odd">
+<td>使えない</td>
+<td>AWS SSO等の対話ログイン</td>
 </tr>
 </tbody>
 </table>
@@ -618,119 +692,397 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>安全な運用のために
+<span class="screen-reader-only">Important</span>クラウドで使う設定はリポジトリにコミットする
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>初めて使うプロジェクトでは <strong>Default モード</strong>（常に確認）で始めることを強く推奨します。Claude の行動パターンを理解してから自動承認モードに移行しましょう。</p>
+<p>Web版のVMはGitHubからリポジトリをcloneします。</p>
+<p>自分の設定をクラウドで使いたい場合は、リポジトリにコミットしておくことが基本です。</p>
 </div>
 </div>
 </section>
-<section id="よく使うスラッシュコマンド" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="よく使うスラッシュコマンド"><span class="header-section-number">3.4</span> よく使うスラッシュコマンド</h2>
-<p>セッション中に <code>/</code> で始まるコマンドが使えます。</p>
+<section id="github連携の2方式" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="github連携の2方式"><span class="header-section-number">16.2.2</span> GitHub連携の2方式</h3>
+<p>GitHub連携には、GitHub Appと<code>/web-setup</code>の2方式があります。</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
+<th>方式</th>
+<th>概要</th>
+<th>向いている用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GitHub App</td>
+<td>web onboarding中にClaude GitHub Appを認可</td>
+<td>Auto-fixを使うチーム</td>
+</tr>
+<tr class="even">
+<td><code>/web-setup</code></td>
+<td>ターミナルでローカルの<code>gh</code> CLIトークンをClaudeアカウントに同期</td>
+<td>すでに<code>gh</code>を使う個人</td>
+</tr>
+</tbody>
+</table>
+<p>どちらの方式でも、接続GitHubアカウントが見えるリポジトリすべてにアクセスし得ます。App導入はアクセス制御そのものではありません。制限はGitHub側で行います。</p>
+<hr>
+</section>
+</section>
+<section id="ターミナルとクラウドの往復" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="ターミナルとクラウドの往復"><span class="header-section-number">16.3</span> ターミナルとクラウドの往復</h2>
+<p>ターミナルとクラウドは、<code>--remote</code>と<code>--teleport</code>で行き来します。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>方向</th>
 <th>コマンド</th>
-<th>説明</th>
+<th>内容</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>/help</code></td>
-<td>ヘルプを表示</td>
+<td>ターミナル→クラウド</td>
+<td><code>claude --remote</code></td>
+<td>新規クラウドセッションを作成</td>
 </tr>
 <tr class="even">
-<td><code>/clear</code></td>
-<td>会話履歴をリセット</td>
-</tr>
-<tr class="odd">
-<td><code>/exit</code></td>
-<td>セッション終了</td>
-</tr>
-<tr class="even">
-<td><code>/status</code></td>
-<td>現在の状態を確認</td>
-</tr>
-<tr class="odd">
-<td><code>/compact</code></td>
-<td>コンテキストを圧縮（長いセッション向け）</td>
+<td>クラウド→ターミナル</td>
+<td><code>claude --teleport</code></td>
+<td>クラウドセッションとブランチをローカルへ引き寄せる</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="キーボードショートカット" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="キーボードショートカット"><span class="header-section-number">3.5</span> キーボードショートカット</h2>
+<section id="ターミナルからクラウドへ--remote" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="ターミナルからクラウドへ--remote"><span class="header-section-number">16.3.1</span> ターミナルからクラウドへ：<code>--remote</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--remote</span> <span class="st">"Fix the authentication bug in src/auth/login.ts"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>--remote</code>は新規クラウドセッションを作成します。VMはGitHubからcloneするため、ローカルのコミットは先に<code>push</code>しておきます。</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>ショートカット</th>
-<th>動作</th>
+<th>特性</th>
+<th>内容</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>Shift + Tab</code></td>
-<td>権限モードの切り替え</td>
+<td>対象</td>
+<td>1回に1リポジトリ</td>
 </tr>
 <tr class="even">
-<td><code>Ctrl + C</code></td>
-<td>現在の処理を中断</td>
+<td>作業形態</td>
+<td>ローカルで作業を続けながら、クラウドで実行できる</td>
 </tr>
 <tr class="odd">
-<td><code>↑ / ↓</code></td>
-<td>入力履歴を参照</td>
+<td>進捗確認</td>
+<td>CLIの<code>/tasks</code>、またはclaude.ai / モバイルアプリでセッションを開いて対話</td>
+</tr>
+<tr class="even">
+<td>並列</td>
+<td><code>--remote</code>を複数回叩くと、各々独立セッションで同時実行</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="プロジェクトでの典型的な使い方" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="プロジェクトでの典型的な使い方"><span class="header-section-number">3.6</span> プロジェクトでの典型的な使い方</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. プロジェクトのディレクトリに移動</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-project</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Claude Code を起動</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. タスクを指示</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> このプロジェクトのコードを読んで、概要を説明して</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> src/api.py <span class="ex">の関数</span> get_users<span class="er">(</span><span class="kw">)</span> <span class="ex">に型ヒントを追加して</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> 追加した変更をコミットして</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="ファイルの参照と画像入力" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="ファイルの参照と画像入力"><span class="header-section-number">3.7</span> ファイルの参照と画像入力</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ファイルを明示的に参照させる</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> @src/main.py <span class="ex">を読んで、改善点を提案して</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 画像ファイルを渡す（スクリーンショットなど）</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> @screenshot.png <span class="ex">このUIのバグを直して</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="出力とログ" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="出力とログ"><span class="header-section-number">3.8</span> 出力とログ</h2>
-<p>Claude Code のやり取りはセッション中に保存され、後から確認できます。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># セッションの続きを再開</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--continue</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 過去のセッション一覧</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--list-sessions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>効果的な指示の出し方
+<span class="screen-reader-only">Tip</span>プランは手元、実行はクラウド
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>先にローカルで計画を練ります。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--permission-mode</span> plan</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>計画をリポジトリに保存・commit・pushしてから、クラウドへ実行を依頼します。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--remote</span> <span class="st">"Execute the migration plan in docs/migration-plan.md"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>戦略は手元で管理し、実行はクラウドで自律させるパターンです。</p>
+</div>
+</div>
+<p>GitHub未接続リポジトリでは、ローカルをbundleしてアップロードするフォールバックがあります。100MB上限等の制約があり、bundle起動セッションはGitHub認証がないと<code>push</code>できません。</p>
+</section>
+<section id="クラウドからターミナルへ--teleport" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="クラウドからターミナルへ--teleport"><span class="header-section-number">16.3.2</span> クラウドからターミナルへ：<code>--teleport</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--teleport</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--teleport</span> <span class="op">&lt;</span>session-id<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>セッション内では<code>/teleport</code>または<code>/tp</code>を使えます。<code>/tasks</code>から<code>t</code>でも可能です。</p>
+<p><code>--teleport</code>は、ブランチをfetch/checkoutし、会話履歴をターミナルに読み込みます。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>比較</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--teleport</code></td>
+<td>クラウドセッションとそのブランチを引き寄せる</td>
+</tr>
+<tr class="even">
+<td><code>--resume</code></td>
+<td>このマシンのローカル履歴を再開する</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>ハンドオフは片方向
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>CLIからのハンドオフは<strong>クラウド→ターミナル</strong>の片方向です。既存ターミナルセッションをwebへ送ることはできません。</p>
+<p>また、teleportにはclaude.aiサブスク認証が必要です。APIキー / Bedrock / Vertex / Foundry認証では使えません。<code>/login</code>でclaude.ai認証へ切り替えます。</p>
+</div>
+</div>
+<p><code>--remote</code>はクラウドセッション作成、<code>--remote-control</code>はローカルCLIをwebから監視する別機能のRemote Controlです。名前が似ていますが、別の機能として扱います。</p>
+<hr>
+</section>
+</section>
+<section id="ローカルcliとの違い" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="ローカルcliとの違い"><span class="header-section-number">16.4</span> ローカルCLIとの違い</h2>
+<p><a href="./02-install-setup.html">第2章</a>のローカルCLIと、Web版・クラウド実行の違いを整理します。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>観点</th>
+<th>ローカルCLI（第2章）</th>
+<th>Web版・クラウド実行</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>セットアップ</td>
+<td>インストール必要</td>
+<td>不要（ブラウザのみ）</td>
+</tr>
+<tr class="even">
+<td>ファイルアクセス</td>
+<td>ローカルファイル直接</td>
+<td>GitHubクローンのみ（ローカル不可）</td>
+</tr>
+<tr class="odd">
+<td>長時間タスク</td>
+<td>端末を開いておく必要</td>
+<td>閉じても継続</td>
+</tr>
+<tr class="even">
+<td>並列</td>
+<td>worktree等で自前構成</td>
+<td><code>--remote</code>を複数投入</td>
+</tr>
+<tr class="odd">
+<td>権限プロンプト</td>
+<td>対話で承認</td>
+<td>自律実行（下記コスト/安全注意）</td>
+</tr>
+<tr class="even">
+<td>リソース上限</td>
+<td>マシン依存</td>
+<td>4 vCPU / 16GB RAM / 30GB ディスク（目安、変動あり）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="便利機能" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="便利機能"><span class="header-section-number">16.5</span> 便利機能</h2>
+<section id="auto-fix-pr" class="level3" data-number="16.5.1">
+<h3 data-number="16.5.1" class="anchored" data-anchor-id="auto-fix-pr"><span class="header-section-number">16.5.1</span> Auto-fix PR</h3>
+<p>Auto-fix PRは、PRを監視し、CI失敗やレビューコメントに自動対応する機能です。Claude GitHub Appが必要です。</p>
+<p>ターミナルからは次のコマンドを使います。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/autofix-pr</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>PRコメントで自動化が走るリポジトリ
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PRコメントをきっかけにAtlantis等が走るリポジトリでは、Auto-fix PRの運用に注意が必要です。</p>
+</div>
+</div>
+</section>
+<section id="セッションの共有アーカイブ削除" class="level3" data-number="16.5.2">
+<h3 data-number="16.5.2" class="anchored" data-anchor-id="セッションの共有アーカイブ削除"><span class="header-section-number">16.5.2</span> セッションの共有・アーカイブ・削除</h3>
+<p>セッションの共有・アーカイブ・削除は、claude.ai/codeのサイドバーから行えます。</p>
+<p>共有時は、認証情報や非公開リポジトリのコードが含まれ得るため、中身を確認します。Max / Proは既定でリポジトリアクセス検証が無効です。</p>
+</section>
+<section id="クラウドセッションでのコンテキスト管理" class="level3" data-number="16.5.3">
+<h3 data-number="16.5.3" class="anchored" data-anchor-id="クラウドセッションでのコンテキスト管理"><span class="header-section-number">16.5.3</span> クラウドセッションでのコンテキスト管理</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>コマンド</th>
+<th>クラウドセッションでの扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/compact</code></td>
+<td>使用可</td>
+</tr>
+<tr class="even">
+<td><code>/context</code></td>
+<td>使用可</td>
+</tr>
+<tr class="odd">
+<td><code>/clear</code></td>
+<td>使用不可。新規セッションを作る</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="セキュリティ分離コスト" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="セキュリティ分離コスト"><span class="header-section-number">16.6</span> セキュリティ・分離・コスト</h2>
+<p>Web版・クラウド実行では、実行環境が自分のマシンではなくAnthropic管理の基盤になります。ローカルCLIとは異なる前提で、安全性とコストを見ます。</p>
+<section id="分離" class="level3" data-number="16.6.1">
+<h3 data-number="16.6.1" class="anchored" data-anchor-id="分離"><span class="header-section-number">16.6.1</span> 分離</h3>
+<p>各セッションは隔離VMで動きます。git認証情報や署名鍵はサンドボックス内に置かれず、scoped credentialとプロキシで処理されます。</p>
+<p>ネットワークは既定で制限されます。設定名として、None / Trusted / Full / Customがあります。</p>
+<p>ネットワークを無効にしてもAnthropic APIとは通信するため、データがVM外に出得る点に留意します。</p>
+</section>
+<section id="秘密情報" class="level3" data-number="16.6.2">
+<h3 data-number="16.6.2" class="anchored" data-anchor-id="秘密情報"><span class="header-section-number">16.6.2</span> 秘密情報</h3>
+<p>専用の秘密ストアは未提供です。環境変数やsetup scriptは、当該環境を編集できる人に見えます。</p>
+<p>秘密を入れる場合は、その可視性を前提に扱います。</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>クラウド実行のコストと制限
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>クラウドVMに別途の計算課金はありません。</p>
+<p>ただし、レート制限はアカウント全体で共有されます。並列実行はレート制限を比例的に消費します。</p>
+<p>また、組織のIP allowlistが有効だと、クラウドセッションは認証エラーになります。Anthropic管理基盤から発信されるためです。</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>医療・機密データを扱う場合
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>臨床データ、PHI/PII、機関機密を扱う場合は、クラウドセッションやサードパーティ連携に載せないでください。</p>
+<p><a href="./12-team-usage.html">第12章</a>や本書のセキュリティ方針に沿って、扱うデータを分けます。</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="既存章との接続" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="既存章との接続"><span class="header-section-number">16.7</span> 既存章との接続</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>参照先</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="./02-install-setup.html">第2章</a></td>
+<td>ローカルCLIの導入</td>
+</tr>
+<tr class="even">
+<td><a href="./13-advanced-tips.html">第13章</a></td>
+<td>並列実行の考え方</td>
+</tr>
+<tr class="odd">
+<td><a href="./15-loop-engineering.html">第15章</a></td>
+<td>クラウドでの自動スケジュール（Routines）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="まとめweb版クラウド実行のポイント" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="まとめweb版クラウド実行のポイント"><span class="header-section-number">16.8</span> まとめ：Web版・クラウド実行のポイント</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>3つの面</strong></td>
+<td>Web版、Claude iOSアプリ、デスクトップアプリから同じエンジンを使う</td>
+</tr>
+<tr class="even">
+<td><strong>VMの前提</strong></td>
+<td>GitHubクローンで動く。ローカル設定は入らない</td>
+</tr>
+<tr class="odd">
+<td><strong><code>--remote</code>と<code>--teleport</code></strong></td>
+<td><code>--remote</code>はターミナル→クラウド、<code>--teleport</code>はクラウド→ターミナル</td>
+</tr>
+<tr class="even">
+<td><strong>ハンドオフと認証</strong></td>
+<td>ハンドオフは片方向。teleportはclaude.ai認証が必要</td>
+</tr>
+<tr class="odd">
+<td><strong>リソース上限</strong></td>
+<td>4 vCPU / 16GB RAM / 30GB ディスク（目安、変動あり）</td>
+</tr>
+<tr class="even">
+<td><strong>秘密情報とIP allowlist</strong></td>
+<td>秘密ストアは未提供。IP allowlist有効時はクラウドセッションが認証エラーになる</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="参考リンク" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="参考リンク"><span class="header-section-number">16.9</span> 参考リンク</h2>
 <ul>
-<li><strong>具体的に</strong>: 「コードを改善して」より「src/utils.py の calculate_total 関数をO(n)からO(1)に最適化して」</li>
-<li><strong>コンテキストを与える</strong>: 「これはDjango プロジェクトで、PostgreSQLを使っています」</li>
-<li><strong>段階的に</strong>: 大きなタスクは小さなステップに分けて指示する</li>
+<li><a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code Docs: Use Claude Code on the web</a></li>
+<li><a href="https://code.claude.com/docs/en/overview">Claude Code Docs: Overview（全surface一覧）</a></li>
+<li><a href="https://code.claude.com/docs/en/routines">Claude Code Docs: Routines</a></li>
+<li><a href="./02-install-setup.html">第2章 インストールと初期設定</a> / <a href="./15-loop-engineering.html">第15章 ループエンジニアリング</a></li>
 </ul>
-</div>
-</div>
 
 
 </section>
@@ -1151,13 +1503,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02-install-setup.html" class="pagination-link" aria-label="インストールと初期設定">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">インストールと初期設定</span></span>
+      <a href="./15-loop-engineering.html" class="pagination-link" aria-label="ループエンジニアリング">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ループエンジニアリング</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04-claude-md.html" class="pagination-link" aria-label="CLAUDE.md 入門">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CLAUDE.md 入門</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="参考資料">
+        <span class="nav-page-text">参考資料</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

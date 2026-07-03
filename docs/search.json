@@ -34,7 +34,7 @@
     "href": "index.html#マニュアルの構成",
     "title": "Claude Code 実践ガイド",
     "section": "マニュアルの構成",
-    "text": "マニュアルの構成\nPart 1: はじめよう\n  └── Claude Codeとは・インストール・基本操作\n\nPart 2: プロジェクト設定\n  └── CLAUDE.md の作成と活用（最重要）\n\nPart 3: エージェント機能 ← 本書のハイライト\n  └── サブエージェントの実装・マルチエージェントワークフロー\n\nPart 4: カスタマイズ\n  └── カスタムコマンド・スキル・フック\n\nPart 5: MCPサーバー\n  └── 外部ツールとの連携\n\nPart 6: 上級テクニック\n  └── チーム活用・並列実行・ベストプラクティス",
+    "text": "マニュアルの構成\nPart 1: はじめよう\n  └── Claude Codeとは・インストール・基本操作\n\nPart 2: プロジェクト設定\n  └── CLAUDE.md の作成と活用（最重要）\n\nPart 3: エージェント機能 ← 本書のハイライト\n  └── サブエージェントの実装・マルチエージェントワークフロー\n\nPart 4: カスタマイズ\n  └── カスタムコマンド・スキル・フック\n\nPart 5: MCPサーバー\n  └── 外部ツールとの連携\n\nPart 6: 上級テクニック\n  └── チーム活用・並列実行・ベストプラクティス\n\nPart 7: ハーネスエンジニアリング\n  └── モデル以外の「環境」を設計する\n\nPart 8: 自律運用\n  └── ループエンジニアリング・Web版/クラウド実行（ローカル環境なし）",
     "crumbs": [
       "はじめに"
     ]
@@ -87,7 +87,7 @@
     "href": "01-what-is-claude-code.html#動作モデル",
     "title": "1  Claude Code とは",
     "section": "1.4 動作モデル",
-    "text": "1.4 動作モデル\nClaude Code は ReAct（Reasoning + Acting）パターンで動作します。\n\n観察（Observe）: プロジェクトの状態を把握する\n思考（Think）: 何をすべきか計画する\n行動（Act）: ファイル操作・コマンド実行などのツールを使う\n確認（Check）: 結果を評価して次のステップを決める\n\nこの「思考→行動→確認」のループを繰り返すことで、複雑なタスクも自律的に完了させます。",
+    "text": "1.4 動作モデル\nClaude Code は ReAct（Reasoning + Acting）パターンで動作します。\n\n観察（Observe）: プロジェクトの状態を把握する\n思考（Think）: 何をすべきか計画する\n行動（Act）: ファイル操作・コマンド実行などのツールを使う\n確認（Check）: 結果を評価して次のステップを決める\n\nこの「思考→行動→確認」のループを繰り返すことで、複雑なタスクも自律的に完了させます。このループを定期実行・自己ペース反復・スケジュール実行として設計する手法は、第15章で扱います。",
     "crumbs": [
       "Part 1: はじめよう",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Claude Code とは</span>"
@@ -120,7 +120,7 @@
     "href": "02-install-setup.html#前提条件",
     "title": "2  インストールと初期設定",
     "section": "",
-    "text": "要件\n詳細\n\n\n\n\nOS\nmacOS / Linux / Windows (WSL推奨)\n\n\nNode.js\nv18 以上\n\n\nAnthropicアカウント\nconsole.anthropic.com で作成",
+    "text": "要件\n詳細\n\n\n\n\nOS\nmacOS / Linux / Windows (WSL推奨)\n\n\nNode.js\nv18 以上\n\n\nAnthropicアカウント\nconsole.anthropic.com で作成\n\n\n\n\n\n\n\n\n\nTipローカルにインストールしたくない場合\n\n\n\n本章はローカルCLIの導入手順です。何もインストールせず、ブラウザやスマホから使いたい場合は、第16章のWeb版・クラウド実行を参照してください。",
     "crumbs": [
       "Part 1: はじめよう",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>インストールと初期設定</span>"
@@ -835,7 +835,7 @@
     "href": "13-advanced-tips.html#並列-claude-code-実行で効率を最大化",
     "title": "13  上級テクニック",
     "section": "",
-    "text": "13.1.1 4並列実行の例\n# ターミナル1: 認証モジュールのリファクタリング\ngit worktree add ../proj-auth feature/refactor-auth\ncd ../proj-auth && claude \"認証モジュールを OAuth2 対応にリファクタリングして\"\n\n# ターミナル2: APIエンドポイントの追加\ngit worktree add ../proj-api feature/new-api\ncd ../proj-api && claude \"ユーザー管理 API のCRUDエンドポイントを追加して\"\n\n# ターミナル3: テスト拡充\ngit worktree add ../proj-test feature/expand-tests\ncd ../proj-test && claude \"テストカバレッジを50%から80%に引き上げて\"\n\n# ターミナル4: ドキュメント更新\ngit worktree add ../proj-docs feature/update-docs\ncd ../proj-docs && claude \"API ドキュメントを最新の実装に合わせて更新して\"\n\n\n\n\n\n\nTip並列実行の効果\n\n\n\n4つのタスクを並列実行すると理論上4倍速になります。実際には各タスク完了後にマージが必要ですが、全体効率は大幅に向上します（実績: 260%以上の効率化）。",
+    "text": "13.1.1 4並列実行の例\n# ターミナル1: 認証モジュールのリファクタリング\ngit worktree add ../proj-auth feature/refactor-auth\ncd ../proj-auth && claude \"認証モジュールを OAuth2 対応にリファクタリングして\"\n\n# ターミナル2: APIエンドポイントの追加\ngit worktree add ../proj-api feature/new-api\ncd ../proj-api && claude \"ユーザー管理 API のCRUDエンドポイントを追加して\"\n\n# ターミナル3: テスト拡充\ngit worktree add ../proj-test feature/expand-tests\ncd ../proj-test && claude \"テストカバレッジを50%から80%に引き上げて\"\n\n# ターミナル4: ドキュメント更新\ngit worktree add ../proj-docs feature/update-docs\ncd ../proj-docs && claude \"API ドキュメントを最新の実装に合わせて更新して\"\n\n\n\n\n\n\nTip並列実行の効果\n\n\n\n4つのタスクを並列実行すると理論上4倍速になります。実際には各タスク完了後にマージが必要ですが、全体効率は大幅に向上します（実績: 260%以上の効率化）。\nローカルのworktreeを使わず、クラウド上で複数タスクを並列実行する方法は、第16章の --remote を参照してください。",
     "crumbs": [
       "Part 6: 上級テクニック",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>上級テクニック</span>"
@@ -978,7 +978,7 @@
     "href": "14-harness-engineering.html#フックアーキテクチャハーネスの自動化機構",
     "title": "14  ハーネスエンジニアリング",
     "section": "14.6 フックアーキテクチャ：ハーネスの自動化機構",
-    "text": "14.6 フックアーキテクチャ：ハーネスの自動化機構\nフックはハーネスの中核をなす自動化機構です（第9章参照）。ハーネス設計の観点から整理します。\n\n14.6.1 フックの4種類と役割\n\n\n\nフックタイプ\nタイミング\nハーネスでの使い方\n\n\n\n\nPreToolUse\nツール実行前\n安全ゲート・危険操作のブロック\n\n\nPostToolUse\nツール実行後\n自動フォーマット・リント・テスト実行\n\n\nStop\nセッション終了前\nテスト合格を完了条件として強制\n\n\nPreCompact\nコンテキスト圧縮前\n状態の保存\n\n\n\n\n\n14.6.2 フィードバックループの速度階層\nハーネス設計では、フィードバックの速さを階層的に設計します：\nPostToolUseフック（ミリ秒）\n  ↓ ツールを実行するたびに即座に動作\npre-commitフック（秒）\n  ↓ コミット前にチェック\nCI/CD（分）\n  ↓ プッシュ後にテスト全体を実行\n人間レビュー（時間）\n  ↓ プルリクエストで確認\n→ フックを使うと「ミリ秒」レベルでのフィードバックが実現でき、AIがすぐに修正できる\n\n\n14.6.3 ガードレールフックの実装例\n危険な操作をブロックするPreToolUseフックの例：\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"bash ~/.claude/scripts/safety-gate.sh \\\"$COMMAND\\\"\"\n          }\n        ]\n      }\n    ]\n  }\n}\nsafety-gate.sh の内容例：\n#!/bin/bash\nCOMMAND=\"$1\"\n\n# sudo コマンドをブロック\nif echo \"$COMMAND\" | grep -q \"sudo \"; then\n  echo \"ERROR: sudo は禁止されています\" &gt;&2\n  exit 1\nfi\n\n# force push をブロック\nif echo \"$COMMAND\" | grep -q \"push --force\\|push -f\"; then\n  echo \"ERROR: force push は禁止されています\" &gt;&2\n  exit 1\nfi\n\n# .env ファイルへの書き込みを防止\nif echo \"$COMMAND\" | grep -q \"\\.env\"; then\n  echo \"ERROR: .env ファイルの直接変更は禁止されています\" &gt;&2\n  exit 1\nfi\n\nexit 0\n\n\n\n\n\n\nTipフックの終了コードの意味\n\n\n\n\n終了コード 0: 正常。Claudeは処理を続行する\n終了コード 1（または非ゼロ）: エラー。Claudeは処理をブロックし、エラーメッセージを受け取る\n\nこれにより、フックを使って「危険な操作をコードで止める」ことができます。",
+    "text": "14.6 フックアーキテクチャ：ハーネスの自動化機構\nフックはハーネスの中核をなす自動化機構です（第9章参照）。ハーネス設計の観点から整理します。\n\n14.6.1 フックの4種類と役割\n\n\n\nフックタイプ\nタイミング\nハーネスでの使い方\n\n\n\n\nPreToolUse\nツール実行前\n安全ゲート・危険操作のブロック\n\n\nPostToolUse\nツール実行後\n自動フォーマット・リント・テスト実行\n\n\nStop\nセッション終了前\nテスト合格を完了条件として強制\n\n\nPreCompact\nコンテキスト圧縮前\n状態の保存\n\n\n\n\n\n14.6.2 フィードバックループの速度階層\nハーネス設計では、フィードバックの速さを階層的に設計します：\nPostToolUseフック（ミリ秒）\n  ↓ ツールを実行するたびに即座に動作\npre-commitフック（秒）\n  ↓ コミット前にチェック\nCI/CD（分）\n  ↓ プッシュ後にテスト全体を実行\n人間レビュー（時間）\n  ↓ プルリクエストで確認\n→ フックを使うと「ミリ秒」レベルでのフィードバックが実現でき、AIがすぐに修正できる\nこの速度階層に、定期実行・スケジュール実行という「時間軸の自動化」を重ねる手法は、第15章 ループエンジニアリングで扱います。\n\n\n14.6.3 ガードレールフックの実装例\n危険な操作をブロックするPreToolUseフックの例：\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"bash ~/.claude/scripts/safety-gate.sh \\\"$COMMAND\\\"\"\n          }\n        ]\n      }\n    ]\n  }\n}\nsafety-gate.sh の内容例：\n#!/bin/bash\nCOMMAND=\"$1\"\n\n# sudo コマンドをブロック\nif echo \"$COMMAND\" | grep -q \"sudo \"; then\n  echo \"ERROR: sudo は禁止されています\" &gt;&2\n  exit 1\nfi\n\n# force push をブロック\nif echo \"$COMMAND\" | grep -q \"push --force\\|push -f\"; then\n  echo \"ERROR: force push は禁止されています\" &gt;&2\n  exit 1\nfi\n\n# .env ファイルへの書き込みを防止\nif echo \"$COMMAND\" | grep -q \"\\.env\"; then\n  echo \"ERROR: .env ファイルの直接変更は禁止されています\" &gt;&2\n  exit 1\nfi\n\nexit 0\n\n\n\n\n\n\nTipフックの終了コードの意味\n\n\n\n\n終了コード 0: 正常。Claudeは処理を続行する\n終了コード 1（または非ゼロ）: エラー。Claudeは処理をブロックし、エラーメッセージを受け取る\n\nこれにより、フックを使って「危険な操作をコードで止める」ことができます。",
     "crumbs": [
       "Part 7: ハーネスエンジニアリング",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>ハーネスエンジニアリング</span>"
@@ -1062,6 +1062,248 @@
     ]
   },
   {
+    "objectID": "15-loop-engineering.html",
+    "href": "15-loop-engineering.html",
+    "title": "15  ループエンジニアリング",
+    "section": "",
+    "text": "15.1 ループエンジニアリングとは\n🟣 上級者向け\nハーネスエンジニアリング（第14章）が、モデルを動かす環境の設計だとすれば、ループエンジニアリングは、エージェントを反復させる設計です。\n1回の応答で終わらせず、次のような実行方式を使い分けます：\n本章では、長時間タスクや監視を自律化するためのループ設計を扱います。\nハーネスは環境、ループは反復です。両者は別物ではなく、補完関係にあります。\nエージェントの基本ループは次の形で整理できます：\nこれは、第1章で扱った「思考→行動→確認」ループの発展形です。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#ループエンジニアリングとは",
+    "href": "15-loop-engineering.html#ループエンジニアリングとは",
+    "title": "15  ループエンジニアリング",
+    "section": "",
+    "text": "思考\n  ↓\n行動\n  ↓\n観察\n  ↓\n完了条件を満たすまで反復\n\n\n\n\n\n\n\nImportant完了条件を先に決める\n\n\n\n明確な完了条件がないループは、無限ループやコスト浪費につながります。\n第13章の「無限ループに入る／タスクが曖昧」という失敗パターンは、ループ設計でも同じ問題として現れます。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#スケジューリングの3方式",
+    "href": "15-loop-engineering.html#スケジューリングの3方式",
+    "title": "15  ループエンジニアリング",
+    "section": "15.2 スケジューリングの3方式",
+    "text": "15.2 スケジューリングの3方式\nClaude Codeで反復実行を設計するときは、クラウド、デスクトップ定期タスク、/loopを使い分けます。\n\n\n\n特性\nクラウド（Routines）\nデスクトップ定期タスク\n/loop\n\n\n\n\n実行場所\nAnthropic クラウド\n自分のマシン\n自分のマシン\n\n\nマシン起動が必要\n不要\n必要\n必要\n\n\nセッション開放が必要\n不要\n不要\n必要\n\n\n再起動をまたぐ永続\nあり\nあり\n--resume で復元（未失効なら）\n\n\nローカルファイルへのアクセス\n不可（毎回クリーンclone）\n可\n可\n\n\n最小間隔\n1時間\n1分\n1分\n\n\n\n\n\n\n\n\n\nTip3方式の使い分け\n\n\n\n\n確実に無人実行したい場合: クラウド（Routines）\nローカルファイルが必要な場合: デスクトップ定期タスク\nセッション中に簡易ポーリングしたい場合: /loop",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#loop-コマンド",
+    "href": "15-loop-engineering.html#loop-コマンド",
+    "title": "15  ループエンジニアリング",
+    "section": "15.3 /loop コマンド",
+    "text": "15.3 /loop コマンド\n/loopは bundled skill です。間隔とプロンプトは両方任意で、何を渡すかによって挙動が変わります。\n\n\n\n\n\n\n\n\n渡すもの\n例\n挙動\n\n\n\n\n間隔＋プロンプト\n/loop 5m check the deploy\n固定スケジュール（cron）で実行\n\n\nプロンプトのみ\n/loop check the deploy\nClaudeが毎回間隔を動的に決めて実行（セルフペース）\n\n\n間隔のみ／なし\n/loop\n組み込みメンテナンスプロンプト（または loop.md）を実行\n\n\n\n\n15.3.1 固定間隔\n間隔を指定すると、/loopはその間隔をcron式に変換します。\n\n\n\n\n\n\n\n指定\n挙動\n\n\n\n\ns / m / h / d\n秒・分・時間・日として扱う\n\n\n秒指定\ncronは1分粒度のため、分に切り上げ\n\n\n7m や 90m\n綺麗に割れない値は近い値に丸められ、Claudeが採用値を知らせる\n\n\n\n\n\n15.3.2 セルフペース\n間隔を省略すると、各反復後にClaudeが1分〜1時間で次の遅延を決めます。\n\n\n\n状況\n遅延の傾向\n\n\n\n\nビルド進行中\n短くなる\n\n\nPRが活発\n短くなる\n\n\n静か\n長くなる\n\n\n\n選んだ遅延と理由は、各反復の末尾に表示されます。\n動的な/loopでは、ClaudeがMonitor ツールを直接使うことがあります。バックグラウンドスクリプトの出力を行単位でストリームし、ポーリングを避けられるため、トークン効率が良い方式です。\n\n\n15.3.3 組み込みメンテナンスプロンプト\nプロンプトを省略すると、組み込みメンテナンスプロンプトが使われます。処理順は次の通りです。\n\n\n\n順序\n内容\n\n\n\n\n1\n会話の未完作業の継続\n\n\n2\n現ブランチのPR対応（レビューコメント・CI失敗・コンフリクト）\n\n\n3\n何もなければバグ探し等の掃除\n\n\n\n新規の取り組みは始めません。pushや削除などの不可逆操作は、会話がすでに許可した範囲に限られます。\n\n\n15.3.4 loop.md で既定プロンプトを差し替える\n既定プロンプトは、plain Markdownのloop.mdで差し替えできます。\n\n\n\n場所\n役割\n\n\n\n\n.claude/loop.md\nプロジェクト用。優先される\n\n\n~/.claude/loop.md\nユーザー用\n\n\n\n25,000バイトを超える内容は切り詰められます。編集内容は次の反復から反映されます。\n\n\n15.3.5 スキルを渡す\nスキルもプロンプトに渡せます。\n/loop 20m /review-pr 1234\nただし、スケジュール発火でClaudeが実行するのは、自律起動を許可されたスキルだけです。\n\n\n\n\n\n\n\n種類\nスケジュール発火時の扱い\n\n\n\n\n自律起動を許可されたスキル\n実行される\n\n\n/permissions・/model・/clear 等の組み込み\nテキストとして届くだけで実行されない\n\n\ndisable-model-invocation: true のスキル\nテキストとして届くだけで実行されない\n\n\n\n\n\n15.3.6 停止\n待機中にEscを押すと、次回発火をクリアできます。\n\n\n\n\n\n\n\n方式\n停止の考え方\n\n\n\n\nセルフペース\nタスクが完了と確認できれば、Claudeが次回を予約せず自律終了することがある\n\n\n固定間隔\n停止するか、7日経過まで継続",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#単発リマインダーとタスク管理",
+    "href": "15-loop-engineering.html#単発リマインダーとタスク管理",
+    "title": "15  ループエンジニアリング",
+    "section": "15.4 単発リマインダーとタスク管理",
+    "text": "15.4 単発リマインダーとタスク管理\n単発リマインダーは自然言語で作成できます。\nremind me at 3pm to push the release branch\nin 45 minutes, check whether the integration tests passed\n単発タスクは実行後に自己削除されます。\nタスクの一覧や取消も自然言語で扱えます。\n\n\n\nやりたいこと\n例\n\n\n\n\n一覧を見る\n予約タスクは？\n\n\n取消する\ndeploy check ジョブを取り消して\n\n\n\n内部的には、次のツールが使われます。\n\n\n\nツール\n役割\n\n\n\n\nCronCreate\n新規予約。5フィールドcron式を使う\n\n\nCronList\n一覧\n\n\nCronDelete\nIDで取消\n\n\n\n各タスクは8文字IDを持ちます。1セッションで作成できるタスクは最大50件です。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#スケジュールの動作特性",
+    "href": "15-loop-engineering.html#スケジュールの動作特性",
+    "title": "15  ループエンジニアリング",
+    "section": "15.5 スケジュールの動作特性",
+    "text": "15.5 スケジュールの動作特性\n\n\n\n\n\n\nNoteスケジューラの基本動作\n\n\n\n\nスケジューラは毎秒チェックし、ターンの合間に低優先で発火する\n応答の途中には割り込まない\n時刻はローカルタイムゾーンで解釈される\n環境変数CLAUDE_CODE_DISABLE_CRON=1でスケジューラ全体を無効化できる（cronツールと/loopが使えなくなる）\n\n\n\n\n15.5.1 ジッター\nスケジュール実行にはジッターがあります。\n\n\n\n種類\n挙動\n\n\n\n\n定期タスク\n予定時刻から最大30分後に発火\n\n\n毎時より短い間隔の定期タスク\n間隔の半分まで遅れる\n\n\n単発タスク\n正時・半時なら最大90秒早く発火\n\n\n\n厳密なタイミングが必要な場合は、:00や:30を避けます。\n\n\n15.5.2 7日で失効\n定期タスクは、作成から7日後に最後の1回を実行して自己削除します。\nこれは無限放置を防ぐ設計です。長期運用には、Routinesかデスクトップ定期タスクを使います。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#loop-の制約",
+    "href": "15-loop-engineering.html#loop-の制約",
+    "title": "15  ループエンジニアリング",
+    "section": "15.6 /loop の制約",
+    "text": "15.6 /loop の制約\n\n\n\n\n\n\nWarning/loop は起動中のセッションに依存する\n\n\n\nタスクはClaude Codeが起動中かつidleのときだけ発火します。\nターミナルを閉じる、またはセッションを終了すると止まります。ただし、セッションをバックグラウンド化すると/loopタスクは引き継がれ、ターミナルなしで継続します。\n\n\n\n\n\n\n\n\n\n制約\n内容\n\n\n\n\ncatch-upなし\n忙しい間に予定時刻が過ぎると、idle復帰時に1回だけ発火する。回数分は補填しない\n\n\nsession-scoped\n新規会話を始めるとタスクは消える\n\n\n復元\n--resume / --continue で未失効タスクは復元される",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#条件達成まで回す-goal",
+    "href": "15-loop-engineering.html#条件達成まで回す-goal",
+    "title": "15  ループエンジニアリング",
+    "section": "15.7 条件達成まで回す /goal",
+    "text": "15.7 条件達成まで回す /goal\n間隔で実行するのではなく、条件を満たすまでターンを重ねて作業を続ける用途には/goalを使います。\n本書では、/goalの詳細仕様までは断定しません。ここでは、スケジュール実行とは別の反復手段として位置づけます。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#バックグラウンド実行と並列",
+    "href": "15-loop-engineering.html#バックグラウンド実行と並列",
+    "title": "15  ループエンジニアリング",
+    "section": "15.8 バックグラウンド実行と並列",
+    "text": "15.8 バックグラウンド実行と並列\n長時間タスクは、バックグラウンドのセッションやエージェントで実行し、完了時に通知を受けて再開する設計にできます。\n複数セッションを1画面で監視する運用もあります。ここでは概念として、次のように整理します。\n\n\n\n設計\n使いどころ\n\n\n\n\nバックグラウンド実行\n長時間タスクをターミナルから切り離す\n\n\n完了通知\n作業が終わったタイミングで人間が再開する\n\n\n複数セッション監視\n並列に走る作業の状態をまとめて見る\n\n\n\n並列実行そのものの考え方は、第13章を参照してください。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#自律ループの設計原則",
+    "href": "15-loop-engineering.html#自律ループの設計原則",
+    "title": "15  ループエンジニアリング",
+    "section": "15.9 自律ループの設計原則",
+    "text": "15.9 自律ループの設計原則\n自律ループは、便利さよりも先に制御を設計します。\n\n\n\n\n\n\n\n原則\n内容\n\n\n\n\n完了条件を先に定義\n曖昧なタスクは無限ループの主因になる\n\n\nコストを意識する\n不要なポーリングを避け、可能ならMonitorやバックグラウンド実行によるイベント駆動へ寄せる\n\n\n人間をループに入れる\n不可逆操作は承認または禁止に区分する\n\n\n失効・上限を味方にする\n7日失効や50タスク上限は暴走の安全弁として働く\n\n\nハーネスと統合する\nフィードバックループにスケジュール実行という時間軸の自動化を重ねる\n\n\n\n第14章では、操作を「自動実行／承認が必要／完全禁止」に分けました。ループ設計でも同じ区分を使い、反復の中に人間の確認点を残します。\nまた、第14章のフィードバックループ速度階層（PostToolUse→pre-commit→CI→人間）に、スケジュール実行という時間軸の自動化を重ねることで、長時間の監視や保守を設計できます。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#まとめループエンジニアリングのポイント",
+    "href": "15-loop-engineering.html#まとめループエンジニアリングのポイント",
+    "title": "15  ループエンジニアリング",
+    "section": "15.10 まとめ：ループエンジニアリングのポイント",
+    "text": "15.10 まとめ：ループエンジニアリングのポイント\n\n\n\n\n\n\n\n項目\n要点\n\n\n\n\nループエンジニアリングとは\nエージェントを反復させる設計。ハーネスは環境、ループは反復\n\n\n3方式の使い分け\n無人実行はクラウド、ローカルファイルが必要ならデスクトップ、セッション中の簡易ポーリングは/loop\n\n\n/loopの3挙動\n間隔＋プロンプト、プロンプトのみ、間隔のみ／なしで挙動が変わる\n\n\n7日失効・50上限\n定期タスクは7日で自己削除。1セッション最大50タスク\n\n\n設計3原則\n完了条件・コスト・人間をループに入れる",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "15-loop-engineering.html#参考リンク",
+    "href": "15-loop-engineering.html#参考リンク",
+    "title": "15  ループエンジニアリング",
+    "section": "15.11 参考リンク",
+    "text": "15.11 参考リンク\n\nClaude Code Docs: Run prompts on a schedule\nClaude Code Docs: Routines\n第14章 ハーネスエンジニアリング",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ループエンジニアリング</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html",
+    "href": "16-web-cloud-workflow.html",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "",
+    "text": "16.1 ローカル環境なしで使う選択肢\n🔵 中級者向け\n第2章では、ローカルCLIの導入を扱いました。本章では、ローカルに何も入れず、ブラウザやスマホからClaude Codeを動かす方法を扱います。\n具体的には：\nClaude Codeは、同一エンジンを複数の“面（surface）”から使えます。CLAUDE.md・設定・MCPは共通です。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#ローカル環境なしで使う選択肢",
+    "href": "16-web-cloud-workflow.html#ローカル環境なしで使う選択肢",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "",
+    "text": "使い方\n概要\n\n\n\n\nWeb版（Claude Code on the web）\nブラウザclaude.ai/codeで実行。ローカル設定不要\n\n\nClaude iOSアプリ\nスマホからタスク投入・進捗確認\n\n\nデスクトップアプリ\n視覚的なdiffレビュー、クラウドセッション起動、定期タスク\n\n\n\n\n\n\n\n\n\nNoteWeb版の提供状況\n\n\n\nWeb版は research preview（2026年7月時点）で、Pro / Max / Team、および premium seat か Chat + Claude Code seat を持つ Enterprise ユーザーが対象です。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#web版の仕組みと始め方",
+    "href": "16-web-cloud-workflow.html#web版の仕組みと始め方",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "16.2 Web版の仕組みと始め方",
+    "text": "16.2 Web版の仕組みと始め方\nWeb版は、Anthropic管理のクラウド基盤で実行されます。ブラウザを閉じてもセッションは継続し、Claudeモバイルアプリから監視できます。\n各セッションは、リポジトリをクローンした真新しいVMで動きます。使えるのは、リポジトリにコミット済みのものだけです。ローカルにだけある設定は入りません。\n\n16.2.1 クラウドで使えるもの／使えないもの\n\n\n\n\n\n\n\n区分\n内容\n\n\n\n\n使える\nリポジトリのCLAUDE.md\n\n\n使える\n.claude/settings.json のhooks\n\n\n使える\n.mcp.json のMCP\n\n\n使える\n.claude/skills/、.claude/agents/、.claude/commands/\n\n\n使える\n宣言済みプラグイン\n\n\n使える\n組織の server-managed settings\n\n\n使えない\nユーザー個人の~/.claude/CLAUDE.md\n\n\n使えない\n~/.claude/skills/、~/.claude/agents/、~/.claude/commands/\n\n\n使えない\nclaude mcp addで入れたローカルMCP\n\n\n使えない\n静的APIトークン等の秘密情報（専用の秘密ストアは未提供）\n\n\n使えない\nAWS SSO等の対話ログイン\n\n\n\n\n\n\n\n\n\nImportantクラウドで使う設定はリポジトリにコミットする\n\n\n\nWeb版のVMはGitHubからリポジトリをcloneします。\n自分の設定をクラウドで使いたい場合は、リポジトリにコミットしておくことが基本です。\n\n\n\n\n16.2.2 GitHub連携の2方式\nGitHub連携には、GitHub Appと/web-setupの2方式があります。\n\n\n\n\n\n\n\n\n方式\n概要\n向いている用途\n\n\n\n\nGitHub App\nweb onboarding中にClaude GitHub Appを認可\nAuto-fixを使うチーム\n\n\n/web-setup\nターミナルでローカルのgh CLIトークンをClaudeアカウントに同期\nすでにghを使う個人\n\n\n\nどちらの方式でも、接続GitHubアカウントが見えるリポジトリすべてにアクセスし得ます。App導入はアクセス制御そのものではありません。制限はGitHub側で行います。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#ターミナルとクラウドの往復",
+    "href": "16-web-cloud-workflow.html#ターミナルとクラウドの往復",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "16.3 ターミナルとクラウドの往復",
+    "text": "16.3 ターミナルとクラウドの往復\nターミナルとクラウドは、--remoteと--teleportで行き来します。\n\n\n\n\n\n\n\n\n方向\nコマンド\n内容\n\n\n\n\nターミナル→クラウド\nclaude --remote\n新規クラウドセッションを作成\n\n\nクラウド→ターミナル\nclaude --teleport\nクラウドセッションとブランチをローカルへ引き寄せる\n\n\n\n\n16.3.1 ターミナルからクラウドへ：--remote\nclaude --remote \"Fix the authentication bug in src/auth/login.ts\"\n--remoteは新規クラウドセッションを作成します。VMはGitHubからcloneするため、ローカルのコミットは先にpushしておきます。\n\n\n\n\n\n\n\n特性\n内容\n\n\n\n\n対象\n1回に1リポジトリ\n\n\n作業形態\nローカルで作業を続けながら、クラウドで実行できる\n\n\n進捗確認\nCLIの/tasks、またはclaude.ai / モバイルアプリでセッションを開いて対話\n\n\n並列\n--remoteを複数回叩くと、各々独立セッションで同時実行\n\n\n\n\n\n\n\n\n\nTipプランは手元、実行はクラウド\n\n\n\n先にローカルで計画を練ります。\nclaude --permission-mode plan\n計画をリポジトリに保存・commit・pushしてから、クラウドへ実行を依頼します。\nclaude --remote \"Execute the migration plan in docs/migration-plan.md\"\n戦略は手元で管理し、実行はクラウドで自律させるパターンです。\n\n\nGitHub未接続リポジトリでは、ローカルをbundleしてアップロードするフォールバックがあります。100MB上限等の制約があり、bundle起動セッションはGitHub認証がないとpushできません。\n\n\n16.3.2 クラウドからターミナルへ：--teleport\nclaude --teleport\nclaude --teleport &lt;session-id&gt;\nセッション内では/teleportまたは/tpを使えます。/tasksからtでも可能です。\n--teleportは、ブランチをfetch/checkoutし、会話履歴をターミナルに読み込みます。\n\n\n\n比較\n内容\n\n\n\n\n--teleport\nクラウドセッションとそのブランチを引き寄せる\n\n\n--resume\nこのマシンのローカル履歴を再開する\n\n\n\n\n\n\n\n\n\nWarningハンドオフは片方向\n\n\n\nCLIからのハンドオフはクラウド→ターミナルの片方向です。既存ターミナルセッションをwebへ送ることはできません。\nまた、teleportにはclaude.aiサブスク認証が必要です。APIキー / Bedrock / Vertex / Foundry認証では使えません。/loginでclaude.ai認証へ切り替えます。\n\n\n--remoteはクラウドセッション作成、--remote-controlはローカルCLIをwebから監視する別機能のRemote Controlです。名前が似ていますが、別の機能として扱います。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#ローカルcliとの違い",
+    "href": "16-web-cloud-workflow.html#ローカルcliとの違い",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "16.4 ローカルCLIとの違い",
+    "text": "16.4 ローカルCLIとの違い\n第2章のローカルCLIと、Web版・クラウド実行の違いを整理します。\n\n\n\n\n\n\n\n\n観点\nローカルCLI（第2章）\nWeb版・クラウド実行\n\n\n\n\nセットアップ\nインストール必要\n不要（ブラウザのみ）\n\n\nファイルアクセス\nローカルファイル直接\nGitHubクローンのみ（ローカル不可）\n\n\n長時間タスク\n端末を開いておく必要\n閉じても継続\n\n\n並列\nworktree等で自前構成\n--remoteを複数投入\n\n\n権限プロンプト\n対話で承認\n自律実行（下記コスト/安全注意）\n\n\nリソース上限\nマシン依存\n4 vCPU / 16GB RAM / 30GB ディスク（目安、変動あり）",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#便利機能",
+    "href": "16-web-cloud-workflow.html#便利機能",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "16.5 便利機能",
+    "text": "16.5 便利機能\n\n16.5.1 Auto-fix PR\nAuto-fix PRは、PRを監視し、CI失敗やレビューコメントに自動対応する機能です。Claude GitHub Appが必要です。\nターミナルからは次のコマンドを使います。\n/autofix-pr\n\n\n\n\n\n\nWarningPRコメントで自動化が走るリポジトリ\n\n\n\nPRコメントをきっかけにAtlantis等が走るリポジトリでは、Auto-fix PRの運用に注意が必要です。\n\n\n\n\n16.5.2 セッションの共有・アーカイブ・削除\nセッションの共有・アーカイブ・削除は、claude.ai/codeのサイドバーから行えます。\n共有時は、認証情報や非公開リポジトリのコードが含まれ得るため、中身を確認します。Max / Proは既定でリポジトリアクセス検証が無効です。\n\n\n16.5.3 クラウドセッションでのコンテキスト管理\n\n\n\nコマンド\nクラウドセッションでの扱い\n\n\n\n\n/compact\n使用可\n\n\n/context\n使用可\n\n\n/clear\n使用不可。新規セッションを作る",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#セキュリティ分離コスト",
+    "href": "16-web-cloud-workflow.html#セキュリティ分離コスト",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "16.6 セキュリティ・分離・コスト",
+    "text": "16.6 セキュリティ・分離・コスト\nWeb版・クラウド実行では、実行環境が自分のマシンではなくAnthropic管理の基盤になります。ローカルCLIとは異なる前提で、安全性とコストを見ます。\n\n16.6.1 分離\n各セッションは隔離VMで動きます。git認証情報や署名鍵はサンドボックス内に置かれず、scoped credentialとプロキシで処理されます。\nネットワークは既定で制限されます。設定名として、None / Trusted / Full / Customがあります。\nネットワークを無効にしてもAnthropic APIとは通信するため、データがVM外に出得る点に留意します。\n\n\n16.6.2 秘密情報\n専用の秘密ストアは未提供です。環境変数やsetup scriptは、当該環境を編集できる人に見えます。\n秘密を入れる場合は、その可視性を前提に扱います。\n\n\n\n\n\n\nImportantクラウド実行のコストと制限\n\n\n\nクラウドVMに別途の計算課金はありません。\nただし、レート制限はアカウント全体で共有されます。並列実行はレート制限を比例的に消費します。\nまた、組織のIP allowlistが有効だと、クラウドセッションは認証エラーになります。Anthropic管理基盤から発信されるためです。\n\n\n\n\n\n\n\n\nWarning医療・機密データを扱う場合\n\n\n\n臨床データ、PHI/PII、機関機密を扱う場合は、クラウドセッションやサードパーティ連携に載せないでください。\n第12章や本書のセキュリティ方針に沿って、扱うデータを分けます。",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#既存章との接続",
+    "href": "16-web-cloud-workflow.html#既存章との接続",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "16.7 既存章との接続",
+    "text": "16.7 既存章との接続\n\n\n\n参照先\n内容\n\n\n\n\n第2章\nローカルCLIの導入\n\n\n第13章\n並列実行の考え方\n\n\n第15章\nクラウドでの自動スケジュール（Routines）",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#まとめweb版クラウド実行のポイント",
+    "href": "16-web-cloud-workflow.html#まとめweb版クラウド実行のポイント",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "16.8 まとめ：Web版・クラウド実行のポイント",
+    "text": "16.8 まとめ：Web版・クラウド実行のポイント\n\n\n\n\n\n\n\n項目\n要点\n\n\n\n\n3つの面\nWeb版、Claude iOSアプリ、デスクトップアプリから同じエンジンを使う\n\n\nVMの前提\nGitHubクローンで動く。ローカル設定は入らない\n\n\n--remoteと--teleport\n--remoteはターミナル→クラウド、--teleportはクラウド→ターミナル\n\n\nハンドオフと認証\nハンドオフは片方向。teleportはclaude.ai認証が必要\n\n\nリソース上限\n4 vCPU / 16GB RAM / 30GB ディスク（目安、変動あり）\n\n\n秘密情報とIP allowlist\n秘密ストアは未提供。IP allowlist有効時はクラウドセッションが認証エラーになる",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
+    "objectID": "16-web-cloud-workflow.html#参考リンク",
+    "href": "16-web-cloud-workflow.html#参考リンク",
+    "title": "16  Web版・クラウド実行：ローカル環境なしで動かす",
+    "section": "16.9 参考リンク",
+    "text": "16.9 参考リンク\n\nClaude Code Docs: Use Claude Code on the web\nClaude Code Docs: Overview（全surface一覧）\nClaude Code Docs: Routines\n第2章 インストールと初期設定 / 第15章 ループエンジニアリング",
+    "crumbs": [
+      "Part 8: 自律運用",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Web版・クラウド実行：ローカル環境なしで動かす</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "参考資料",
@@ -1076,7 +1318,7 @@
     "href": "references.html#公式ドキュメント",
     "title": "参考資料",
     "section": "",
-    "text": "Anthropic Claude Code 公式ドキュメント\nModel Context Protocol (MCP) 仕様書",
+    "text": "Anthropic Claude Code 公式ドキュメント（code.claude.com/docs）\nModel Context Protocol (MCP) 仕様書\nUse Claude Code on the web（第16章の情報源）\nRun prompts on a schedule / Routines（第15章の情報源）",
     "crumbs": [
       "参考資料"
     ]
