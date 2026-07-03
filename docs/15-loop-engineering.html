@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 基本操作 – Claude Code 実践ガイド</title>
+<title>15&nbsp; ループエンジニアリング – Claude Code 実践ガイド</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./04-claude-md.html" rel="next">
-<link href="./02-install-setup.html" rel="prev">
+<link href="./16-web-cloud-workflow.html" rel="next">
+<link href="./14-harness-engineering.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-what-is-claude-code.html">Part 1: はじめよう</a></li><li class="breadcrumb-item"><a href="./03-basic-operations.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本操作</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15-loop-engineering.html">Part 8: 自律運用</a></li><li class="breadcrumb-item"><a href="./15-loop-engineering.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ループエンジニアリング</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-basic-operations.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03-basic-operations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本操作</span></span></a>
   </div>
 </li>
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-loop-engineering.html" class="sidebar-item-text sidebar-link">
+  <a href="./15-loop-engineering.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ループエンジニアリング</span></span></a>
   </div>
 </li>
@@ -520,14 +520,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#起動方法" id="toc-起動方法" class="nav-link active" data-scroll-target="#起動方法"><span class="header-section-number">3.1</span> 起動方法</a></li>
-  <li><a href="#基本的なやり取り" id="toc-基本的なやり取り" class="nav-link" data-scroll-target="#基本的なやり取り"><span class="header-section-number">3.2</span> 基本的なやり取り</a></li>
-  <li><a href="#権限モードpermission-mode" id="toc-権限モードpermission-mode" class="nav-link" data-scroll-target="#権限モードpermission-mode"><span class="header-section-number">3.3</span> 権限モード（Permission Mode）</a></li>
-  <li><a href="#よく使うスラッシュコマンド" id="toc-よく使うスラッシュコマンド" class="nav-link" data-scroll-target="#よく使うスラッシュコマンド"><span class="header-section-number">3.4</span> よく使うスラッシュコマンド</a></li>
-  <li><a href="#キーボードショートカット" id="toc-キーボードショートカット" class="nav-link" data-scroll-target="#キーボードショートカット"><span class="header-section-number">3.5</span> キーボードショートカット</a></li>
-  <li><a href="#プロジェクトでの典型的な使い方" id="toc-プロジェクトでの典型的な使い方" class="nav-link" data-scroll-target="#プロジェクトでの典型的な使い方"><span class="header-section-number">3.6</span> プロジェクトでの典型的な使い方</a></li>
-  <li><a href="#ファイルの参照と画像入力" id="toc-ファイルの参照と画像入力" class="nav-link" data-scroll-target="#ファイルの参照と画像入力"><span class="header-section-number">3.7</span> ファイルの参照と画像入力</a></li>
-  <li><a href="#出力とログ" id="toc-出力とログ" class="nav-link" data-scroll-target="#出力とログ"><span class="header-section-number">3.8</span> 出力とログ</a></li>
+  <li><a href="#ループエンジニアリングとは" id="toc-ループエンジニアリングとは" class="nav-link active" data-scroll-target="#ループエンジニアリングとは"><span class="header-section-number">15.1</span> ループエンジニアリングとは</a></li>
+  <li><a href="#スケジューリングの3方式" id="toc-スケジューリングの3方式" class="nav-link" data-scroll-target="#スケジューリングの3方式"><span class="header-section-number">15.2</span> スケジューリングの3方式</a></li>
+  <li><a href="#loop-コマンド" id="toc-loop-コマンド" class="nav-link" data-scroll-target="#loop-コマンド"><span class="header-section-number">15.3</span> <code>/loop</code> コマンド</a>
+  <ul class="collapse">
+  <li><a href="#固定間隔" id="toc-固定間隔" class="nav-link" data-scroll-target="#固定間隔"><span class="header-section-number">15.3.1</span> 固定間隔</a></li>
+  <li><a href="#セルフペース" id="toc-セルフペース" class="nav-link" data-scroll-target="#セルフペース"><span class="header-section-number">15.3.2</span> セルフペース</a></li>
+  <li><a href="#組み込みメンテナンスプロンプト" id="toc-組み込みメンテナンスプロンプト" class="nav-link" data-scroll-target="#組み込みメンテナンスプロンプト"><span class="header-section-number">15.3.3</span> 組み込みメンテナンスプロンプト</a></li>
+  <li><a href="#loop.md-で既定プロンプトを差し替える" id="toc-loop.md-で既定プロンプトを差し替える" class="nav-link" data-scroll-target="#loop.md-で既定プロンプトを差し替える"><span class="header-section-number">15.3.4</span> <code>loop.md</code> で既定プロンプトを差し替える</a></li>
+  <li><a href="#スキルを渡す" id="toc-スキルを渡す" class="nav-link" data-scroll-target="#スキルを渡す"><span class="header-section-number">15.3.5</span> スキルを渡す</a></li>
+  <li><a href="#停止" id="toc-停止" class="nav-link" data-scroll-target="#停止"><span class="header-section-number">15.3.6</span> 停止</a></li>
+  </ul></li>
+  <li><a href="#単発リマインダーとタスク管理" id="toc-単発リマインダーとタスク管理" class="nav-link" data-scroll-target="#単発リマインダーとタスク管理"><span class="header-section-number">15.4</span> 単発リマインダーとタスク管理</a></li>
+  <li><a href="#スケジュールの動作特性" id="toc-スケジュールの動作特性" class="nav-link" data-scroll-target="#スケジュールの動作特性"><span class="header-section-number">15.5</span> スケジュールの動作特性</a>
+  <ul class="collapse">
+  <li><a href="#ジッター" id="toc-ジッター" class="nav-link" data-scroll-target="#ジッター"><span class="header-section-number">15.5.1</span> ジッター</a></li>
+  <li><a href="#日で失効" id="toc-日で失効" class="nav-link" data-scroll-target="#日で失効"><span class="header-section-number">15.5.2</span> 7日で失効</a></li>
+  </ul></li>
+  <li><a href="#loop-の制約" id="toc-loop-の制約" class="nav-link" data-scroll-target="#loop-の制約"><span class="header-section-number">15.6</span> <code>/loop</code> の制約</a></li>
+  <li><a href="#条件達成まで回す-goal" id="toc-条件達成まで回す-goal" class="nav-link" data-scroll-target="#条件達成まで回す-goal"><span class="header-section-number">15.7</span> 条件達成まで回す <code>/goal</code></a></li>
+  <li><a href="#バックグラウンド実行と並列" id="toc-バックグラウンド実行と並列" class="nav-link" data-scroll-target="#バックグラウンド実行と並列"><span class="header-section-number">15.8</span> バックグラウンド実行と並列</a></li>
+  <li><a href="#自律ループの設計原則" id="toc-自律ループの設計原則" class="nav-link" data-scroll-target="#自律ループの設計原則"><span class="header-section-number">15.9</span> 自律ループの設計原則</a></li>
+  <li><a href="#まとめループエンジニアリングのポイント" id="toc-まとめループエンジニアリングのポイント" class="nav-link" data-scroll-target="#まとめループエンジニアリングのポイント"><span class="header-section-number">15.10</span> まとめ：ループエンジニアリングのポイント</a></li>
+  <li><a href="#参考リンク" id="toc-参考リンク" class="nav-link" data-scroll-target="#参考リンク"><span class="header-section-number">15.11</span> 参考リンク</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kazuakifukushima/claude-code-manual/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -535,9 +550,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-what-is-claude-code.html">Part 1: はじめよう</a></li><li class="breadcrumb-item"><a href="./03-basic-operations.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本操作</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15-loop-engineering.html">Part 8: 自律運用</a></li><li class="breadcrumb-item"><a href="./15-loop-engineering.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ループエンジニアリング</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-basic" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本操作</span></span></h1>
+<h1 class="title"><span id="sec-loop-engineering" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ループエンジニアリング</span></span></h1>
 </div>
 
 
@@ -554,183 +569,587 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><span class="badge-beginner">🟢 初心者向け</span></p>
-<section id="起動方法" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="起動方法"><span class="header-section-number">3.1</span> 起動方法</h2>
-<p>Claude Code の起動方法は用途によって3パターンあります。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 対話型セッション（最もよく使う）</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 初期プロンプトを指定して起動</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="st">"このプロジェクトのREADMEを日本語で作成して"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 一度だけ実行して終了（スクリプト・CI/CD向け）</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">-p</span> <span class="st">"src/main.py のバグを修正して"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="基本的なやり取り" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="基本的なやり取り"><span class="header-section-number">3.2</span> 基本的なやり取り</h2>
-<p>Claude Code を起動したら、自然言語で指示を出すだけです。</p>
-<pre><code>&gt; このプロジェクトの全体構造を教えて
-
-&gt; src/utils.py に新しい関数 parse_date() を追加して
-
-&gt; git の変更差分をレビューして、問題があれば指摘して
-
-&gt; テストを実行して失敗したら修正して</code></pre>
-</section>
-<section id="権限モードpermission-mode" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="権限モードpermission-mode"><span class="header-section-number">3.3</span> 権限モード（Permission Mode）</h2>
-<p>Claude Code はデフォルトでファイル編集やコマンド実行の前に確認を求めます。セッション中に <code>Shift + Tab</code> で権限モードを切り替えられます。</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 32%">
-<col style="width: 24%">
-<col style="width: 44%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>モード</th>
-<th>説明</th>
-<th>使いどころ</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Default</strong>（デフォルト）</td>
-<td>すべての操作前に確認</td>
-<td>重要なプロジェクト・初回使用時</td>
-</tr>
-<tr class="even">
-<td><strong>Auto-accept edits</strong></td>
-<td>ファイル編集のみ自動承認</td>
-<td>通常の開発作業</td>
-</tr>
-<tr class="odd">
-<td><strong>Plan mode</strong></td>
-<td>計画のみ作成、実行しない</td>
-<td>何をするか確認してから実行したい時</td>
-</tr>
-</tbody>
-</table>
+<p><span class="badge-advanced">🟣 上級者向け</span></p>
+<p>ハーネスエンジニアリング（<a href="./14-harness-engineering.html">第14章</a>）が、モデルを動かす<strong>環境</strong>の設計だとすれば、ループエンジニアリングは、エージェントを<strong>反復</strong>させる設計です。</p>
+<p>1回の応答で終わらせず、次のような実行方式を使い分けます：</p>
+<ul>
+<li>定期実行</li>
+<li>自己ペース反復</li>
+<li>スケジュール実行</li>
+<li>バックグラウンド実行</li>
+</ul>
+<p>本章では、長時間タスクや監視を自律化するためのループ設計を扱います。</p>
+<hr>
+<section id="ループエンジニアリングとは" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="ループエンジニアリングとは"><span class="header-section-number">15.1</span> ループエンジニアリングとは</h2>
+<p>ハーネスは<strong>環境</strong>、ループは<strong>反復</strong>です。両者は別物ではなく、補完関係にあります。</p>
+<p>エージェントの基本ループは次の形で整理できます：</p>
+<pre class="text"><code>思考
+  ↓
+行動
+  ↓
+観察
+  ↓
+完了条件を満たすまで反復</code></pre>
+<p>これは、<a href="./01-what-is-claude-code.html">第1章</a>で扱った「思考→行動→確認」ループの発展形です。</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>安全な運用のために
+<span class="screen-reader-only">Important</span>完了条件を先に決める
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>初めて使うプロジェクトでは <strong>Default モード</strong>（常に確認）で始めることを強く推奨します。Claude の行動パターンを理解してから自動承認モードに移行しましょう。</p>
+<p>明確な完了条件がないループは、無限ループやコスト浪費につながります。</p>
+<p><a href="./13-advanced-tips.html">第13章</a>の「無限ループに入る／タスクが曖昧」という失敗パターンは、ループ設計でも同じ問題として現れます。</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="よく使うスラッシュコマンド" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="よく使うスラッシュコマンド"><span class="header-section-number">3.4</span> よく使うスラッシュコマンド</h2>
-<p>セッション中に <code>/</code> で始まるコマンドが使えます。</p>
+<section id="スケジューリングの3方式" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="スケジューリングの3方式"><span class="header-section-number">15.2</span> スケジューリングの3方式</h2>
+<p>Claude Codeで反復実行を設計するときは、クラウド、デスクトップ定期タスク、<code>/loop</code>を使い分けます。</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>コマンド</th>
-<th>説明</th>
+<th>特性</th>
+<th>クラウド（Routines）</th>
+<th>デスクトップ定期タスク</th>
+<th><code>/loop</code></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>/help</code></td>
-<td>ヘルプを表示</td>
+<td>実行場所</td>
+<td>Anthropic クラウド</td>
+<td>自分のマシン</td>
+<td>自分のマシン</td>
 </tr>
 <tr class="even">
-<td><code>/clear</code></td>
-<td>会話履歴をリセット</td>
+<td>マシン起動が必要</td>
+<td>不要</td>
+<td>必要</td>
+<td>必要</td>
 </tr>
 <tr class="odd">
-<td><code>/exit</code></td>
-<td>セッション終了</td>
+<td>セッション開放が必要</td>
+<td>不要</td>
+<td>不要</td>
+<td>必要</td>
 </tr>
 <tr class="even">
-<td><code>/status</code></td>
-<td>現在の状態を確認</td>
+<td>再起動をまたぐ永続</td>
+<td>あり</td>
+<td>あり</td>
+<td><code>--resume</code> で復元（未失効なら）</td>
 </tr>
 <tr class="odd">
-<td><code>/compact</code></td>
-<td>コンテキストを圧縮（長いセッション向け）</td>
+<td>ローカルファイルへのアクセス</td>
+<td>不可（毎回クリーンclone）</td>
+<td>可</td>
+<td>可</td>
+</tr>
+<tr class="even">
+<td>最小間隔</td>
+<td>1時間</td>
+<td>1分</td>
+<td>1分</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="キーボードショートカット" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="キーボードショートカット"><span class="header-section-number">3.5</span> キーボードショートカット</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>ショートカット</th>
-<th>動作</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Shift + Tab</code></td>
-<td>権限モードの切り替え</td>
-</tr>
-<tr class="even">
-<td><code>Ctrl + C</code></td>
-<td>現在の処理を中断</td>
-</tr>
-<tr class="odd">
-<td><code>↑ / ↓</code></td>
-<td>入力履歴を参照</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="プロジェクトでの典型的な使い方" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="プロジェクトでの典型的な使い方"><span class="header-section-number">3.6</span> プロジェクトでの典型的な使い方</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. プロジェクトのディレクトリに移動</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-project</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Claude Code を起動</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. タスクを指示</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> このプロジェクトのコードを読んで、概要を説明して</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> src/api.py <span class="ex">の関数</span> get_users<span class="er">(</span><span class="kw">)</span> <span class="ex">に型ヒントを追加して</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> 追加した変更をコミットして</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="ファイルの参照と画像入力" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="ファイルの参照と画像入力"><span class="header-section-number">3.7</span> ファイルの参照と画像入力</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ファイルを明示的に参照させる</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> @src/main.py <span class="ex">を読んで、改善点を提案して</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 画像ファイルを渡す（スクリーンショットなど）</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> @screenshot.png <span class="ex">このUIのバグを直して</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="出力とログ" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="出力とログ"><span class="header-section-number">3.8</span> 出力とログ</h2>
-<p>Claude Code のやり取りはセッション中に保存され、後から確認できます。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># セッションの続きを再開</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--continue</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 過去のセッション一覧</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--list-sessions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>効果的な指示の出し方
+<span class="screen-reader-only">Tip</span>3方式の使い分け
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>具体的に</strong>: 「コードを改善して」より「src/utils.py の calculate_total 関数をO(n)からO(1)に最適化して」</li>
-<li><strong>コンテキストを与える</strong>: 「これはDjango プロジェクトで、PostgreSQLを使っています」</li>
-<li><strong>段階的に</strong>: 大きなタスクは小さなステップに分けて指示する</li>
+<li>確実に無人実行したい場合: クラウド（Routines）</li>
+<li>ローカルファイルが必要な場合: デスクトップ定期タスク</li>
+<li>セッション中に簡易ポーリングしたい場合: <code>/loop</code></li>
 </ul>
 </div>
 </div>
+<hr>
+</section>
+<section id="loop-コマンド" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="loop-コマンド"><span class="header-section-number">15.3</span> <code>/loop</code> コマンド</h2>
+<p><code>/loop</code>は bundled skill です。<strong>間隔とプロンプトは両方任意</strong>で、何を渡すかによって挙動が変わります。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>渡すもの</th>
+<th>例</th>
+<th>挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>間隔＋プロンプト</td>
+<td><code>/loop 5m check the deploy</code></td>
+<td>固定スケジュール（cron）で実行</td>
+</tr>
+<tr class="even">
+<td>プロンプトのみ</td>
+<td><code>/loop check the deploy</code></td>
+<td>Claudeが毎回<strong>間隔を動的に決めて</strong>実行（セルフペース）</td>
+</tr>
+<tr class="odd">
+<td>間隔のみ／なし</td>
+<td><code>/loop</code></td>
+<td>組み込みメンテナンスプロンプト（または <code>loop.md</code>）を実行</td>
+</tr>
+</tbody>
+</table>
+<section id="固定間隔" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="固定間隔"><span class="header-section-number">15.3.1</span> 固定間隔</h3>
+<p>間隔を指定すると、<code>/loop</code>はその間隔をcron式に変換します。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>指定</th>
+<th>挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>s</code> / <code>m</code> / <code>h</code> / <code>d</code></td>
+<td>秒・分・時間・日として扱う</td>
+</tr>
+<tr class="even">
+<td>秒指定</td>
+<td>cronは1分粒度のため、分に切り上げ</td>
+</tr>
+<tr class="odd">
+<td><code>7m</code> や <code>90m</code></td>
+<td>綺麗に割れない値は近い値に丸められ、Claudeが採用値を知らせる</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="セルフペース" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="セルフペース"><span class="header-section-number">15.3.2</span> セルフペース</h3>
+<p>間隔を省略すると、各反復後にClaudeが1分〜1時間で次の遅延を決めます。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>状況</th>
+<th>遅延の傾向</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ビルド進行中</td>
+<td>短くなる</td>
+</tr>
+<tr class="even">
+<td>PRが活発</td>
+<td>短くなる</td>
+</tr>
+<tr class="odd">
+<td>静か</td>
+<td>長くなる</td>
+</tr>
+</tbody>
+</table>
+<p>選んだ遅延と理由は、各反復の末尾に表示されます。</p>
+<p>動的な<code>/loop</code>では、Claudeが<strong>Monitor ツール</strong>を直接使うことがあります。バックグラウンドスクリプトの出力を行単位でストリームし、ポーリングを避けられるため、トークン効率が良い方式です。</p>
+</section>
+<section id="組み込みメンテナンスプロンプト" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="組み込みメンテナンスプロンプト"><span class="header-section-number">15.3.3</span> 組み込みメンテナンスプロンプト</h3>
+<p>プロンプトを省略すると、組み込みメンテナンスプロンプトが使われます。処理順は次の通りです。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>順序</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>会話の未完作業の継続</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>現ブランチのPR対応（レビューコメント・CI失敗・コンフリクト）</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>何もなければバグ探し等の掃除</td>
+</tr>
+</tbody>
+</table>
+<p>新規の取り組みは始めません。<code>push</code>や削除などの不可逆操作は、会話がすでに許可した範囲に限られます。</p>
+</section>
+<section id="loop.md-で既定プロンプトを差し替える" class="level3" data-number="15.3.4">
+<h3 data-number="15.3.4" class="anchored" data-anchor-id="loop.md-で既定プロンプトを差し替える"><span class="header-section-number">15.3.4</span> <code>loop.md</code> で既定プロンプトを差し替える</h3>
+<p>既定プロンプトは、plain Markdownの<code>loop.md</code>で差し替えできます。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>場所</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.claude/loop.md</code></td>
+<td>プロジェクト用。優先される</td>
+</tr>
+<tr class="even">
+<td><code>~/.claude/loop.md</code></td>
+<td>ユーザー用</td>
+</tr>
+</tbody>
+</table>
+<p>25,000バイトを超える内容は切り詰められます。編集内容は次の反復から反映されます。</p>
+</section>
+<section id="スキルを渡す" class="level3" data-number="15.3.5">
+<h3 data-number="15.3.5" class="anchored" data-anchor-id="スキルを渡す"><span class="header-section-number">15.3.5</span> スキルを渡す</h3>
+<p>スキルもプロンプトに渡せます。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/loop</span> 20m /review-pr 1234</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ただし、スケジュール発火でClaudeが実行するのは、自律起動を許可されたスキルだけです。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>種類</th>
+<th>スケジュール発火時の扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>自律起動を許可されたスキル</td>
+<td>実行される</td>
+</tr>
+<tr class="even">
+<td><code>/permissions</code>・<code>/model</code>・<code>/clear</code> 等の組み込み</td>
+<td>テキストとして届くだけで実行されない</td>
+</tr>
+<tr class="odd">
+<td><code>disable-model-invocation: true</code> のスキル</td>
+<td>テキストとして届くだけで実行されない</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="停止" class="level3" data-number="15.3.6">
+<h3 data-number="15.3.6" class="anchored" data-anchor-id="停止"><span class="header-section-number">15.3.6</span> 停止</h3>
+<p>待機中に<code>Esc</code>を押すと、次回発火をクリアできます。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>方式</th>
+<th>停止の考え方</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>セルフペース</td>
+<td>タスクが完了と確認できれば、Claudeが次回を予約せず自律終了することがある</td>
+</tr>
+<tr class="even">
+<td>固定間隔</td>
+<td>停止するか、7日経過まで継続</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="単発リマインダーとタスク管理" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="単発リマインダーとタスク管理"><span class="header-section-number">15.4</span> 単発リマインダーとタスク管理</h2>
+<p>単発リマインダーは自然言語で作成できます。</p>
+<pre class="text"><code>remind me at 3pm to push the release branch</code></pre>
+<pre class="text"><code>in 45 minutes, check whether the integration tests passed</code></pre>
+<p>単発タスクは実行後に自己削除されます。</p>
+<p>タスクの一覧や取消も自然言語で扱えます。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>やりたいこと</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>一覧を見る</td>
+<td><code>予約タスクは？</code></td>
+</tr>
+<tr class="even">
+<td>取消する</td>
+<td><code>deploy check ジョブを取り消して</code></td>
+</tr>
+</tbody>
+</table>
+<p>内部的には、次のツールが使われます。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>ツール</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CronCreate</code></td>
+<td>新規予約。5フィールドcron式を使う</td>
+</tr>
+<tr class="even">
+<td><code>CronList</code></td>
+<td>一覧</td>
+</tr>
+<tr class="odd">
+<td><code>CronDelete</code></td>
+<td>IDで取消</td>
+</tr>
+</tbody>
+</table>
+<p>各タスクは8文字IDを持ちます。1セッションで作成できるタスクは最大50件です。</p>
+<hr>
+</section>
+<section id="スケジュールの動作特性" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="スケジュールの動作特性"><span class="header-section-number">15.5</span> スケジュールの動作特性</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>スケジューラの基本動作
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>スケジューラは毎秒チェックし、ターンの合間に低優先で発火する</li>
+<li>応答の途中には割り込まない</li>
+<li>時刻はローカルタイムゾーンで解釈される</li>
+<li>環境変数<code>CLAUDE_CODE_DISABLE_CRON=1</code>でスケジューラ全体を無効化できる（cronツールと<code>/loop</code>が使えなくなる）</li>
+</ul>
+</div>
+</div>
+<section id="ジッター" class="level3" data-number="15.5.1">
+<h3 data-number="15.5.1" class="anchored" data-anchor-id="ジッター"><span class="header-section-number">15.5.1</span> ジッター</h3>
+<p>スケジュール実行にはジッターがあります。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>種類</th>
+<th>挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>定期タスク</td>
+<td>予定時刻から最大30分後に発火</td>
+</tr>
+<tr class="even">
+<td>毎時より短い間隔の定期タスク</td>
+<td>間隔の半分まで遅れる</td>
+</tr>
+<tr class="odd">
+<td>単発タスク</td>
+<td>正時・半時なら最大90秒早く発火</td>
+</tr>
+</tbody>
+</table>
+<p>厳密なタイミングが必要な場合は、<code>:00</code>や<code>:30</code>を避けます。</p>
+</section>
+<section id="日で失効" class="level3" data-number="15.5.2">
+<h3 data-number="15.5.2" class="anchored" data-anchor-id="日で失効"><span class="header-section-number">15.5.2</span> 7日で失効</h3>
+<p>定期タスクは、作成から7日後に最後の1回を実行して自己削除します。</p>
+<p>これは無限放置を防ぐ設計です。長期運用には、Routinesかデスクトップ定期タスクを使います。</p>
+<hr>
+</section>
+</section>
+<section id="loop-の制約" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="loop-の制約"><span class="header-section-number">15.6</span> <code>/loop</code> の制約</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><code>/loop</code> は起動中のセッションに依存する
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>タスクはClaude Codeが<strong>起動中かつidle</strong>のときだけ発火します。</p>
+<p>ターミナルを閉じる、またはセッションを終了すると止まります。ただし、セッションをバックグラウンド化すると<code>/loop</code>タスクは引き継がれ、ターミナルなしで継続します。</p>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>制約</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>catch-upなし</td>
+<td>忙しい間に予定時刻が過ぎると、idle復帰時に1回だけ発火する。回数分は補填しない</td>
+</tr>
+<tr class="even">
+<td>session-scoped</td>
+<td>新規会話を始めるとタスクは消える</td>
+</tr>
+<tr class="odd">
+<td>復元</td>
+<td><code>--resume</code> / <code>--continue</code> で未失効タスクは復元される</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="条件達成まで回す-goal" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="条件達成まで回す-goal"><span class="header-section-number">15.7</span> 条件達成まで回す <code>/goal</code></h2>
+<p>間隔で実行するのではなく、<strong>条件を満たすまでターンを重ねて作業を続ける</strong>用途には<code>/goal</code>を使います。</p>
+<p>本書では、<code>/goal</code>の詳細仕様までは断定しません。ここでは、スケジュール実行とは別の反復手段として位置づけます。</p>
+<hr>
+</section>
+<section id="バックグラウンド実行と並列" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="バックグラウンド実行と並列"><span class="header-section-number">15.8</span> バックグラウンド実行と並列</h2>
+<p>長時間タスクは、バックグラウンドのセッションやエージェントで実行し、完了時に通知を受けて再開する設計にできます。</p>
+<p>複数セッションを1画面で監視する運用もあります。ここでは概念として、次のように整理します。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>設計</th>
+<th>使いどころ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>バックグラウンド実行</td>
+<td>長時間タスクをターミナルから切り離す</td>
+</tr>
+<tr class="even">
+<td>完了通知</td>
+<td>作業が終わったタイミングで人間が再開する</td>
+</tr>
+<tr class="odd">
+<td>複数セッション監視</td>
+<td>並列に走る作業の状態をまとめて見る</td>
+</tr>
+</tbody>
+</table>
+<p>並列実行そのものの考え方は、<a href="./13-advanced-tips.html">第13章</a>を参照してください。</p>
+<hr>
+</section>
+<section id="自律ループの設計原則" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="自律ループの設計原則"><span class="header-section-number">15.9</span> 自律ループの設計原則</h2>
+<p>自律ループは、便利さよりも先に制御を設計します。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>原則</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>完了条件を先に定義</td>
+<td>曖昧なタスクは無限ループの主因になる</td>
+</tr>
+<tr class="even">
+<td>コストを意識する</td>
+<td>不要なポーリングを避け、可能ならMonitorやバックグラウンド実行によるイベント駆動へ寄せる</td>
+</tr>
+<tr class="odd">
+<td>人間をループに入れる</td>
+<td>不可逆操作は承認または禁止に区分する</td>
+</tr>
+<tr class="even">
+<td>失効・上限を味方にする</td>
+<td>7日失効や50タスク上限は暴走の安全弁として働く</td>
+</tr>
+<tr class="odd">
+<td>ハーネスと統合する</td>
+<td>フィードバックループにスケジュール実行という時間軸の自動化を重ねる</td>
+</tr>
+</tbody>
+</table>
+<p><a href="./14-harness-engineering.html">第14章</a>では、操作を「自動実行／承認が必要／完全禁止」に分けました。ループ設計でも同じ区分を使い、反復の中に人間の確認点を残します。</p>
+<p>また、<a href="./14-harness-engineering.html">第14章</a>のフィードバックループ速度階層（PostToolUse→pre-commit→CI→人間）に、スケジュール実行という<strong>時間軸の自動化</strong>を重ねることで、長時間の監視や保守を設計できます。</p>
+<hr>
+</section>
+<section id="まとめループエンジニアリングのポイント" class="level2" data-number="15.10">
+<h2 data-number="15.10" class="anchored" data-anchor-id="まとめループエンジニアリングのポイント"><span class="header-section-number">15.10</span> まとめ：ループエンジニアリングのポイント</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>ループエンジニアリングとは</strong></td>
+<td>エージェントを反復させる設計。ハーネスは環境、ループは反復</td>
+</tr>
+<tr class="even">
+<td><strong>3方式の使い分け</strong></td>
+<td>無人実行はクラウド、ローカルファイルが必要ならデスクトップ、セッション中の簡易ポーリングは<code>/loop</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>/loop</code>の3挙動</strong></td>
+<td>間隔＋プロンプト、プロンプトのみ、間隔のみ／なしで挙動が変わる</td>
+</tr>
+<tr class="even">
+<td><strong>7日失効・50上限</strong></td>
+<td>定期タスクは7日で自己削除。1セッション最大50タスク</td>
+</tr>
+<tr class="odd">
+<td><strong>設計3原則</strong></td>
+<td>完了条件・コスト・人間をループに入れる</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="参考リンク" class="level2" data-number="15.11">
+<h2 data-number="15.11" class="anchored" data-anchor-id="参考リンク"><span class="header-section-number">15.11</span> 参考リンク</h2>
+<ul>
+<li><a href="https://code.claude.com/docs/en/scheduled-tasks">Claude Code Docs: Run prompts on a schedule</a></li>
+<li><a href="https://code.claude.com/docs/en/routines">Claude Code Docs: Routines</a></li>
+<li><a href="./14-harness-engineering.html">第14章 ハーネスエンジニアリング</a></li>
+</ul>
 
 
 </section>
@@ -1151,13 +1570,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02-install-setup.html" class="pagination-link" aria-label="インストールと初期設定">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">インストールと初期設定</span></span>
+      <a href="./14-harness-engineering.html" class="pagination-link" aria-label="ハーネスエンジニアリング">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ハーネスエンジニアリング</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04-claude-md.html" class="pagination-link" aria-label="CLAUDE.md 入門">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CLAUDE.md 入門</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./16-web-cloud-workflow.html" class="pagination-link" aria-label="Web版・クラウド実行：ローカル環境なしで動かす">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web版・クラウド実行：ローカル環境なしで動かす</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

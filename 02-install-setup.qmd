@@ -10,6 +10,11 @@
 | Node.js | v18 以上 |
 | Anthropicアカウント | [console.anthropic.com](https://console.anthropic.com) で作成 |
 
+:::{.callout-tip}
+## ローカルにインストールしたくない場合
+本章はローカルCLIの導入手順です。何もインストールせず、ブラウザやスマホから使いたい場合は、[第16章](16-web-cloud-workflow.qmd)のWeb版・クラウド実行を参照してください。
+:::
+
 ## Node.js のセットアップ
 
 Claude Code は Node.js の上で動作するため、**最初に Node.js をインストールする必要があります**。
