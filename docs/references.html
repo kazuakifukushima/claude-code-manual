@@ -610,6 +610,100 @@ project/
 </section>
 <section id="よく使うスラッシュコマンド" class="level3">
 <h3 class="anchored" data-anchor-id="よく使うスラッシュコマンド">よく使うスラッシュコマンド</h3>
+<p>コマンドはセッション中に <code>/</code> を入力して呼び出します。ここでは使用頻度の高い組み込みコマンドを用途別に整理します（全一覧は公式の<a href="https://code.claude.com/docs/en/slash-commands">コマンドリファレンス</a>を参照。バージョン・プランにより表示されないコマンドがあります）。</p>
+<section id="セッション制御" class="level4">
+<h4 class="anchored" data-anchor-id="セッション制御">セッション制御</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>コマンド</th>
+<th>説明</th>
+<th>エイリアス</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/help</code></td>
+<td>ヘルプと利用可能なコマンドを表示</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>/clear</code></td>
+<td>新しい会話を開始（コンテキストをリセット）</td>
+<td><code>/reset</code>, <code>/new</code></td>
+</tr>
+<tr class="odd">
+<td><code>/compact</code></td>
+<td>会話を要約してコンテキストを解放</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>/context</code></td>
+<td>コンテキスト使用状況を表示</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>/resume</code></td>
+<td>以前の会話を再開</td>
+<td><code>/continue</code></td>
+</tr>
+<tr class="even">
+<td><code>/rewind</code></td>
+<td>会話・コードを以前の時点に巻き戻し</td>
+<td><code>/undo</code></td>
+</tr>
+<tr class="odd">
+<td><code>/exit</code></td>
+<td>セッションを終了</td>
+<td><code>/quit</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="計画実装確認" class="level4">
+<h4 class="anchored" data-anchor-id="計画実装確認">計画・実装・確認</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/plan</code></td>
+<td>Plan Mode に入る（変更せず調査・計画）</td>
+</tr>
+<tr class="even">
+<td><code>/run</code></td>
+<td>プロジェクトのアプリを起動して変更を確認</td>
+</tr>
+<tr class="odd">
+<td><code>/verify</code></td>
+<td>コード変更がアプリで機能するか確認</td>
+</tr>
+<tr class="even">
+<td><code>/code-review</code></td>
+<td>変更差分のバグ・クリーンアップをレビュー（<code>--fix</code> で自動修正）</td>
+</tr>
+<tr class="odd">
+<td><code>/security-review</code></td>
+<td>保留中の変更をセキュリティ観点で分析</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="モデル設定権限" class="level4">
+<h4 class="anchored" data-anchor-id="モデル設定権限">モデル・設定・権限</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -619,33 +713,123 @@ project/
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>/help</code></td>
-<td>ヘルプ表示</td>
+<td><code>/model</code></td>
+<td>AIモデルを切り替え</td>
 </tr>
 <tr class="even">
-<td><code>/clear</code></td>
-<td>会話履歴リセット</td>
-</tr>
-<tr class="odd">
-<td><code>/compact</code></td>
-<td>コンテキスト圧縮</td>
-</tr>
-<tr class="even">
-<td><code>/status</code></td>
-<td>現在の状態確認</td>
+<td><code>/config</code></td>
+<td>設定インターフェースを開く</td>
 </tr>
 <tr class="odd">
 <td><code>/init</code></td>
-<td>CLAUDE.md の自動生成</td>
+<td>CLAUDE.md でプロジェクトを初期化</td>
 </tr>
 <tr class="even">
-<td><code>/exit</code></td>
-<td>セッション終了</td>
+<td><code>/memory</code></td>
+<td>CLAUDE.md・自動メモリを編集</td>
+</tr>
+<tr class="odd">
+<td><code>/permissions</code></td>
+<td>ツール権限を管理</td>
+</tr>
+<tr class="even">
+<td><code>/mcp</code></td>
+<td>MCPサーバー接続・OAuth認証を管理</td>
+</tr>
+<tr class="odd">
+<td><code>/agents</code></td>
+<td>サブエージェント設定を管理</td>
+</tr>
+<tr class="even">
+<td><code>/usage</code></td>
+<td>セッションコスト・使用量・統計を表示（<code>/cost</code>）</td>
+</tr>
+<tr class="odd">
+<td><code>/doctor</code></td>
+<td>インストールと設定を診断</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="自律運用繰り返しスケジュール-第15章" class="level4">
+<h4 class="anchored" data-anchor-id="自律運用繰り返しスケジュール-第15章">自律運用・繰り返し・スケジュール（→ <a href="./15-loop-engineering.html">第15章</a>）</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/loop [間隔] [プロンプト]</code></td>
+<td>セッション中にプロンプトを繰り返し実行（間隔＋プロンプト＝固定cron／プロンプトのみ＝セルフペース／なし＝メンテナンス）</td>
+</tr>
+<tr class="even">
+<td><code>/goal [条件]</code></td>
+<td>条件を満たすまで継続的に作業する目標を設定</td>
+</tr>
+<tr class="odd">
+<td><code>/schedule</code></td>
+<td>ルーティン（クラウド定期実行）を作成・更新・リスト・実行</td>
+</tr>
+<tr class="even">
+<td><code>/background</code></td>
+<td>セッションをデタッチしてバックグラウンド実行（<code>/bg</code>）</td>
+</tr>
+<tr class="odd">
+<td><code>/tasks</code></td>
+<td>バックグラウンドタスクをリスト・管理</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="web版クラウドデバイス間-第16章" class="level4">
+<h4 class="anchored" data-anchor-id="web版クラウドデバイス間-第16章">Web版・クラウド・デバイス間（→ <a href="./16-web-cloud-workflow.html">第16章</a>）</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/web-setup</code></td>
+<td>GitHubアカウントを Claude Code on web に接続</td>
+</tr>
+<tr class="even">
+<td><code>/teleport</code></td>
+<td>web/クラウドのセッションをこのターミナルに引き込み（<code>/tp</code>）</td>
+</tr>
+<tr class="odd">
+<td><code>/remote-control</code></td>
+<td>このセッションを claude.ai からリモート操作可能に（<code>/rc</code>）</td>
+</tr>
+<tr class="even">
+<td><code>/autofix-pr</code></td>
+<td>PRを監視しCI失敗・レビューコメント時に自動修正</td>
+</tr>
+<tr class="odd">
+<td><code>/desktop</code> / <code>/mobile</code></td>
+<td>デスクトップアプリで続行 / モバイルアプリのQRを表示</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>CLI起動フラグ：<code>claude --remote "..."</code> で新規クラウドセッションを作成、<code>claude --teleport</code> でクラウド→ターミナルへ引き込み（<code>--teleport</code> は claude.ai サブスク認証が必要）。詳細は<a href="./16-web-cloud-workflow.html">第16章</a>。</p>
+</blockquote>
 
 
+</section>
 </section>
 </section>
 
