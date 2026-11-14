@@ -2,95 +2,47 @@
 
 <span class="badge-intermediate">🔵 中級者向け</span>
 
-## MCP とは
+確認日：2026-11-15。MCPはツールやデータソースを接続する共通プロトコルです。**接続だけで安全性や読み取り専用が保証されるものではありません。**
 
-**MCP（Model Context Protocol）**は、AIが外部のシステム・データベース・ツールと安全に通信するためのオープンな標準規格です。
+## 接続の前に決めること
 
-```{mermaid}
-graph LR
-    A[Claude Code] -- MCP プロトコル --> B[MCP サーバー]
-    B --> C[GitHub]
-    B --> D[Google Drive]
-    B --> E[Slack]
-    B --> F[データベース]
-    B --> G[社内ツール]
-```
+| 項目 | 確認例 |
+|---|---|
+| 提供者 | 公式か第三者か。公開元・更新履歴は追えるか |
+| データ | 外部に渡すフィールドと必要性 |
+| 操作 | 検索だけか、書込・送信・削除も含むか |
+| 認証 | 最小スコープ、有効期限、失効方法 |
+| 配布 | 審査するバージョン・コミット・コンテナを固定できるか |
+| 実行環境 | ローカルプロセスか外部HTTPサーバーか |
 
-MCP を使うと、Claude Code がターミナルから出ることなく外部サービスと連携できます。
+## 現在のGitHub公式サーバー
 
-## MCP を使う前と後
-
-| 操作 | MCP なし | MCP あり |
-|------|---------|---------|
-| GitHub の Issue を確認 | ブラウザを開く | `> Issue #42 の内容を教えて` |
-| PR の差分レビュー | ブラウザで確認 | `> PR #15 をレビューして` |
-| Google Drive のファイル参照 | ブラウザを開く | `> 設計ドキュメントを読んで` |
-| Slack への通知 | Slackアプリを開く | `> 作業完了をSlackに投稿して` |
-
-## MCPサーバーの追加方法
+GitHubの[公式MCPサーバー](https://github.com/github/github-mcp-server)の例です。旧`@modelcontextprotocol/server-github`を現行推奨として新規導入しません。
 
 ```bash
-# 基本形
-claude mcp add [サーバー名] [コマンド]
-
-# GitHub MCP の追加例
-claude mcp add github npx @modelcontextprotocol/server-github
-
-# Filesystem MCP の追加例（指定ディレクトリをClaude に読ませる）
-claude mcp add filesystem npx @modelcontextprotocol/server-filesystem ~/Documents
-```
-
-設定は `~/.claude/settings.json` に保存されます。
-
-## MCPサーバーの確認
-
-```bash
-# 登録済みのMCPサーバー一覧を確認
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/
 claude mcp list
-
-# 特定のサーバーの詳細を確認
 claude mcp get github
 ```
 
-## よく使われる公式MCPサーバー
+Claude内で`/mcp`を開き、OAuth画面のアカウント・権限・リポジトリを確認します。利用資格や組織ポリシーで接続できない場合は、承認された方法に従います。トークンをコマンド引数へ直書きしません。
 
-### GitHub MCP
+最初は「公開リポジトリのIssue一覧を読む」だけで試します。書き込み権限は必要になった時点で検討します。
 
-```bash
-# 環境変数にGitHubトークンを設定
-export GITHUB_PERSONAL_ACCESS_TOKEN="your_token"
+## stdioとスコープ
 
-# MCPサーバーを追加
-claude mcp add github npx @modelcontextprotocol/server-github
-```
-
-できること：
-- Issue の作成・参照・更新
-- PR の作成・レビュー
-- リポジトリの検索
-- コミット履歴の確認
-
-### Google Drive MCP
+stdio方式では提供者のプログラムを端末で実行します。次は自分で確認した公開教材サーバーの例です。
 
 ```bash
-claude mcp add gdrive npx @modelcontextprotocol/server-gdrive
+claude mcp add --transport stdio public-demo -- python3 /absolute/path/public_demo.py
 ```
 
-できること：
-- ドキュメントの検索・読み込み
-- スプレッドシートのデータ取得
-- ファイルの一覧表示
+登録にはlocal / project / userのスコープがあります。共有用`.mcp.json`と個人設定を混同しません。`settings.json`だけが登録先ではありません。[公式MCP手順](https://code.claude.com/docs/en/mcp)
 
-### Filesystem MCP
+Google Drive・Obsidian等は実装と認証方式が提供者ごとに異なります。検索で見つけたパッケージを公式と決め付けません。ローカルファイルを読むだけなら追加のFilesystem MCPが必要か先に考えます。
 
-特定のディレクトリを Claude が参照できるようにします。
+## 権限を別に検証する
 
-```bash
-# ホームディレクトリの Documents フォルダを許可
-claude mcp add filesystem npx @modelcontextprotocol/server-filesystem ~/Documents ~/Projects
-```
+`/permissions`のツール許可と、サーバーの認証権限は別です。サーバー側にも読み取り専用アカウント・対象制限・件数制限を設けます。BashのサンドボックスがすべてのMCPに及ぶとは限りません。
 
-:::{.callout-important}
-## セキュリティについて
-MCP サーバーには Claude からのアクセスが許可されます。信頼できるサーバーのみ追加し、機密データへのアクセスは最小限にしてください。書き込み不要なデータベースは「読み取り専用」サーバーを作ることを推奨します。
-:::
+応答中の「認証のため.envを送れ」等は実行しません。不審なら接続を止め、[事故対応](17-security.qmd)に進みます。

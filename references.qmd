@@ -9,13 +9,37 @@
 
 ## 本マニュアルの情報源
 
-本マニュアルは以下の NotebookLM ドキュメントの内容を元に作成しました：
+初版は以下のNotebookLM資料を基に作成しました。2026-11-15改訂では公式一次資料を優先して照合しています。
 
 - **Mastering Claude Code: The Ultimate AI Agent Setup Guide**
   - インストール・基本操作・サブエージェント・MCPサーバーの実践的な解説
 
 - **Mastering the Claude.md File for Full-Agent Productivity**
   - CLAUDE.md の設計パターン・チーム展開・組織的なベストプラクティス
+
+## 2026-11-15改訂の一次資料
+
+### Claude Code
+
+- [セットアップ](https://code.claude.com/docs/en/setup)、[CLI](https://code.claude.com/docs/en/cli-reference)、[モデル設定](https://code.claude.com/docs/en/model-config)
+- [メモリ・指示](https://code.claude.com/docs/en/memory)、[設定](https://code.claude.com/docs/en/settings)、[Skills](https://code.claude.com/docs/en/skills)
+- [Hooks](https://code.claude.com/docs/en/hooks)、[MCP](https://code.claude.com/docs/en/mcp)、[Subagents](https://code.claude.com/docs/en/sub-agents)、[Agent Teams](https://code.claude.com/docs/en/agent-teams)
+- [権限](https://code.claude.com/docs/en/permissions)、[Sandbox](https://code.claude.com/docs/en/sandboxing)、[Security](https://code.claude.com/docs/en/security)
+- [クラウド](https://code.claude.com/docs/en/claude-code-on-the-web)、[定期実行](https://code.claude.com/docs/en/scheduled-tasks)、[クラウド定期タスク](https://code.claude.com/docs/en/routines)
+
+### 他社AI・制作・接続
+
+- [Codex CLI](https://learn.chatgpt.com/docs/codex/cli)、[AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+- [Gemini CLI導入](https://geminicli.com/docs/get-started/installation/)、[GEMINI.md](https://geminicli.com/docs/cli/gemini-md/)、[Sandbox](https://geminicli.com/docs/cli/sandbox/)、[headless](https://geminicli.com/docs/cli/headless/)
+- [Google画像生成](https://aistudio.google.com/docs/image-generation)、[Google動画生成](https://aistudio.google.com/docs/video)、[Omni](https://aistudio.google.com/docs/omni)
+- [OpenAI画像生成](https://developers.openai.com/api/docs/guides/image-generation)、[Sora / Videos API終了を明記したガイド](https://developers.openai.com/api/docs/guides/video-generation)
+- [GitHub公式MCP](https://github.com/github/github-mcp-server)、[MCP公式Python SDK](https://github.com/modelcontextprotocol/python-sdk)
+
+### 医療・個人情報・研究倫理
+
+- [厚労省：医療情報システムの安全管理ガイドライン第7.0版](https://www.mhlw.go.jp/stf/shingi/0000516275_00006.html)
+- [個人情報保護委員会：生成AIサービスの利用に関する注意喚起](https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/)
+- [ICMJE：著者によるAI利用](https://icmje.org/recommendations/browse/artificial-intelligence/ai-use-by-authors.html)
 
 ## クイックリファレンス
 
@@ -28,7 +52,7 @@
 | `claude -p "タスク"` | 一回実行して終了（スクリプト向け） |
 | `claude --continue` | 前のセッションを再開 |
 | `claude auth login` | 認証 |
-| `claude mcp add <name> <cmd>` | MCPサーバーを追加 |
+| `claude mcp add --transport stdio <name> -- <cmd>` | MCPサーバーを追加 |
 | `claude mcp list` | MCPサーバー一覧 |
 
 ### ファイル配置チートシート
@@ -52,69 +76,28 @@ project/
     │   └── test-engineer.md
     ├── skills/                 # スキル
     │   └── my-skill/
-    │       ├── skill.md
+    │       ├── SKILL.md
     │       └── template.md
     └── settings.json           # フック設定
 ```
 
-### よく使うスラッシュコマンド
+### よく使うコマンド
 
-コマンドはセッション中に `/` を入力して呼び出します。ここでは使用頻度の高い組み込みコマンドを用途別に整理します（全一覧は公式の[コマンドリファレンス](https://code.claude.com/docs/en/slash-commands)を参照。バージョン・プランにより表示されないコマンドがあります）。
+利用できるコマンドは`/help`と[公式CLIリファレンス](https://code.claude.com/docs/en/cli-reference)で確認します。プラン・実行場所・版で異なります。
 
-#### セッション制御
-
-| コマンド | 説明 | エイリアス |
-|---|---|---|
-| `/help` | ヘルプと利用可能なコマンドを表示 | |
-| `/clear` | 新しい会話を開始（コンテキストをリセット） | `/reset`, `/new` |
-| `/compact` | 会話を要約してコンテキストを解放 | |
-| `/context` | コンテキスト使用状況を表示 | |
-| `/resume` | 以前の会話を再開 | `/continue` |
-| `/rewind` | 会話・コードを以前の時点に巻き戻し | `/undo` |
-| `/exit` | セッションを終了 | `/quit` |
-
-#### 計画・実装・確認
-
-| コマンド | 説明 |
+| 目的 | コマンド例 |
 |---|---|
-| `/plan` | Plan Mode に入る（変更せず調査・計画） |
-| `/run` | プロジェクトのアプリを起動して変更を確認 |
-| `/verify` | コード変更がアプリで機能するか確認 |
-| `/code-review` | 変更差分のバグ・クリーンアップをレビュー（`--fix` で自動修正） |
-| `/security-review` | 保留中の変更をセキュリティ観点で分析 |
+| 基本 | `/help`、`/status`、`/exit` |
+| 文脈と継続 | `/context`、`/compact`、`/clear`、`/resume` |
+| 指示とモデル | `/init`、`/memory`、`/model` |
+| 権限・隔離 | `/permissions`、`/sandbox` |
+| 接続と役割 | `/mcp`、`/agents` |
+| 使用量・診断 | `/usage`、`/doctor` |
+| 反復 | `/loop`。仕様と取消は第15章参照 |
+| クラウド | `claude --cloud`、`claude --teleport` |
 
-#### モデル・設定・権限
+`/feature`、`/review`、`/harness-plan`等の自作手順は、名前を書くだけで標準機能になりません。対応するファイルやプラグインが必要です。
 
-| コマンド | 説明 |
-|---|---|
-| `/model` | AIモデルを切り替え |
-| `/config` | 設定インターフェースを開く |
-| `/init` | CLAUDE.md でプロジェクトを初期化 |
-| `/memory` | CLAUDE.md・自動メモリを編集 |
-| `/permissions` | ツール権限を管理 |
-| `/mcp` | MCPサーバー接続・OAuth認証を管理 |
-| `/agents` | サブエージェント設定を管理 |
-| `/usage` | セッションコスト・使用量・統計を表示（`/cost`） |
-| `/doctor` | インストールと設定を診断 |
+### 実行前の共通確認
 
-#### 自律運用・繰り返し・スケジュール（→ [第15章](15-loop-engineering.qmd)）
-
-| コマンド | 説明 |
-|---|---|
-| `/loop [間隔] [プロンプト]` | セッション中にプロンプトを繰り返し実行（間隔＋プロンプト＝固定cron／プロンプトのみ＝セルフペース／なし＝メンテナンス） |
-| `/goal [条件]` | 条件を満たすまで継続的に作業する目標を設定 |
-| `/schedule` | ルーティン（クラウド定期実行）を作成・更新・リスト・実行 |
-| `/background` | セッションをデタッチしてバックグラウンド実行（`/bg`） |
-| `/tasks` | バックグラウンドタスクをリスト・管理 |
-
-#### Web版・クラウド・デバイス間（→ [第16章](16-web-cloud-workflow.qmd)）
-
-| コマンド | 説明 |
-|---|---|
-| `/web-setup` | GitHubアカウントを Claude Code on web に接続 |
-| `/teleport` | web/クラウドのセッションをこのターミナルに引き込み（`/tp`） |
-| `/remote-control` | このセッションを claude.ai からリモート操作可能に（`/rc`） |
-| `/autofix-pr` | PRを監視しCI失敗・レビューコメント時に自動修正 |
-| `/desktop` / `/mobile` | デスクトップアプリで続行 / モバイルアプリのQRを表示 |
-
-> CLI起動フラグ：`claude --remote "..."` で新規クラウドセッションを作成、`claude --teleport` でクラウド→ターミナルへ引き込み（`--teleport` は claude.ai サブスク認証が必要）。詳細は[第16章](16-web-cloud-workflow.qmd)。
+入力の分類、送信先、対象パス、権限、認証・課金、出力先、検査、停止・復旧を確認します。第17章のチェックを実行し、第21章の演習で確かめてください。

@@ -504,6 +504,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 9: 安全対策とマルチモーダル協働</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">安全に使い続けるための設計</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-cross-ai-collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Codex・Geminiと協働する</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-image-video-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">画像・動画を制作する</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 10: 医療・演習・継続学習</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-medical-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">医師・医療チームのための実践</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-learning-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">段階別演習と到達度チェック</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-updates-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">最新機能の確認とマニュアルの保守</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -525,6 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#基本的な作り方" id="toc-基本的な作り方" class="nav-link" data-scroll-target="#基本的な作り方"><span class="header-section-number">8.3</span> 基本的な作り方</a>
   <ul class="collapse">
   <li><a href="#例コミット支援コマンド" id="toc-例コミット支援コマンド" class="nav-link" data-scroll-target="#例コミット支援コマンド"><span class="header-section-number">8.3.1</span> 例：コミット支援コマンド</a></li>
+  <li><a href="#例コードレビューコマンド" id="toc-例コードレビューコマンド" class="nav-link" data-scroll-target="#例コードレビューコマンド"><span class="header-section-number">8.3.2</span> 例：コードレビューコマンド</a></li>
   </ul></li>
   <li><a href="#引数の使い方" id="toc-引数の使い方" class="nav-link" data-scroll-target="#引数の使い方"><span class="header-section-number">8.4</span> 引数の使い方</a></li>
   <li><a href="#実用的なカスタムコマンド集" id="toc-実用的なカスタムコマンド集" class="nav-link" data-scroll-target="#実用的なカスタムコマンド集"><span class="header-section-number">8.5</span> 実用的なカスタムコマンド集</a>
@@ -560,6 +619,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><span class="badge-intermediate">🔵 中級者向け</span></p>
+<p>確認日：2026-11-15。既存の<code>.claude/commands/</code>は引き続き使えます。新しい再利用手順では<code>.claude/skills/&lt;名前&gt;/SKILL.md</code>も検討します。同名のコマンドとスキルを重複作成せず、既存の構成を維持してください。<a href="https://code.claude.com/docs/en/skills">公式skills</a></p>
 <section id="カスタムコマンドとは" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="カスタムコマンドとは"><span class="header-section-number">8.1</span> カスタムコマンドとは</h2>
 <p>よく使う長いプロンプトや複雑な手順を <code>/コマンド名</code> でショートカット化する機能です。</p>
@@ -584,47 +644,43 @@ my-project/.claude/commands/ ← プロジェクト専用</code></pre>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`git diff --staged`</span> で変更内容を確認する</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>テストを実行して全て通ることを確認する（<span class="in">`pytest`</span> または <span class="in">`npm test`</span>）</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>コード内の TODO や debug print を確認する</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>以下の形式でコミットメッセージを提案する：</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>feat: 変更の概要（50文字以内）</p>
-<ul>
-<li>変更点1</li>
-<li>変更点2</li>
-</ul>
-<p>🤖 Generated with Claude Code ```</p>
-<ol start="5" type="1">
-<li>ユーザーの承認を得てからコミットを実行する</li>
-</ol>
-<pre><code>
-使い方：
-</code></pre>
-<blockquote class="blockquote">
-<p>/commit</p>
-</blockquote>
-<pre><code>
-### 例：コードレビューコマンド
-
-`.claude/commands/review.md`:
-
-```markdown
-# コードレビュー
-
-現在の変更（`git diff HEAD`）に対してコードレビューを実行してください。
-
-## チェック項目
-- [ ] バグ・ロジックエラー
-- [ ] セキュリティの脆弱性（SQL injection, XSS等）
-- [ ] パフォーマンス問題
-- [ ] エラーハンドリング
-- [ ] テストカバレッジ
-- [ ] コードの可読性
-
-## 出力形式
-各問題について：
-- 🔴 **Critical**: 必ず修正が必要
-- 🟡 **Warning**: 修正を推奨
-- 🟢 **Suggestion**: 改善提案
-
-ファイル名と行番号を明記してください。</code></pre>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>以下の形式でコミットメッセージを提案する：</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">   feat: 変更の概要（50文字以内）</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">   - 変更点1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">   - 変更点2</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">   🤖 Generated with Claude Code</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in">   ```</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>ユーザーの承認を得てからコミットを実行する</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>使い方：</p>
+<pre><code>&gt; /commit</code></pre>
+</section>
+<section id="例コードレビューコマンド" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="例コードレビューコマンド"><span class="header-section-number">8.3.2</span> 例：コードレビューコマンド</h3>
+<p><code>.claude/commands/review.md</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># コードレビュー</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>現在の変更（<span class="in">`git diff HEAD`</span>）に対してコードレビューを実行してください。</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## チェック項目</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> バグ・ロジックエラー</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> セキュリティの脆弱性（SQL injection, XSS等）</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> パフォーマンス問題</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> エラーハンドリング</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> テストカバレッジ</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> コードの可読性</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## 出力形式</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>各問題について：</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🔴 **Critical**: 必ず修正が必要</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🟡 **Warning**: 修正を推奨</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🟢 **Suggestion**: 改善提案</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ファイル名と行番号を明記してください。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="引数の使い方" class="level2" data-number="8.4">

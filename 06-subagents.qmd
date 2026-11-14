@@ -50,7 +50,7 @@ Module A → Module B → Module C → Module D（直列、時間がかかる）
 
 ✅ 並列処理（サブエージェント4並列）
 Module A ┐
-Module B ├→ 同時実行 → まとめて完了（4倍速）
+Module B ├→ 同時実行 → まとめて確認（速度向上はタスク次第）
 Module C │
 Module D ┘
 ```
@@ -163,3 +163,9 @@ PostgreSQL を主に使用したシステムの DB 設計・運用を担当し�
 - エージェントのプロンプトは短く、焦点を絞る
 - 1エージェント1役割を守る（多機能にしすぎない）
 :::
+
+## 権限と実行範囲を絞る
+
+閲覧レビューだけならfrontmatterで`tools: Read, Grep, Glob`のように必要なツールへ絞ります。定義例は[公式subagents](https://code.claude.com/docs/en/sub-agents)の現行フィールドと照合してください。親の会話履歴がすべて伝わると想定せず、目的・対象・完了条件・出典を渡します。モデル・ツール・作業場所・終了条件・予算も確認します。
+
+サブエージェントを増やすほど文脈分離には役立ちますが、費用と統合作業も増えます。別のAIによる検証は[Codex・Gemini協働](18-cross-ai-collaboration.qmd)で扱います。

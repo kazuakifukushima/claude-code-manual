@@ -504,6 +504,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 9: 安全対策とマルチモーダル協働</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">安全に使い続けるための設計</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-cross-ai-collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Codex・Geminiと協働する</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-image-video-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">画像・動画を制作する</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 10: 医療・演習・継続学習</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-medical-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">医師・医療チームのための実践</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-learning-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">段階別演習と到達度チェック</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-updates-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">最新機能の確認とマニュアルの保守</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -525,6 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#最小構成テンプレート" id="toc-最小構成テンプレート" class="nav-link" data-scroll-target="#最小構成テンプレート"><span class="header-section-number">4.3</span> 最小構成テンプレート</a></li>
   <li><a href="#グローバル-claude.md-の例" id="toc-グローバル-claude.md-の例" class="nav-link" data-scroll-target="#グローバル-claude.md-の例"><span class="header-section-number">4.4</span> グローバル CLAUDE.md の例</a></li>
   <li><a href="#コンテキスト節約のコツ" id="toc-コンテキスト節約のコツ" class="nav-link" data-scroll-target="#コンテキスト節約のコツ"><span class="header-section-number">4.5</span> コンテキスト節約のコツ</a></li>
+  <li><a href="#自動メモリとルール" id="toc-自動メモリとルール" class="nav-link" data-scroll-target="#自動メモリとルール"><span class="header-section-number">4.6</span> 自動メモリとルール</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kazuakifukushima/claude-code-manual/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -566,7 +625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Claude Code はセッションをまたいで記憶を保持しません。毎回「このプロジェクトは〇〇で、命名規則は〇〇で…」と説明するのは非効率です。<code>CLAUDE.md</code> に一度書いておけば、Claudeは常にそのコンテキストを持って作業します。</p>
+<p>会話コンテキストはセッションごとに管理されます。現行版には自動メモリもあり、永続する規則と作業記録は明示して管理します。毎回「このプロジェクトは〇〇で、命名規則は〇〇で…」と説明するのは非効率です。<code>CLAUDE.md</code> に一度書いておけば、Claudeは常にそのコンテキストを持って作業します。</p>
 </div>
 </div>
 </section>
@@ -580,7 +639,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 ~/my-project/src/CLAUDE.md   # サブディレクトリ設定（特定ディレクトリ専用）
    ↑ さらに細かい制御</code></pre>
-<p>下位の設定が上位の設定を上書き（優先）します。</p>
+<p>指示ファイルは関連する範囲で読み込まれます。子ディレクトリのファイルは必要時に読み込まれ、単純なJSON設定の上書き規則と同じではありません。指示間の矛盾を避け、<code>/memory</code>で確認します。</p>
 </section>
 <section id="最小構成テンプレート" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="最小構成テンプレート"><span class="header-section-number">4.3</span> 最小構成テンプレート</h2>
@@ -651,10 +710,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>短すぎる</strong>: Claudeにコンテキストが伝わらない</li>
 <li><strong>長すぎる</strong>: コンテキストウィンドウを圧迫し、指示の遵守率が下がる</li>
-<li><strong>推奨</strong>: 200〜500行程度。詳細は別ファイルに分ける</li>
+<li><strong>目安</strong>: 各ファイルを200行未満にし、毎回必要な規則だけを残す。細部はスキルやパス別ルールへ</li>
 </ul>
 </div>
 </div>
+</section>
+<section id="自動メモリとルール" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="自動メモリとルール"><span class="header-section-number">4.6</span> 自動メモリとルール</h2>
+<p><code>/memory</code>で自動メモリも点検します。患者情報・キー・一時的な推測を記憶に残しません。<code>.claude/rules/</code>のパス別ルールは必要範囲に絞れます。<code>@path</code>でのインポートは整理には役立ちますが、一緒に読み込まれるのでトークン削減と同じではありません。</p>
+<p>CLAUDE.mdは振る舞いへの指示であり、アクセス禁止の強制層ではありません。<a href="https://code.claude.com/docs/en/memory">公式メモリ仕様</a>と<a href="./17-security.html">安全対策</a>を参照します。</p>
 
 
 </section>

@@ -2,201 +2,104 @@
 
 <span class="badge-advanced">🟣 上級者向け</span>
 
-## スキルとは
+確認日：2026-11-15。スキルは再利用する手順、フックはイベントに結び付ける処理です。外部導入時は、どちらもソフトウェア依存として審査します。
 
-スキルはカスタムコマンドの上位互換です。
+## スキルを作る
 
-- プロンプトだけでなく**外部スクリプト（Python等）やテンプレートファイル**を同梱できる
-- ユーザーが `/スキル名` で呼び出せるだけでなく、**Claude が文脈から自律的に発動**できる
-- より複雑なワークフローを定義できる
+入口ファイル名は大文字の**`SKILL.md`**です。旧カスタムコマンドも利用できます。新規手順は参照資料やスクリプトを同梱できるスキルを検討します。[公式スキル仕様](https://code.claude.com/docs/en/skills)
 
-## スキルの構造
-
-```
-.claude/skills/
-└── my-skill/
-    ├── skill.md        ← スキルの定義（フロントマター + プロンプト）
-    ├── template.md     ← 出力テンプレート（任意）
-    └── process.py      ← 処理スクリプト（任意）
+```text
+.claude/skills/evidence-table/
+├── SKILL.md
+└── template.md
 ```
 
-## スキルファイルの書き方
-
-`.claude/skills/outbreak-summary/skill.md`:
+明示的に呼び出した場合だけ動く例です。
 
 ```markdown
 ---
-name: outbreak-summary
-description: アウトブレイク報告を構造化されたサマリーに変換するスキル。
-  WHO・CDC・ECDC形式の報告から病原体・場所・症例数・対応状況を抽出する。
-  感染症情報の構造化が必要な場合に自律的に発動する。
+name: evidence-table
+description: 公開論文の確認済みの記述から根拠表の下書きを作る。
+disable-model-invocation: true
 ---
-
-# アウトブレイクサマリー生成
-
-提供されたアウトブレイク情報から、以下の構造化サマリーを作成してください。
-
-## 抽出項目
-- **病原体**: 病原体名・型・亜型
-- **発生地**: 国・地域・施設
-- **期間**: 最初の症例日〜最新の報告日
-- **症例数**: 確定例・疑い例・総数
-- **死亡者数**: 確定死亡・致死率
-- **感染経路**: 確認済み・推定
-- **対応状況**: 実施中の対策
-- **日本への関連性**: 輸入リスク評価
-
-## 出力形式
-template.md のフォーマットを使用してください。
+対象：$ARGUMENTS
+1. 許された公開原文を読む。本文未確認なら抄録だけと明記する。
+2. 原文にない数値や書誌情報は補完しない。
+3. template.mdに沿い出典URL・位置・確認日を付ける。
+4. 外部送信・公開は行わない。
 ```
 
-## フックとは
+`template.md`には「対象集団／研究デザイン／主要結果／原文位置／制約」の列を用意します。
 
-フックは**イベントが発生したときに自動でスクリプトを実行する**機能です。
+```text
+/evidence-table sources/public-paper.md
+```
 
-### フックの種類
+`disable-model-invocation`は自律的呼び出しの制御です。ファイルアクセスや通信は別の権限で制限します。補助スクリプト・動的シェル実行・依存パッケージも確認してください。
 
-| フックイベント | 発動タイミング |
-|--------------|--------------|
-| `PreToolUse` | Claude がツールを実行する前 |
-| `PostToolUse` | Claude がツールを実行した後 |
-| `Notification` | Claude から通知がある時 |
-| `Stop` | セッション終了時 |
+## フックの入力とイベント
 
-### フックの設定場所
+コマンド型フックの入力は通常**標準入力のJSON**です。`$FILE`、`$COMMAND`、`$TOOL_NAME`が自動で渡る前提で書きません。[公式フック仕様](https://code.claude.com/docs/en/hooks)
 
-`~/.claude/settings.json` または `.claude/settings.json` に設定します。
+| イベント | 用途 | 注意 |
+|---|---|---|
+| `PreToolUse` | 実行前判定 | 呼び出しをブロックできる |
+| `PostToolUse` | 整形や記録 | 実行済み操作は取り消せない |
+| `Stop` | 応答を終える際の検査 | セッション終了とは別 |
+| `SessionEnd` | セッション終了時の処理 | 復旧手段にはしない |
+
+## JSON入力を処理する実例
+
+データ転送方針としてWebFetchを禁止する単純な例です。全通信経路を遮断するものではありません。BashやMCPは別に制限します。`.claude/settings.json`の既存設定を残してマージします。
 
 ```json
 {
   "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "npm run format -- $FILE"
-          }
-        ]
-      }
-    ]
+    "PreToolUse": [{
+      "matcher": "WebFetch",
+      "hooks": [{
+        "type": "command",
+        "command": "python3 \"$CLAUDE_PROJECT_DIR/scripts/block_webfetch.py\"",
+        "onFailure": "block"
+      }]
+    }]
   }
 }
 ```
 
-## 実用的なフックの例
+`scripts/block_webfetch.py`（Python 3が必要）：
 
-### 1. 自動コードフォーマット（PostToolUse）
+```python
+import json
+import sys
 
-ファイルを編集したら自動でフォーマッターを実行します。
+try:
+    event = json.load(sys.stdin)
+except (ValueError, TypeError):
+    print("フック入力が不正です。停止します。", file=sys.stderr)
+    raise SystemExit(2)
 
-```json
-{
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "prettier --write $FILE 2>/dev/null || true"
-          }
-        ]
-      }
-    ]
-  }
-}
+if not isinstance(event, dict):
+    print("JSONオブジェクトが必要です。", file=sys.stderr)
+    raise SystemExit(2)
+
+if event.get("tool_name") == "WebFetch":
+    print("この環境ではWebFetchを許可していません。", file=sys.stderr)
+    raise SystemExit(2)
 ```
 
-### 2. 自動 lint チェック（PostToolUse）
+`onFailure: block`は起動失敗やタイムアウトも止める現行設定です。古いCLIでは対応を確認してください。
 
-Python ファイルを編集したら自動で lint チェックします。
+## 終了コードと検証
 
-```json
-{
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [[ $FILE == *.py ]]; then flake8 $FILE; fi"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+構造化した判定JSONを出さない上の`PreToolUse`例では、終了0は成功、終了2はブロックです。他の非ゼロ終了はイベント・出力・`onFailure`等で扱いが変わります。「非ゼロなら常に止まる」「すべて無視される」は誤りです。
 
-### 3. 作業ログの自動記録（PostToolUse）
+安全検査に`|| true`や無条件のバックグラウンド実行を付けて失敗を隠しません。通知の失敗と安全検査の失敗を分けます。
 
-Claude の操作を自動でログに記録します。
+1. 自作入力で許可・拒否・不正JSONを確認する。
+2. スクリプト不存在・タイムアウト時に失敗方針が効くか確認する。
+3. Claude内でも無害な例でブロックを確認する。
+4. ゲート自身をAIが変更できない管理方法を検討する。
+5. ログにプロンプト全文・認証情報・患者情報を残さない。
 
-```json
-{
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": ".*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo \"$(date): $TOOL_NAME $FILE\" >> ~/.claude/activity.log"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-### 4. セッション終了時の通知（Stop）
-
-長い処理が終わったら通知します（macOS）。
-
-```json
-{
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "osascript -e 'display notification \"Claude Code が作業を完了しました\" with title \"Claude Code\"'"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-## フックのベストプラクティス
-
-:::{.callout-important}
-## フック使用時の注意
-- フックは失敗してもClaude Codeの動作を止めません（エラーは無視される）
-- `|| true` を付けてフックのエラーを明示的に無視することを推奨
-- 重い処理（時間のかかる lint等）はバックグラウンド実行 `&` を使う
-:::
-
-```json
-{
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "npm run lint -- $FILE &>/dev/null & true"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+完全なシェルを正規表現で安全判定するのは困難です。単語ブラックリストを最終防御にせず、[権限とOS隔離](17-security.qmd)を組み合わせます。

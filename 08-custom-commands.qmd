@@ -2,6 +2,8 @@
 
 <span class="badge-intermediate">🔵 中級者向け</span>
 
+確認日：2026-11-15。既存の`.claude/commands/`は引き続き使えます。新しい再利用手順では`.claude/skills/<名前>/SKILL.md`も検討します。同名のコマンドとスキルを重複作成せず、既存の構成を維持してください。[公式skills](https://code.claude.com/docs/en/skills)
+
 ## カスタムコマンドとは
 
 よく使う長いプロンプトや複雑な手順を `/コマンド名` でショートカット化する機能です。
@@ -25,7 +27,7 @@ my-project/.claude/commands/ ← プロジェクト専用
 
 `.claude/commands/commit.md`:
 
-```markdown
+````markdown
 # コミット準備チェック
 
 以下の手順でコミットを準備してください：
@@ -45,7 +47,7 @@ my-project/.claude/commands/ ← プロジェクト専用
    ```
 
 5. ユーザーの承認を得てからコミットを実行する
-```
+````
 
 使い方：
 

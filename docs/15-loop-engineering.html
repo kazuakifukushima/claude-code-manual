@@ -504,6 +504,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 9: 安全対策とマルチモーダル協働</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">安全に使い続けるための設計</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-cross-ai-collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Codex・Geminiと協働する</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-image-video-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">画像・動画を制作する</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 10: 医療・演習・継続学習</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-medical-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">医師・医療チームのための実践</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-learning-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">段階別演習と到達度チェック</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-updates-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">最新機能の確認とマニュアルの保守</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -543,6 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#自律ループの設計原則" id="toc-自律ループの設計原則" class="nav-link" data-scroll-target="#自律ループの設計原則"><span class="header-section-number">15.9</span> 自律ループの設計原則</a></li>
   <li><a href="#まとめループエンジニアリングのポイント" id="toc-まとめループエンジニアリングのポイント" class="nav-link" data-scroll-target="#まとめループエンジニアリングのポイント"><span class="header-section-number">15.10</span> まとめ：ループエンジニアリングのポイント</a></li>
   <li><a href="#参考リンク" id="toc-参考リンク" class="nav-link" data-scroll-target="#参考リンク"><span class="header-section-number">15.11</span> 参考リンク</a></li>
+  <li><a href="#無人運用の受け入れ条件" id="toc-無人運用の受け入れ条件" class="nav-link" data-scroll-target="#無人運用の受け入れ条件"><span class="header-section-number">15.12</span> 無人運用の受け入れ条件</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kazuakifukushima/claude-code-manual/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -570,6 +629,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><span class="badge-advanced">🟣 上級者向け</span></p>
+<p>確認日：2026-11-15。予約の寿命・復元・上限はCLIの版に依存します。以下の製品仕様と、自分で設ける安全上限を区別してください。詳細は<a href="https://code.claude.com/docs/en/scheduled-tasks">公式スケジュール仕様</a>で再確認します。</p>
 <p>ハーネスエンジニアリング（<a href="./14-harness-engineering.html">第14章</a>）が、モデルを動かす<strong>環境</strong>の設計だとすれば、ループエンジニアリングは、エージェントを<strong>反復</strong>させる設計です。</p>
 <p>1回の応答で終わらせず、次のような実行方式を使い分けます：</p>
 <ul>
@@ -1150,6 +1210,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://code.claude.com/docs/en/routines">Claude Code Docs: Routines</a></li>
 <li><a href="./14-harness-engineering.html">第14章 ハーネスエンジニアリング</a></li>
 </ul>
+</section>
+<section id="無人運用の受け入れ条件" class="level2" data-number="15.12">
+<h2 data-number="15.12" class="anchored" data-anchor-id="無人運用の受け入れ条件"><span class="header-section-number">15.12</span> 無人運用の受け入れ条件</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>本書の運用例（製品の固定上限ではない）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1回の仕事</td>
+<td>公開資料1件の取得と要約案の保存</td>
+</tr>
+<tr class="even">
+<td>上限</td>
+<td>最大実行時間・API回数・出力量をスクリプトでも制限</td>
+</tr>
+<tr class="odd">
+<td>再試行</td>
+<td>同じ失敗は少数回で止め、原因を通知</td>
+</tr>
+<tr class="even">
+<td>重複防止</td>
+<td>入力IDと処理済み状態を台帳で管理</td>
+</tr>
+<tr class="odd">
+<td>監査</td>
+<td>入力URL・時刻・検査・保存先・成否。機密本文は残さない</td>
+</tr>
+<tr class="even">
+<td>人の確認</td>
+<td>送信・公開・本番反映は対象と差分を確認</td>
+</tr>
+<tr class="odd">
+<td>停止</td>
+<td>予約一覧とIDを記録し、取消後に次の実行がないことを検証</td>
+</tr>
+</tbody>
+</table>
+<p>CLIの7日失効等を費用の唯一の安全弁にしません。外部スケジューラーなら停止・通知・冪等性・重複起動ロック・障害時の状態を別に実装します。失敗通知が届かない場合を含めて訓練します。</p>
+<p><a href="https://code.claude.com/docs/en/routines">クラウド定期タスクの公式資料</a>も更新されます。セッション内予約、Desktop、クラウドでは生存期間と実行場所が違うので、利用画面の表示と小さい試験で確認します。</p>
 
 
 </section>

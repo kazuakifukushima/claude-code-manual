@@ -94,18 +94,9 @@ description: React/TypeScript を使ったフロントエンドUIの実装専門
 
 同時に複数のエージェントを実行するパターンです。
 
-### ターミナルを複数開く方法（最もシンプル）
+### ターミナルを分ける前に
 
-```bash
-# ターミナル1: モジュールAのリファクタリング
-cd ~/my-project && claude "src/auth/ をリファクタリングして"
-
-# ターミナル2: モジュールBのリファクタリング（同時実行）
-cd ~/my-project && claude "src/api/ をリファクタリングして"
-
-# ターミナル3: テスト作成（同時実行）
-cd ~/my-project && claude "tests/ にある既存テストを拡充して"
-```
+同じ作業ツリーで並列編集すると、ファイル・Git index・出力先を共有して衝突します。次のように作業ブランチごとにworktreeを作ります。統合担当は1人にし、統合後にも検査します。
 
 ### git worktree を使う方法（競合を防ぐ）
 
@@ -113,9 +104,9 @@ cd ~/my-project && claude "tests/ にある既存テストを拡充して"
 
 ```bash
 # 3つのworktreeを作成
-git worktree add ../my-project-auth feature/refactor-auth
-git worktree add ../my-project-api feature/refactor-api
-git worktree add ../my-project-test feature/add-tests
+git worktree add -b feature/refactor-auth ../my-project-auth HEAD
+git worktree add -b feature/refactor-api ../my-project-api HEAD
+git worktree add -b feature/add-tests ../my-project-test HEAD
 
 # 各ターミナルで並列実行
 cd ../my-project-auth && claude "認証モジュールをリファクタリングして"
@@ -158,3 +149,9 @@ cd ../my-project-test && claude "テストカバレッジを80%以上にして"
 | 無限ループ | エージェント間の依存関係 | ワークフローを明示的に定義する |
 | コンテキスト不足 | 情報が多すぎる | サブエージェントに要約させてからメインに返す |
 | 作業が重複 | タスク分担が不明確 | 各エージェントの責任範囲を明確化 |
+
+## Agent Teamsとの違い
+
+本章の役割分担は一般的な設計例です。Claude CodeのAgent Teamsは、独立したセッションが共有タスクやメッセージで連携する製品機能で、親へ結果を返すsubagentとは異なります。確認時点では実験機能で既定無効です。`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`等の公式手順と制約を確認し、最初は読み取り調査で試します。[公式Agent Teams](https://code.claude.com/docs/en/agent-teams)
+
+worktreeは編集領域の分離です。ネットワーク・秘密・共有DB・出力先は別途制限します。[他社AIとの協働](18-cross-ai-collaboration.qmd)では共通の受け渡し票を使います。

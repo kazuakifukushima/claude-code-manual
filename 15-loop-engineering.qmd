@@ -2,6 +2,8 @@
 
 <span class="badge-advanced">🟣 上級者向け</span>
 
+確認日：2026-11-15。予約の寿命・復元・上限はCLIの版に依存します。以下の製品仕様と、自分で設ける安全上限を区別してください。詳細は[公式スケジュール仕様](https://code.claude.com/docs/en/scheduled-tasks)で再確認します。
+
 ハーネスエンジニアリング（[第14章](14-harness-engineering.qmd)）が、モデルを動かす**環境**の設計だとすれば、ループエンジニアリングは、エージェントを**反復**させる設計です。
 
 1回の応答で終わらせず、次のような実行方式を使い分けます：
@@ -287,3 +289,19 @@ in 45 minutes, check whether the integration tests passed
 - [Claude Code Docs: Run prompts on a schedule](https://code.claude.com/docs/en/scheduled-tasks)
 - [Claude Code Docs: Routines](https://code.claude.com/docs/en/routines)
 - [第14章 ハーネスエンジニアリング](14-harness-engineering.qmd)
+
+## 無人運用の受け入れ条件
+
+| 項目 | 本書の運用例（製品の固定上限ではない） |
+|---|---|
+| 1回の仕事 | 公開資料1件の取得と要約案の保存 |
+| 上限 | 最大実行時間・API回数・出力量をスクリプトでも制限 |
+| 再試行 | 同じ失敗は少数回で止め、原因を通知 |
+| 重複防止 | 入力IDと処理済み状態を台帳で管理 |
+| 監査 | 入力URL・時刻・検査・保存先・成否。機密本文は残さない |
+| 人の確認 | 送信・公開・本番反映は対象と差分を確認 |
+| 停止 | 予約一覧とIDを記録し、取消後に次の実行がないことを検証 |
+
+CLIの7日失効等を費用の唯一の安全弁にしません。外部スケジューラーなら停止・通知・冪等性・重複起動ロック・障害時の状態を別に実装します。失敗通知が届かない場合を含めて訓練します。
+
+[クラウド定期タスクの公式資料](https://code.claude.com/docs/en/routines)も更新されます。セッション内予約、Desktop、クラウドでは生存期間と実行場所が違うので、利用画面の表示と小さい試験で確認します。
