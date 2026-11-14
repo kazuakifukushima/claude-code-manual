@@ -1,0 +1,141 @@
+# 画像・動画を制作する {#sec-image-video}
+
+<span class="badge-intermediate">🔵 中級者向け</span> <span class="badge-advanced">🟣 API連携</span>
+
+確認日：2026-11-15。Claude Codeには、構成・プロンプト・実装・検証を担当させます。画像・動画を出力するモデルやサービスは別途選びます。Claude Code、Codex、Gemini CLIが使えることと、各社の生成APIが契約上使えることは別です。
+
+## 何を使って作るか
+
+| 成果物 | 推奨する作り方 | 理由 |
+|---|---|---|
+| 統計グラフ・患者数・研究結果の図 | R / Python等で実データから描画 | 数値・軸・再現性を保証しやすい |
+| フロー図・構成図 | Mermaid / SVG / スライド図形 | 文字と関係を修正しやすい |
+| 教材の挿絵・背景 | 画像生成または許諾済み素材 | 表現の自由度が高い |
+| 画面操作の解説動画 | 実画面収録＋字幕 | 実際の挙動を伝えられる |
+| 概念アニメーション | プログラムによる動画化 | 決まった動きと順序を再現できる |
+| 雰囲気・導入の短い映像 | 動画生成 | 手技や研究データの証拠には使わない |
+
+## 現行の提供状況を確認する
+
+2026-11-15に読んだ公式資料では、Googleの画像生成はNano Banana 2.1、動画生成はGemini Omni 1.2 Flashを案内しています。旧Veo 3.1 Previewは終了とされています。[画像生成](https://aistudio.google.com/docs/image-generation)、[動画生成](https://aistudio.google.com/docs/video)
+
+OpenAIの画像生成ガイドはGPT-Image-2.6のSunburst / Flareを新規統合向けに案内しています。モデルID・対応API・編集機能はガイドで照合してください。旧`gpt-image-1`を新規の例に流用しません。[OpenAI画像生成](https://developers.openai.com/api/docs/guides/image-generation)
+
+**Sora 2とVideos APIは2026-09-24に終了**と公式ガイドに記載されています。残っているSoraのコード例を、現在動くチュートリアルとして使わないでください。1対1の置換APIも案内されていません。[OpenAIの終了告知を含む動画ガイド](https://developers.openai.com/api/docs/guides/video-generation)
+
+この状況は更新されます。利用直前に、提供国・アカウント・料金・SDK・モデル一覧・廃止情報を確認し、許可されたサービスを選びます。
+
+## 初心者向け：コードを書かずに画像を作る
+
+1. Claude Codeに対象読者、用途、サイズ、禁止事項を伝え、プロンプトをファイルに保存させる。
+2. 承認された画像生成UIへ、そのプロンプトと許諾済み素材だけを渡す。
+3. 候補は少数から作り、構図を決めてから細部を修正する。
+4. 生成画像を作業フォルダに戻し、自分と必要な専門家が目視する。
+5. 文字・数値・出典はレイアウトツールで後から重ねる。
+
+Claude Codeへの依頼例：
+
+```text
+院内研修の表紙用に、架空の医療チームが公開教材を一緒に学ぶ挿絵の
+画像生成プロンプトをprompts/team.txtへ保存してください。
+16:9、文字なし、ロゴなし、実在患者なし。人物は架空です。
+画像生成の実行や外部送信はまだ行わず、構図を2案示してください。
+```
+
+編集では「残す要素」「変更する要素」「背景透過の要否」を具体的に書きます。参照画像の所有権と公開可否を先に確認します。文字が上手に生成できても、医療上の数値や出典を画像モデルへ委ねない方針は変えません。
+
+## APIで画像・動画を生成する最小例
+
+Googleの現行Interactions API形式を使う教材例です。[Gemini Omniの公式例](https://aistudio.google.com/docs/omni)と現在の画像ガイドを基にしています。実行すると**プロンプトが外部へ送られ、費用が発生し得ます**。本書更新時には有料の実生成を行っていません。
+
+対応する`google-genai` SDKを仮想環境に導入し、検証したバージョンを記録します。`GEMINI_API_KEY`は承認された秘密管理経路でプロセスへ渡します。キーをソースやコマンド引数へ書きません。
+
+```python
+# generate_asset.py（公開・架空のプロンプト専用）
+import base64
+import os
+from pathlib import Path
+from google import genai
+
+kind = os.environ.get("ASSET_KIND", "image")
+if kind not in {"image", "video"}:
+    raise SystemExit("ASSET_KINDはimageまたはvideoです")
+model = os.environ["GENERATION_MODEL"]
+prompt = Path("prompt.txt").read_text(encoding="utf-8")
+output = Path("asset.png" if kind == "image" else "asset.mp4")
+if output.exists():
+    raise SystemExit("既存出力があります。退避してから実行してください")
+
+client = genai.Client()
+result = client.interactions.create(model=model, input=prompt)
+asset = result.output_image if kind == "image" else result.output_video
+if asset is None or not asset.data:
+    raise SystemExit("生成物がありません。無条件に再課金せず応答を確認してください")
+content = base64.b64decode(asset.data, validate=True)
+if not content:
+    raise SystemExit("空の生成物です")
+with output.open("xb") as f:
+    f.write(content)
+print(f"保存先: {output}")
+```
+
+公開の架空プロンプトを`prompt.txt`へ保存してから実行します。
+
+```bash
+# 画像の例：利用直前にモデルIDを公式資料と照合
+ASSET_KIND=image GENERATION_MODEL=gemini-nano-banana-2.1 python3 generate_asset.py
+
+# 動画の例：画像とは別の課金呼び出し
+ASSET_KIND=video GENERATION_MODEL=gemini-omni-1.2-flash python3 generate_asset.py
+```
+
+これは最小例であり、大量生成の運用コードではありません。時間上限、通信エラー、コンテンツ拒否、メディア形式、利用量を別に検証します。APIが非同期ジョブ方式なら、ジョブIDを保存して状態照会し、タイムアウトを新規生成の成功・失敗と決め付けません。SDKの方式が変わったら公式例に合わせて更新します。
+
+## 動画は絵コンテを先に決める
+
+架空の研修導入映像の例です。臨床手技は扱いません。
+
+| 場面 | 長さの目安 | 映像 | 音声・字幕 | 検査 |
+|---|---|---|---|---|
+| 導入 | 3秒 | 架空の研修室 | 学習目標 | 実在施設やロゴなし |
+| 展開 | 6秒 | 本とノートを比較する架空人物 | 出典を確認する | 意味と映像が一致 |
+| 結び | 3秒 | チェックリストの抽象表現 | 最後は人が確認 | 字幕は編集時に正確に合成 |
+
+短いカットを個別に作り、字幕・音声・出典は編集工程で加えます。長尺を一発生成しない方が、誤りの修正範囲と費用を管理できます。医学的手順は、もっともらしい映像でも誤っていることがあります。実技教材としての利用は別途検証が必要です。
+
+動画生成プロンプト例：
+
+```text
+架空の研修室で、架空の成人医療者2名が公開教材の冊子とノートを比較する。
+固定カメラ、ゆっくりした動作、落ち着いた色。
+患者、診療行為、実在のロゴ、個人情報、読める文字は映さない。
+医学的な手技を実演しない。音声は後で追加する。
+```
+
+## 生成せずに動画を組む方法
+
+Claude CodeにHTML / SVG / プログラムで構成を作らせ、静止画とナレーションからFFmpeg等で編集する方法もあります。数値・動作順を固定したい教材に向きます。実装前に出力解像度・尺・字幕・音量・フォントを決め、短いテストを書き出して実際に再生します。
+
+## 品質・権利・費用を確認する
+
+- 解剖、左右、指の本数、器具、動作、字幕、音声の一致を確認する。
+- 実在人物の顔・声・診療写真や、利用許諾がない素材を使わない。
+- 図の内容を事実の証拠と誤認させず、必要な場所に生成物であることを明示する。
+- 提供者が付ける来歴情報や透かしを保持し、それだけで真偽を判断しない。
+- 生成前に枚数・尺・品質・試行上限を決め、API料金とCLI利用料金を分けて記録する。
+
+保存する制作記録の例：
+
+```yaml
+purpose: 公開教材の挿絵
+provider: 実際の提供者
+model: 実際に使用したモデルID
+created_at: 実際の生成日時
+prompt_file: prompts/team.txt
+reference_rights: 自作または利用許諾を記録
+review: 人物・文字・医学的表現・公開範囲を確認
+cost: 実測値または未取得
+status: draft
+```
+
+医療の教材や研究図の扱いは[次章](20-medical-workflows.qmd)で確認します。

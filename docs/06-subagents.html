@@ -507,6 +507,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 9: 安全対策とマルチモーダル協働</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">安全に使い続けるための設計</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-cross-ai-collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Codex・Geminiと協働する</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-image-video-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">画像・動画を制作する</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 10: 医療・演習・継続学習</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-medical-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">医師・医療チームのための実践</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-learning-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">段階別演習と到達度チェック</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-updates-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">最新機能の確認とマニュアルの保守</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -541,6 +599,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#セキュリティ監査エージェント" id="toc-セキュリティ監査エージェント" class="nav-link" data-scroll-target="#セキュリティ監査エージェント"><span class="header-section-number">6.4.1</span> セキュリティ監査エージェント</a></li>
   <li><a href="#データベースエージェント" id="toc-データベースエージェント" class="nav-link" data-scroll-target="#データベースエージェント"><span class="header-section-number">6.4.2</span> データベースエージェント</a></li>
   </ul></li>
+  <li><a href="#権限と実行範囲を絞る" id="toc-権限と実行範囲を絞る" class="nav-link" data-scroll-target="#権限と実行範囲を絞る"><span class="header-section-number">6.5</span> 権限と実行範囲を絞る</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kazuakifukushima/claude-code-manual/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -617,7 +676,7 @@ Module A → Module B → Module C → Module D（直列、時間がかかる）
 
 ✅ 並列処理（サブエージェント4並列）
 Module A ┐
-Module B ├→ 同時実行 → まとめて完了（4倍速）
+Module B ├→ 同時実行 → まとめて確認（速度向上はタスク次第）
 Module C │
 Module D ┘</code></pre>
 </section>
@@ -729,9 +788,14 @@ Module D ┘</code></pre>
 </ul>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="権限と実行範囲を絞る" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="権限と実行範囲を絞る"><span class="header-section-number">6.5</span> 権限と実行範囲を絞る</h2>
+<p>閲覧レビューだけならfrontmatterで<code>tools: Read, Grep, Glob</code>のように必要なツールへ絞ります。定義例は<a href="https://code.claude.com/docs/en/sub-agents">公式subagents</a>の現行フィールドと照合してください。親の会話履歴がすべて伝わると想定せず、目的・対象・完了条件・出典を渡します。モデル・ツール・作業場所・終了条件・予算も確認します。</p>
+<p>サブエージェントを増やすほど文脈分離には役立ちますが、費用と統合作業も増えます。別のAIによる検証は<a href="./18-cross-ai-collaboration.html">Codex・Gemini協働</a>で扱います。</p>
+
+
 </section>
 
 </main> <!-- /main -->

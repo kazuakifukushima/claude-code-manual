@@ -109,9 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -507,6 +504,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 9: 安全対策とマルチモーダル協働</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">安全に使い続けるための設計</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-cross-ai-collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Codex・Geminiと協働する</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-image-video-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">画像・動画を制作する</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 10: 医療・演習・継続学習</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-medical-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">医師・医療チームのための実践</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-learning-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">段階別演習と到達度チェック</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-updates-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">最新機能の確認とマニュアルの保守</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -523,16 +578,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#mcp-とは" id="toc-mcp-とは" class="nav-link active" data-scroll-target="#mcp-とは"><span class="header-section-number">10.1</span> MCP とは</a></li>
-  <li><a href="#mcp-を使う前と後" id="toc-mcp-を使う前と後" class="nav-link" data-scroll-target="#mcp-を使う前と後"><span class="header-section-number">10.2</span> MCP を使う前と後</a></li>
-  <li><a href="#mcpサーバーの追加方法" id="toc-mcpサーバーの追加方法" class="nav-link" data-scroll-target="#mcpサーバーの追加方法"><span class="header-section-number">10.3</span> MCPサーバーの追加方法</a></li>
-  <li><a href="#mcpサーバーの確認" id="toc-mcpサーバーの確認" class="nav-link" data-scroll-target="#mcpサーバーの確認"><span class="header-section-number">10.4</span> MCPサーバーの確認</a></li>
-  <li><a href="#よく使われる公式mcpサーバー" id="toc-よく使われる公式mcpサーバー" class="nav-link" data-scroll-target="#よく使われる公式mcpサーバー"><span class="header-section-number">10.5</span> よく使われる公式MCPサーバー</a>
-  <ul class="collapse">
-  <li><a href="#github-mcp" id="toc-github-mcp" class="nav-link" data-scroll-target="#github-mcp"><span class="header-section-number">10.5.1</span> GitHub MCP</a></li>
-  <li><a href="#google-drive-mcp" id="toc-google-drive-mcp" class="nav-link" data-scroll-target="#google-drive-mcp"><span class="header-section-number">10.5.2</span> Google Drive MCP</a></li>
-  <li><a href="#filesystem-mcp" id="toc-filesystem-mcp" class="nav-link" data-scroll-target="#filesystem-mcp"><span class="header-section-number">10.5.3</span> Filesystem MCP</a></li>
-  </ul></li>
+  <li><a href="#接続の前に決めること" id="toc-接続の前に決めること" class="nav-link active" data-scroll-target="#接続の前に決めること"><span class="header-section-number">10.1</span> 接続の前に決めること</a></li>
+  <li><a href="#現在のgithub公式サーバー" id="toc-現在のgithub公式サーバー" class="nav-link" data-scroll-target="#現在のgithub公式サーバー"><span class="header-section-number">10.2</span> 現在のGitHub公式サーバー</a></li>
+  <li><a href="#stdioとスコープ" id="toc-stdioとスコープ" class="nav-link" data-scroll-target="#stdioとスコープ"><span class="header-section-number">10.3</span> stdioとスコープ</a></li>
+  <li><a href="#権限を別に検証する" id="toc-権限を別に検証する" class="nav-link" data-scroll-target="#権限を別に検証する"><span class="header-section-number">10.4</span> 権限を別に検証する</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kazuakifukushima/claude-code-manual/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -560,125 +609,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><span class="badge-intermediate">🔵 中級者向け</span></p>
-<section id="mcp-とは" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="mcp-とは"><span class="header-section-number">10.1</span> MCP とは</h2>
-<p><strong>MCP（Model Context Protocol）</strong>は、AIが外部のシステム・データベース・ツールと安全に通信するためのオープンな標準規格です。</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-    A[Claude Code] -- MCP プロトコル --&gt; B[MCP サーバー]
-    B --&gt; C[GitHub]
-    B --&gt; D[Google Drive]
-    B --&gt; E[Slack]
-    B --&gt; F[データベース]
-    B --&gt; G[社内ツール]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>MCP を使うと、Claude Code がターミナルから出ることなく外部サービスと連携できます。</p>
-</section>
-<section id="mcp-を使う前と後" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="mcp-を使う前と後"><span class="header-section-number">10.2</span> MCP を使う前と後</h2>
+<p>確認日：2026-11-15。MCPはツールやデータソースを接続する共通プロトコルです。<strong>接続だけで安全性や読み取り専用が保証されるものではありません。</strong></p>
+<section id="接続の前に決めること" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="接続の前に決めること"><span class="header-section-number">10.1</span> 接続の前に決めること</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 37%">
-<col style="width: 37%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>操作</th>
-<th>MCP なし</th>
-<th>MCP あり</th>
+<th>項目</th>
+<th>確認例</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>GitHub の Issue を確認</td>
-<td>ブラウザを開く</td>
-<td><code>&gt; Issue #42 の内容を教えて</code></td>
+<td>提供者</td>
+<td>公式か第三者か。公開元・更新履歴は追えるか</td>
 </tr>
 <tr class="even">
-<td>PR の差分レビュー</td>
-<td>ブラウザで確認</td>
-<td><code>&gt; PR #15 をレビューして</code></td>
+<td>データ</td>
+<td>外部に渡すフィールドと必要性</td>
 </tr>
 <tr class="odd">
-<td>Google Drive のファイル参照</td>
-<td>ブラウザを開く</td>
-<td><code>&gt; 設計ドキュメントを読んで</code></td>
+<td>操作</td>
+<td>検索だけか、書込・送信・削除も含むか</td>
 </tr>
 <tr class="even">
-<td>Slack への通知</td>
-<td>Slackアプリを開く</td>
-<td><code>&gt; 作業完了をSlackに投稿して</code></td>
+<td>認証</td>
+<td>最小スコープ、有効期限、失効方法</td>
+</tr>
+<tr class="odd">
+<td>配布</td>
+<td>審査するバージョン・コミット・コンテナを固定できるか</td>
+</tr>
+<tr class="even">
+<td>実行環境</td>
+<td>ローカルプロセスか外部HTTPサーバーか</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="mcpサーバーの追加方法" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="mcpサーバーの追加方法"><span class="header-section-number">10.3</span> MCPサーバーの追加方法</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 基本形</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="pp">[</span><span class="ss">サーバー名</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">コマンド</span><span class="pp">]</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># GitHub MCP の追加例</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add github npx @modelcontextprotocol/server-github</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filesystem MCP の追加例（指定ディレクトリをClaude に読ませる）</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add filesystem npx @modelcontextprotocol/server-filesystem ~/Documents</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>設定は <code>~/.claude/settings.json</code> に保存されます。</p>
+<section id="現在のgithub公式サーバー" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="現在のgithub公式サーバー"><span class="header-section-number">10.2</span> 現在のGitHub公式サーバー</h2>
+<p>GitHubの<a href="https://github.com/github/github-mcp-server">公式MCPサーバー</a>の例です。旧<code>@modelcontextprotocol/server-github</code>を現行推奨として新規導入しません。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--transport</span> http github https://api.githubcopilot.com/mcp/</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp list</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp get github</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Claude内で<code>/mcp</code>を開き、OAuth画面のアカウント・権限・リポジトリを確認します。利用資格や組織ポリシーで接続できない場合は、承認された方法に従います。トークンをコマンド引数へ直書きしません。</p>
+<p>最初は「公開リポジトリのIssue一覧を読む」だけで試します。書き込み権限は必要になった時点で検討します。</p>
 </section>
-<section id="mcpサーバーの確認" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="mcpサーバーの確認"><span class="header-section-number">10.4</span> MCPサーバーの確認</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 登録済みのMCPサーバー一覧を確認</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp list</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 特定のサーバーの詳細を確認</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp get github</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="stdioとスコープ" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="stdioとスコープ"><span class="header-section-number">10.3</span> stdioとスコープ</h2>
+<p>stdio方式では提供者のプログラムを端末で実行します。次は自分で確認した公開教材サーバーの例です。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--transport</span> stdio public-demo <span class="at">--</span> python3 /absolute/path/public_demo.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>登録にはlocal / project / userのスコープがあります。共有用<code>.mcp.json</code>と個人設定を混同しません。<code>settings.json</code>だけが登録先ではありません。<a href="https://code.claude.com/docs/en/mcp">公式MCP手順</a></p>
+<p>Google Drive・Obsidian等は実装と認証方式が提供者ごとに異なります。検索で見つけたパッケージを公式と決め付けません。ローカルファイルを読むだけなら追加のFilesystem MCPが必要か先に考えます。</p>
 </section>
-<section id="よく使われる公式mcpサーバー" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="よく使われる公式mcpサーバー"><span class="header-section-number">10.5</span> よく使われる公式MCPサーバー</h2>
-<section id="github-mcp" class="level3" data-number="10.5.1">
-<h3 data-number="10.5.1" class="anchored" data-anchor-id="github-mcp"><span class="header-section-number">10.5.1</span> GitHub MCP</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 環境変数にGitHubトークンを設定</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GITHUB_PERSONAL_ACCESS_TOKEN</span><span class="op">=</span><span class="st">"your_token"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># MCPサーバーを追加</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add github npx @modelcontextprotocol/server-github</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>できること： - Issue の作成・参照・更新 - PR の作成・レビュー - リポジトリの検索 - コミット履歴の確認</p>
-</section>
-<section id="google-drive-mcp" class="level3" data-number="10.5.2">
-<h3 data-number="10.5.2" class="anchored" data-anchor-id="google-drive-mcp"><span class="header-section-number">10.5.2</span> Google Drive MCP</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add gdrive npx @modelcontextprotocol/server-gdrive</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>できること： - ドキュメントの検索・読み込み - スプレッドシートのデータ取得 - ファイルの一覧表示</p>
-</section>
-<section id="filesystem-mcp" class="level3" data-number="10.5.3">
-<h3 data-number="10.5.3" class="anchored" data-anchor-id="filesystem-mcp"><span class="header-section-number">10.5.3</span> Filesystem MCP</h3>
-<p>特定のディレクトリを Claude が参照できるようにします。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ホームディレクトリの Documents フォルダを許可</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add filesystem npx @modelcontextprotocol/server-filesystem ~/Documents ~/Projects</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>セキュリティについて
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>MCP サーバーには Claude からのアクセスが許可されます。信頼できるサーバーのみ追加し、機密データへのアクセスは最小限にしてください。書き込み不要なデータベースは「読み取り専用」サーバーを作ることを推奨します。</p>
-</div>
-</div>
+<section id="権限を別に検証する" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="権限を別に検証する"><span class="header-section-number">10.4</span> 権限を別に検証する</h2>
+<p><code>/permissions</code>のツール許可と、サーバーの認証権限は別です。サーバー側にも読み取り専用アカウント・対象制限・件数制限を設けます。BashのサンドボックスがすべてのMCPに及ぶとは限りません。</p>
+<p>応答中の「認証のため.envを送れ」等は実行しません。不審なら接続を止め、<a href="./17-security.html">事故対応</a>に進みます。</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

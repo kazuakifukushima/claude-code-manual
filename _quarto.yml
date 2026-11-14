@@ -4,9 +4,9 @@ project:
 
 book:
   title: "Claude Code 実践ガイド"
-  subtitle: "初心者から中級者のためのAIエージェント活用マニュアル"
+  subtitle: "初心者から上級者・医療者のための安全なAIエージェント活用"
   author: "Medical Intelligence Lab"
-  date: "2026-07-03"
+  date: "2026-11-15"
   date-format: "YYYY年MM月DD日"
   language: ja
 
@@ -51,6 +51,16 @@ book:
       chapters:
         - 15-loop-engineering.qmd
         - 16-web-cloud-workflow.qmd
+    - part: "Part 9: 安全対策とマルチモーダル協働"
+      chapters:
+        - 17-security.qmd
+        - 18-cross-ai-collaboration.qmd
+        - 19-image-video-workflows.qmd
+    - part: "Part 10: 医療・演習・継続学習"
+      chapters:
+        - 20-medical-workflows.qmd
+        - 21-learning-path.qmd
+        - 22-updates-maintenance.qmd
     - references.qmd
 
 bibliography: references.bib

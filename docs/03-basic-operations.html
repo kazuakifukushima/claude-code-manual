@@ -504,6 +504,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 9: 安全対策とマルチモーダル協働</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">安全に使い続けるための設計</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-cross-ai-collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Codex・Geminiと協働する</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-image-video-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">画像・動画を制作する</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 10: 医療・演習・継続学習</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-medical-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">医師・医療チームのための実践</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-learning-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">段階別演習と到達度チェック</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-updates-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">最新機能の確認とマニュアルの保守</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -528,6 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#プロジェクトでの典型的な使い方" id="toc-プロジェクトでの典型的な使い方" class="nav-link" data-scroll-target="#プロジェクトでの典型的な使い方"><span class="header-section-number">3.6</span> プロジェクトでの典型的な使い方</a></li>
   <li><a href="#ファイルの参照と画像入力" id="toc-ファイルの参照と画像入力" class="nav-link" data-scroll-target="#ファイルの参照と画像入力"><span class="header-section-number">3.7</span> ファイルの参照と画像入力</a></li>
   <li><a href="#出力とログ" id="toc-出力とログ" class="nav-link" data-scroll-target="#出力とログ"><span class="header-section-number">3.8</span> 出力とログ</a></li>
+  <li><a href="#初回の完了確認" id="toc-初回の完了確認" class="nav-link" data-scroll-target="#初回の完了確認"><span class="header-section-number">3.9</span> 初回の完了確認</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kazuakifukushima/claude-code-manual/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -580,51 +639,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="権限モードpermission-mode" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="権限モードpermission-mode"><span class="header-section-number">3.3</span> 権限モード（Permission Mode）</h2>
-<p>Claude Code はデフォルトでファイル編集やコマンド実行の前に確認を求めます。セッション中に <code>Shift + Tab</code> で権限モードを切り替えられます。</p>
+<p><code>/permissions</code>で有効な権限を確認します。開始時の既定は環境・プラン・管理設定に依存するため、初回は<code>claude --permission-mode default</code>で明示して起動できます。<code>Shift + Tab</code>で切替できるモードも環境によって異なります。</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 32%">
-<col style="width: 24%">
-<col style="width: 44%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>モード</th>
 <th>説明</th>
-<th>使いどころ</th>
+<th>注意</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Default</strong>（デフォルト）</td>
-<td>すべての操作前に確認</td>
-<td>重要なプロジェクト・初回使用時</td>
+<td><code>default</code> / Manual</td>
+<td>必要なツール利用で確認を求める</td>
+<td>事前許可等があり「全操作を毎回確認」ではない</td>
 </tr>
 <tr class="even">
-<td><strong>Auto-accept edits</strong></td>
-<td>ファイル編集のみ自動承認</td>
-<td>通常の開発作業</td>
+<td><code>acceptEdits</code></td>
+<td>編集と一部のファイル操作を自動承認</td>
+<td>通常編集も影響範囲を確認</td>
 </tr>
 <tr class="odd">
-<td><strong>Plan mode</strong></td>
-<td>計画のみ作成、実行しない</td>
-<td>何をするか確認してから実行したい時</td>
+<td><code>plan</code></td>
+<td>主に調査・計画</td>
+<td>厳密なネットワーク隔離や無操作の保証ではない</td>
+</tr>
+<tr class="even">
+<td><code>auto</code></td>
+<td>分類器で操作を判定</td>
+<td>利用条件を確認。人の全件確認とは異なる</td>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>安全な運用のために
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>初めて使うプロジェクトでは <strong>Default モード</strong>（常に確認）で始めることを強く推奨します。Claude の行動パターンを理解してから自動承認モードに移行しましょう。</p>
-</div>
-</div>
+<p><a href="https://code.claude.com/docs/en/permissions">公式権限仕様</a>と<a href="./17-security.html">安全対策</a>を参照してください。</p>
 </section>
 <section id="よく使うスラッシュコマンド" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="よく使うスラッシュコマンド"><span class="header-section-number">3.4</span> よく使うスラッシュコマンド</h2>
@@ -713,7 +765,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--continue</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 過去のセッション一覧</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--list-sessions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--resume</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -731,6 +783,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </div>
+</section>
+<section id="初回の完了確認" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="初回の完了確認"><span class="header-section-number">3.9</span> 初回の完了確認</h2>
+<pre class="text"><code>変更したファイル、実行したコマンド、確認できた点、未確認点を示してください。
+公開・送信・デプロイはしないでください。</code></pre>
+<p>生成したファイルを自分で開き、Gitなら<code>git status</code>と<code>git diff</code>を確認します。中断はすでに行った外部送信を取り消しません。<code>/rewind</code>等のチェックポイントも、外部DB・未追跡ファイル・すべてのシェル操作を復元するバックアップではありません。</p>
+<p>出典：<a href="https://code.claude.com/docs/en/sessions">セッション管理</a>、<a href="https://code.claude.com/docs/en/checkpointing">チェックポイント</a>。</p>
 
 
 </section>

@@ -472,6 +472,64 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 9: 安全対策とマルチモーダル協働</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">安全に使い続けるための設計</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-cross-ai-collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Codex・Geminiと協働する</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-image-video-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">画像・動画を制作する</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 10: 医療・演習・継続学習</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-medical-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">医師・医療チームのための実践</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-learning-path.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">段階別演習と到達度チェック</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-updates-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">最新機能の確認とマニュアルの保守</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -489,7 +547,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#概要" id="toc-概要" class="nav-link active" data-scroll-target="#概要"><span class="header-section-number">1.1</span> 概要</a></li>
-  <li><a href="#従来のaiチャットとの違い" id="toc-従来のaiチャットとの違い" class="nav-link" data-scroll-target="#従来のaiチャットとの違い"><span class="header-section-number">1.2</span> 従来のAIチャットとの違い</a></li>
+  <li><a href="#実行環境を理解する" id="toc-実行環境を理解する" class="nav-link" data-scroll-target="#実行環境を理解する"><span class="header-section-number">1.2</span> 実行環境を理解する</a></li>
   <li><a href="#できることの例" id="toc-できることの例" class="nav-link" data-scroll-target="#できることの例"><span class="header-section-number">1.3</span> できることの例</a></li>
   <li><a href="#動作モデル" id="toc-動作モデル" class="nav-link" data-scroll-target="#動作モデル"><span class="header-section-number">1.4</span> 動作モデル</a></li>
   <li><a href="#安全性について" id="toc-安全性について" class="nav-link" data-scroll-target="#安全性について"><span class="header-section-number">1.5</span> 安全性について</a></li>
@@ -523,7 +581,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="概要" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="概要"><span class="header-section-number">1.1</span> 概要</h2>
 <p>Claude Code は、Anthropic が開発した<strong>エージェント型AIコーディングツール</strong>です。ターミナル（コマンドライン）や VS Code などの IDE から呼び出して使います。</p>
-<p>従来のAIチャット（例：ChatGPT の Web UI）と根本的に異なるのは、Claude Code が <strong>プロジェクト全体のファイルを読み書きし、シェルコマンドを実行できる</strong>点です。</p>
+<p>Claude Codeは、許可された環境のファイルとツールを使って作業します。チャット製品にもファイル操作・外部連携機能があるため、製品名だけで比較せず、実際の実行環境・接続ツール・権限を確認します。</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -543,41 +601,35 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="従来のaiチャットとの違い" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="従来のaiチャットとの違い"><span class="header-section-number">1.2</span> 従来のAIチャットとの違い</h2>
+<section id="実行環境を理解する" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="実行環境を理解する"><span class="header-section-number">1.2</span> 実行環境を理解する</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>比較項目</th>
-<th>従来のAIチャット</th>
-<th>Claude Code</th>
+<th>観点</th>
+<th>確認すること</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>ファイルの読み書き</td>
-<td>❌ できない</td>
-<td>✅ できる</td>
+<td>ファイル</td>
+<td>読める場所・書ける場所・機密の有無</td>
 </tr>
 <tr class="even">
-<td>シェルコマンドの実行</td>
-<td>❌ できない</td>
-<td>✅ できる</td>
+<td>コマンド</td>
+<td>実行可否、承認、OS隔離</td>
 </tr>
 <tr class="odd">
-<td>プロジェクト全体の把握</td>
-<td>❌ 貼り付けのみ</td>
-<td>✅ 自律的に探索</td>
+<td>外部連携</td>
+<td>MCP等の送信先と権限</td>
 </tr>
 <tr class="even">
-<td>連続的な作業</td>
-<td>❌ 手動コピペが必要</td>
-<td>✅ 自律的に継続</td>
+<td>推論</td>
+<td>ローカルCLIでもモデルへ情報が外部送信され得る</td>
 </tr>
 <tr class="odd">
-<td>ツール・外部サービス連携</td>
-<td>制限あり</td>
-<td>✅ MCP で拡張可能</td>
+<td>継続作業</td>
+<td>コンテキストと成果物を使う。理解や完成は検証する</td>
 </tr>
 </tbody>
 </table>
@@ -618,13 +670,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="安全性について" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="安全性について"><span class="header-section-number">1.5</span> 安全性について</h2>
-<p>Claude Code はデフォルトで<strong>安全第一</strong>の設計になっています。</p>
-<ul>
-<li>ファイルを書き換える前に確認を求める</li>
-<li>危険なコマンド実行前に確認を求める</li>
-<li>権限モードを細かく設定できる</li>
-</ul>
-<p>詳しくは <a href="./03-basic-operations.html">基本操作の章（<span class="quarto-xref"><span>Chapter 3</span></span>）</a> で説明します。</p>
+<p>利用中の権限モード、事前許可、管理設定により確認の出方は変わります。すべての操作が必ず確認されるとは限りません。指示文と強制的なアクセス制御を区別し、<a href="./17-security.html">安全対策</a>を先に確認してください。</p>
+<p>到達目標：作業場所、外部送信の可能性、人が確認する工程を説明できること。</p>
+<p>出典：<a href="https://code.claude.com/docs/en/overview">Claude Code概要</a>、<a href="https://code.claude.com/docs/en/security">公式セキュリティ</a>。</p>
 
 
 </section>

@@ -2,150 +2,99 @@
 
 <span class="badge-beginner">🟢 初心者向け</span>
 
-## 前提条件
+確認日：2026-11-15。最初に[安全対策](17-security.qmd)の「開始前の5項目」を読み、患者情報や秘密鍵のない練習用フォルダを用意します。
 
-| 要件 | 詳細 |
-|------|------|
-| OS | macOS / Linux / Windows (WSL推奨) |
-| Node.js | v18 以上 |
-| Anthropicアカウント | [console.anthropic.com](https://console.anthropic.com) で作成 |
+## 導入経路を選ぶ
 
-:::{.callout-tip}
-## ローカルにインストールしたくない場合
-本章はローカルCLIの導入手順です。何もインストールせず、ブラウザやスマホから使いたい場合は、[第16章](16-web-cloud-workflow.qmd)のWeb版・クラウド実行を参照してください。
-:::
+現在は**ネイティブ版が推奨**で、Node.jsは必須ではありません。旧npm導入を新規導入の標準にしません。対応OSと企業配布は[公式セットアップ](https://code.claude.com/docs/en/setup)を確認します。
 
-## Node.js のセットアップ
+| 環境 | 選択肢 | 注意 |
+|---|---|---|
+| macOS / Linux / WSL | ネイティブインストーラー | 組織管理PCは配布方針を優先 |
+| Windows | PowerShell / CMDのネイティブ導入、またはWSL 2 | サンドボックスが必要ならWSL 2を検討。ネイティブWindowsと隔離機能は同一ではない |
+| ローカル導入を避けたい | [クラウド版](16-web-cloud-workflow.qmd) | 外部基盤で処理される |
+| VS Code / JetBrains | 公式拡張 | 発行元Anthropicを確認 |
 
-Claude Code は Node.js の上で動作するため、**最初に Node.js をインストールする必要があります**。
-すでに `node --version` でバージョンが表示される場合はスキップできます。
+## macOS / Linux / WSL
 
-### macOS の場合
-
-**方法A: 公式インストーラーを使う（初心者向け・推奨）**
-
-1. [https://nodejs.org/ja](https://nodejs.org/ja) を開く
-2. **「LTS（推奨版）」** と書かれたボタンをクリックしてダウンロード
-3. ダウンロードした `.pkg` ファイルをダブルクリックして指示通りにインストール
-4. ターミナルを**新しく開き直して**から確認コマンドを実行
+公式の簡易導入コマンドです。取得したプログラムを実行するため、組織の端末では承認した配布経路を優先します。
 
 ```bash
-node --version   # v20.x.x のように表示されれば OK
-npm --version    # 数字が表示されれば OK
+curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-**方法B: Homebrew を使う（すでに Homebrew が入っている場合）**
+先に内容を確認するなら保存し、確認した同じファイルを実行します。内容確認だけで安全性を保証できるわけではありません。
 
 ```bash
-brew install node
+curl -fsSL https://claude.ai/install.sh -o claude-install.sh
+less claude-install.sh
+# 配布元・内容・組織の許可を確認後
+bash claude-install.sh
 ```
 
----
+## Windows PowerShell
 
-### Windows の場合
-
-**方法A: 公式インストーラーを使う（初心者向け・推奨）**
-
-1. [https://nodejs.org/ja](https://nodejs.org/ja) を開く
-2. **「LTS（推奨版）」** をダウンロード
-3. `.msi` ファイルを実行して指示通りにインストール
-   - インストール途中の「Tools for Native Modules」チェックボックスは**そのままで OK**
-4. **PowerShell を新しく開き直して**から確認
+公式の導入例です。管理者起動や端末全体の実行ポリシー変更を既定の解決策にしません。
 
 ```powershell
-node --version
-npm --version
+irm https://claude.ai/install.ps1 | iex
 ```
 
-:::{.callout-warning}
-## インストール後はターミナル／PowerShell を必ず再起動
+組織ポリシーで止まる場合は情報システム担当へ確認します。Git Bashの要否やPowerShell対応は利用ツールに依存します。
 
-Node.js をインストールしても、**開いたままのターミナルには反映されません**。
-必ず一度閉じてから開き直してください。
-:::
-
-:::{.callout-tip}
-## うまくいかないときは
-
-エラーが出たら、ターミナルに表示されているメッセージを**そのままコピーして** Claude のチャット画面に貼り付けて質問してください。多くの場合すぐに解決策が得られます。
-
-よくあるトラブル：
-
-- `node: command not found` → ターミナルを開き直す、またはインストールが完了していない
-- `npm: command not found` → Node.js の再インストールを試す
-- Windows で `cannot be loaded because running scripts is disabled` → PowerShell を**管理者として実行**し、`Set-ExecutionPolicy RemoteSigned` を実行
-:::
-
-## インストール方法
-
-### 方法1: npm でインストール（推奨）
+## 認証と課金を確認する
 
 ```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-### 方法2: ネイティブインストーラー
-
-Anthropic 公式サイトからプラットフォーム別インストーラーをダウンロードして実行します。
-
-## 認証（ログイン）
-
-インストール後、Anthropicアカウントで認証します。
-
-```bash
+claude --version
 claude auth login
 ```
 
-ブラウザが開き、Anthropicアカウントへのログインと権限承認を求められます。
+サブスクリプション認証とAPI従量課金は別経路です。APIキーの環境変数が設定されている場合も含め、`/status`と契約管理画面で**認証先・課金先・組織**を確認します。キーの値を貼りません。プラン・価格・利用上限は[公式導入ガイド](https://code.claude.com/docs/en/quickstart)と契約画面で確認します。
 
-:::{.callout-note}
-## APIキーについて
-Claude Code は Anthropic のAPIを内部で使用します。アカウントにサブスクリプション（Claude Pro など）またはAPIクレジットが必要です。
-:::
+## 最初の起動
 
-## VS Code 拡張機能のインストール（任意）
-
-VS Code を使っている場合、拡張機能を追加すると Claude Code がより便利に使えます。
-
-1. VS Code を開く
-2. 拡張機能マーケットプレイスで「Claude Code」を検索
-3. インストール
-
-## 動作確認
-
-インストールが完了したら、動作を確認しましょう。
+自分で作る空の作業フォルダから開始します。ホーム全体や電子カルテの出力先を作業場所にしません。
 
 ```bash
-# バージョン確認
-claude --version
-
-# 対話型セッションの開始
-claude
+mkdir claude-practice
+cd claude-practice
+git init
+claude --permission-mode default
 ```
 
-`claude` と入力してエンターを押すと、対話型セッションが始まります。
+Claude内で順に入力します。
 
-```
-╔════════════════════════════════════════╗
-║        Claude Code v1.x.x             ║
-║  Type your request or /help for help  ║
-╚════════════════════════════════════════╝
-
->
-```
-
-## グローバル設定ファイルの場所
-
-Claude Code の設定ファイルは以下の場所にあります。
-
-```
-~/.claude/
-├── CLAUDE.md          # グローバル設定（全プロジェクト共通）
-├── settings.json      # Claude Code の設定
-└── commands/          # グローバルカスタムコマンド
+```text
+/help
+/status
+/permissions
+/sandbox
+架空の勉強会の案内文をdraft.mdに作成してください。
+個人情報・実在の施設名は使わず、外部送信はしないでください。
 ```
 
-:::{.callout-tip}
-## 次のステップ
-インストールが完了したら、[基本操作（@sec-basic）](03-basic-operations.qmd) に進みましょう。
-:::
+`/sandbox`が使えないOSでは利用可能な隔離方法を確認します。承認前に対象パス・コマンド・通信先を読み、`draft.md`を自分で開いて確認します。
+
+## 設定と更新
+
+| 場所 | 用途 |
+|---|---|
+| `~/.claude/CLAUDE.md` | 個人の共通指示 |
+| `CLAUDE.md` / `.claude/CLAUDE.md` | プロジェクト指示 |
+| `.claude/settings.json` | 共有設定 |
+| `.claude/settings.local.json` | 個人のプロジェクト設定 |
+| `.claude/skills/<名前>/SKILL.md` | 再利用する手順 |
+
+優先関係は[公式設定仕様](https://code.claude.com/docs/en/settings)で確認します。更新方法は導入経路に依存します。ネイティブ版とパッケージ管理版を重ねて導入しないよう実行ファイルの場所も確認します。
+
+## 困ったとき
+
+| 症状 | 最初にすること |
+|---|---|
+| `claude`が見つからない | ターミナルを開き直し、公式PATH設定を確認 |
+| 認証できない | アカウント・組織・プロキシ・契約を確認 |
+| 実行拒否 | 操作と設定を確認。権限省略で回避しない |
+| 想定外の課金先 | 作業を止め、認証方式と環境変数の名前を確認 |
+| 設定エラー | 信頼済みフォルダで`claude doctor`。外部共有前に診断結果の機密を除去 |
+
+エラーログからキー・患者情報・認証パラメーター・内部ホスト名を除去してから質問します。次は[基本操作](03-basic-operations.qmd)です。
